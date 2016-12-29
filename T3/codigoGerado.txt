@@ -1,0 +1,6 @@
+#'def esquerda(player):\n     player.virar()\n     player.virar()\n     player.virar()\n'
+#esquerda(player)
+player.usar('fogo')
+player.andar()
+player.andar()
+player.virar()
