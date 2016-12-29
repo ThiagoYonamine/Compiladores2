@@ -1,0 +1,17 @@
+fase: 1
+inicio
+funcao esquerda(){
+andar()
+andar()
+}
+item = grama
+usar(item)
+andar()
+andar()
+repetir(4){
+	andar()
+}
+item = machado
+virar_direita()
+andar()
+fim
