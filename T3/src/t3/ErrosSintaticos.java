@@ -5,10 +5,6 @@
  */
 package t3;
 
-/**
- *
- * @author thyonamine
- */
 public class ErrosSintaticos {
     static boolean comentario;
 }

@@ -10,10 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author thyonamine
- */
 public class GeradorCodigo {
 
     private int identacao = 1;
@@ -141,10 +137,6 @@ public class GeradorCodigo {
             }
             
                 variaveis_tipo.put(id, at);
-            
-            
-            
-
         }
 
     }

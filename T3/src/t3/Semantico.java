@@ -10,10 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- *
- * @author thyonamine
- */
 public class Semantico {
     
     PilhaDeTabelas pilhaDeTabelas = new PilhaDeTabelas();

@@ -6,10 +6,7 @@
 package t3;
 import java.util.LinkedList;
 import java.util.List;
-/**
- *
- * @author thyonamine
- */
+
 public class PilhaDeTabelas {
     private LinkedList<TabelaDeSimbolos> pilha;
 
