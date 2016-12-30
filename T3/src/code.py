@@ -10,6 +10,7 @@ clock = pygame.time.Clock()
 
 # # #   Carregar imagens    # # #
 bg = pygame.image.load('Imagem/forst.png')
+fim = pygame.image.load('Imagem/fim.png')
 grama = pygame.image.load('Imagem/grama.png')
 pedra = pygame.image.load('Imagem/pedra.png') # 1
 caixa = pygame.image.load('Imagem/caixa.png') # c - Mapeamento na matriz da fase
@@ -44,13 +45,13 @@ def att_matriz(magia, prox_bloco):
         lmatriz[prox_bloco] = 'a'
     elif(magia == "agua" and lmatriz[prox_bloco] == 't'): # Agua no tronco
         lmatriz[prox_bloco] = 'r'
-    elif(magia == "fisico" and lmatriz[prox_bloco] == 'r'): # Fisico na arvore
+    elif(magia == "ataque" and lmatriz[prox_bloco] == 'r'): # ataque na arvore
         lmatriz[prox_bloco] = 't'
-    elif(magia == "fisico" and lmatriz[prox_bloco] == 'c'): # Fisico na caixa
+    elif(magia == "ataque" and lmatriz[prox_bloco] == 'c'): # ataque na caixa
         lmatriz[prox_bloco] = 'q'
 
-# player.andar();player.andar() ;player.andar()  if True  else player.virar(); player.virar(); player.virar()
-# # #  Desenhar o mapeamento da fase  # # # 
+
+# # #  Desenhar o mapeamento da fase  # # #
 def mapa():
     screen.blit(bg, (0, 0))
     x = 1
@@ -151,7 +152,7 @@ class Player():
                     pygame.image.load('Imagem/agua6.png'),
                     pygame.image.load('Imagem/agua7.png'),
                     pygame.image.load('Imagem/agua8.png')]
-        self.magic_fisico = [pygame.image.load('Imagem/atk1.png'),
+        self.magic_ataque = [pygame.image.load('Imagem/atk1.png'),
                     pygame.image.load('Imagem/atk2.png'),
                     pygame.image.load('Imagem/atk3.png'),
                     pygame.image.load('Imagem/atk4.png'),
@@ -163,7 +164,7 @@ class Player():
         self.animacao = 0
         self.direcao = 'esq' # dir, esq, cima, baixo
         self.estado = 'andando' # andando, parado, usando_magia
-        self.magia = 'fogo' # agua, fogo, fisico
+        self.magia = 'fogo' # agua, fogo, ataque
         self.anima_magia = 0
 
     # # # Desenhar o jogador/animacoes do jogador e das magias na tela    # # #
@@ -205,8 +206,8 @@ class Player():
                 screen.blit(self.magic_fogo[int(self.anima_magia)], (magicx-4, magicy))
             if self.magia == 'agua':
                 screen.blit(self.magic_agua[int(self.anima_magia)], (magicx-8+self.anima_magia, magicy-5))
-            if self.magia == 'fisico':
-                screen.blit(self.magic_fisico[int(self.anima_magia)], (magicx, magicy))
+            if self.magia == 'ataque':
+                screen.blit(self.magic_ataque[int(self.anima_magia)], (magicx, magicy))
 
             self.anima_magia += 0.5
             if self.anima_magia >= 8:
@@ -232,23 +233,33 @@ class Player():
         # Fim do jogo quando:
         #   Jogador anda em cima do fogo
         #   Jogador ultrapassa limite do mapa
-        if (self.bloco > len(lmatriz) or self.bloco < 0 or lmatriz[player.bloco] == "f"):
+        finaliza = False
+        print(self.y)
+        if (self.x > 750 or self.y < 60 or self.y > 510):
+            player.bloco = 0
+            finaliza = True
+            print(finaliza)
+        if (lmatriz[player.bloco] == "f" or finaliza == True):
             screen.blit(bg, (0, 0))
+            screen.blit(fim, (100, 100))
             pygame.time.wait(500)
             pygame.display.flip()
             pygame.display.quit()
             pygame.quit()
             sys.exit()
         # Quando o bloco esta livre, anda
-        if (lmatriz[player.bloco] == "0"):
+        elif (lmatriz[player.bloco] == "0"):
             andarei = 2
         # Quando o bloco esta com obstaculo, para
         elif (lmatriz[player.bloco] == "1" or lmatriz[player.bloco] == "c"  or lmatriz[player.bloco] == "r" or lmatriz[player.bloco] == "v"):
             andarei = 0
+        # Quando o jogador entra no portal
+        elif lmatriz[player.bloco] == "p":
+           print('Ganhou')
+        else:
+            andarei = 2
 
-        #if lmatriz[player.bloco] == "p" and self.estado == 'parado':
-        #   print('Ganhou')
-            
+
         # Andando por bloco
         if self.estado == 'andando':
             if self.direcao == 'dir':
@@ -293,7 +304,7 @@ class Player():
 
         self.estado = 'parado'
         self.desenha()
-        att_matriz(magic,prox_bloco)
+        att_matriz(magic, prox_bloco)
 
 
     # # #   Vira o jogador sempre para a direita    # # #
@@ -324,16 +335,13 @@ while line:
     print(line)
 player.estado = 'parado'
 player.desenha()
-pygame.time.wait(1000);
+
 # # #   Fechar a tela apos fim da execucao  # # #
 while not close:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             close = True
-            
+
 pygame.display.quit()
 pygame.quit()
 sys.exit()
-
-
-
