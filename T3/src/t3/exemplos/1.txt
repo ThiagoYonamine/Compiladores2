@@ -1,0 +1,16 @@
+fase: 1
+inicio
+funcao esquerda(){
+	virar()
+	virar()
+	virar()
+}
+magia balde
+baldes = fogo
+esquerda()
+usar(balde)
+andar()
+balde = agua
+andar()
+virar()
+fim

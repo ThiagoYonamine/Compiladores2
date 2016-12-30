@@ -3,5 +3,8 @@ from funcoes import esquerda
 esquerda(player)
 player.usar('fogo')
 player.andar()
+player.usar('agua')
 player.andar()
 player.virar()
+player.andar()
+player.andar()
