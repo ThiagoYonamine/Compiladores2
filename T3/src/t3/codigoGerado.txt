@@ -1,7 +1,3 @@
-from funcoes import esquerda
-
-esquerda(player)
-player.usar('fogo')
+player.usar('agua')
 player.andar()
-player.andar()
-player.virar()
+player.usar('agua')

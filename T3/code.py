@@ -9,26 +9,26 @@ clock = pygame.time.Clock()
 
 
 # # #   Carregar imagens    # # #
-bg = pygame.image.load('Imagem/forst.png')
-fim = pygame.image.load('Imagem/fim.png')
-grama = pygame.image.load('Imagem/grama.png')
-pedra = pygame.image.load('Imagem/pedra.png') # 1
-caixa = pygame.image.load('Imagem/caixa.png') # c - Mapeamento na matriz da fase
-caixa_quebrada = pygame.image.load('Imagem/caixa_quebrada.png') # q
-fogueira = [pygame.image.load('Imagem/fogueira2.png'),pygame.image.load('Imagem/fogueira3.png'),pygame.image.load('Imagem/fogueira4.png')] # f
-f_apagada = pygame.image.load('Imagem/fogueira1.png') # a
-arvore = pygame.image.load('Imagem/arvore.png') # r
-a_queimada = pygame.image.load('Imagem/a_queimada.png') # v
-tronco = pygame.image.load('Imagem/tronco.png') # t
-portal = [pygame.image.load('Imagem/portal1.png'),pygame.image.load('Imagem/portal2.png'),
-          pygame.image.load('Imagem/portal3.png'),pygame.image.load('Imagem/portal4.png'),
-          pygame.image.load('Imagem/portal5.png'),pygame.image.load('Imagem/portal6.png'),
-          pygame.image.load('Imagem/portal7.png'),pygame.image.load('Imagem/portal8.png')] # p
+bg = pygame.image.load('src/t3/Imagem/forst.png')
+fim = pygame.image.load('src/t3/Imagem/fim.png')
+grama = pygame.image.load('src/t3/Imagem/grama.png')
+pedra = pygame.image.load('src/t3/Imagem/pedra.png') # 1
+caixa = pygame.image.load('src/t3/Imagem/caixa.png') # c - Mapeamento na matriz da fase
+caixa_quebrada = pygame.image.load('src/t3/Imagem/caixa_quebrada.png') # q
+fogueira = [pygame.image.load('src/t3/Imagem/fogueira2.png'),pygame.image.load('src/t3/Imagem/fogueira3.png'),pygame.image.load('src/t3/Imagem/fogueira4.png')] # f
+f_apagada = pygame.image.load('src/t3/Imagem/fogueira1.png') # a
+arvore = pygame.image.load('src/t3/Imagem/arvore.png') # r
+a_queimada = pygame.image.load('src/t3/Imagem/a_queimada.png') # v
+tronco = pygame.image.load('src/t3/Imagem/tronco.png') # t
+portal = [pygame.image.load('src/t3/Imagem/portal1.png'),pygame.image.load('src/t3/Imagem/portal2.png'),
+          pygame.image.load('src/t3/Imagem/portal3.png'),pygame.image.load('src/t3/Imagem/portal4.png'),
+          pygame.image.load('src/t3/Imagem/portal5.png'),pygame.image.load('src/t3/Imagem/portal6.png'),
+          pygame.image.load('src/t3/Imagem/portal7.png'),pygame.image.load('src/t3/Imagem/portal8.png')] # p
 anima_fogo = 0
 anima_portal = 0
 
 # # #   Ler o arquivo/fase  # # #
-arquivo = open('Fase/mapa1.txt', 'r')
+arquivo = open('src/t3/Fase/mapa1.txt', 'r')
 matriz = arquivo.read()
 lmatriz = list(matriz)
 
@@ -111,58 +111,58 @@ class Player():
 
     def __init__(self):
         # Posicao do mapa na tela x: 110 y: 98
-        self.bx = 7
-        self.by = 4
+        self.bx = 0
+        self.by = 2
         self.x = 110 + (self.bx*64)
         self.y = 98 + (self.by*67)
         self.bloco = ((11*(2*(self.by))) + self.bx*2) # Equacao para identificar o bloco em que o jogador esta
-        self.imga_dir = [pygame.image.load('Imagem/p_dir1.png'),
-                    pygame.image.load('Imagem/p_dir2.png'),
-                    pygame.image.load('Imagem/p_dir3.png'),
-                    pygame.image.load('Imagem/p_dir2.png'),
-                    pygame.image.load('Imagem/p_dir1.png')]
-        self.imga_esq = [pygame.image.load('Imagem/p_esq1.png'),
-                    pygame.image.load('Imagem/p_esq2.png'),
-                    pygame.image.load('Imagem/p_esq3.png'),
-                    pygame.image.load('Imagem/p_esq2.png'),
-                    pygame.image.load('Imagem/p_esq1.png')]
-        self.imga_cima = [pygame.image.load('Imagem/p_cima1.png'),
-                    pygame.image.load('Imagem/p_cima2.png'),
-                    pygame.image.load('Imagem/p_cima3.png'),
-                    pygame.image.load('Imagem/p_cima2.png'),
-                    pygame.image.load('Imagem/p_cima1.png')]
-        self.imga_baixo = [pygame.image.load('Imagem/p_frente1.png'),
-                    pygame.image.load('Imagem/p_frente2.png'),
-                    pygame.image.load('Imagem/p_frente3.png'),
-                    pygame.image.load('Imagem/p_frente2.png'),
-                    pygame.image.load('Imagem/p_frente1.png')]
-        self.magic_fogo = [pygame.image.load('Imagem/fogo1.png'),
-                    pygame.image.load('Imagem/fogo2.png'),
-                    pygame.image.load('Imagem/fogo3.png'),
-                    pygame.image.load('Imagem/fogo4.png'),
-                    pygame.image.load('Imagem/fogo5.png'),
-                    pygame.image.load('Imagem/fogo6.png'),
-                    pygame.image.load('Imagem/fogo7.png'),
-                    pygame.image.load('Imagem/fogo8.png')]
-        self.magic_agua = [pygame.image.load('Imagem/agua1.png'),
-                    pygame.image.load('Imagem/agua2.png'),
-                    pygame.image.load('Imagem/agua3.png'),
-                    pygame.image.load('Imagem/agua4.png'),
-                    pygame.image.load('Imagem/agua5.png'),
-                    pygame.image.load('Imagem/agua6.png'),
-                    pygame.image.load('Imagem/agua7.png'),
-                    pygame.image.load('Imagem/agua8.png')]
-        self.magic_ataque = [pygame.image.load('Imagem/atk1.png'),
-                    pygame.image.load('Imagem/atk2.png'),
-                    pygame.image.load('Imagem/atk3.png'),
-                    pygame.image.load('Imagem/atk4.png'),
-                    pygame.image.load('Imagem/atk5.png'),
-                    pygame.image.load('Imagem/atk6.png'),
-                    pygame.image.load('Imagem/atk7.png'),
-                    pygame.image.load('Imagem/atk8.png')]
+        self.imga_dir = [pygame.image.load('src/t3/Imagem/p_dir1.png'),
+                    pygame.image.load('src/t3/Imagem/p_dir2.png'),
+                    pygame.image.load('src/t3/Imagem/p_dir3.png'),
+                    pygame.image.load('src/t3/Imagem/p_dir2.png'),
+                    pygame.image.load('src/t3/Imagem/p_dir1.png')]
+        self.imga_esq = [pygame.image.load('src/t3/Imagem/p_esq1.png'),
+                    pygame.image.load('src/t3/Imagem/p_esq2.png'),
+                    pygame.image.load('src/t3/Imagem/p_esq3.png'),
+                    pygame.image.load('src/t3/Imagem/p_esq2.png'),
+                    pygame.image.load('src/t3/Imagem/p_esq1.png')]
+        self.imga_cima = [pygame.image.load('src/t3/Imagem/p_cima1.png'),
+                    pygame.image.load('src/t3/Imagem/p_cima2.png'),
+                    pygame.image.load('src/t3/Imagem/p_cima3.png'),
+                    pygame.image.load('src/t3/Imagem/p_cima2.png'),
+                    pygame.image.load('src/t3/Imagem/p_cima1.png')]
+        self.imga_baixo = [pygame.image.load('src/t3/Imagem/p_frente1.png'),
+                    pygame.image.load('src/t3/Imagem/p_frente2.png'),
+                    pygame.image.load('src/t3/Imagem/p_frente3.png'),
+                    pygame.image.load('src/t3/Imagem/p_frente2.png'),
+                    pygame.image.load('src/t3/Imagem/p_frente1.png')]
+        self.magic_fogo = [pygame.image.load('src/t3/Imagem/fogo1.png'),
+                    pygame.image.load('src/t3/Imagem/fogo2.png'),
+                    pygame.image.load('src/t3/Imagem/fogo3.png'),
+                    pygame.image.load('src/t3/Imagem/fogo4.png'),
+                    pygame.image.load('src/t3/Imagem/fogo5.png'),
+                    pygame.image.load('src/t3/Imagem/fogo6.png'),
+                    pygame.image.load('src/t3/Imagem/fogo7.png'),
+                    pygame.image.load('src/t3/Imagem/fogo8.png')]
+        self.magic_agua = [pygame.image.load('src/t3/Imagem/agua1.png'),
+                    pygame.image.load('src/t3/Imagem/agua2.png'),
+                    pygame.image.load('src/t3/Imagem/agua3.png'),
+                    pygame.image.load('src/t3/Imagem/agua4.png'),
+                    pygame.image.load('src/t3/Imagem/agua5.png'),
+                    pygame.image.load('src/t3/Imagem/agua6.png'),
+                    pygame.image.load('src/t3/Imagem/agua7.png'),
+                    pygame.image.load('src/t3/Imagem/agua8.png')]
+        self.magic_ataque = [pygame.image.load('src/t3/Imagem/atk1.png'),
+                    pygame.image.load('src/t3/Imagem/atk2.png'),
+                    pygame.image.load('src/t3/Imagem/atk3.png'),
+                    pygame.image.load('src/t3/Imagem/atk4.png'),
+                    pygame.image.load('src/t3/Imagem/atk5.png'),
+                    pygame.image.load('src/t3/Imagem/atk6.png'),
+                    pygame.image.load('src/t3/Imagem/atk7.png'),
+                    pygame.image.load('src/t3/Imagem/atk8.png')]
 
         self.animacao = 0
-        self.direcao = 'esq' # dir, esq, cima, baixo
+        self.direcao = 'dir' # dir, esq, cima, baixo
         self.estado = 'andando' # andando, parado, usando_magia
         self.magia = 'fogo' # agua, fogo, ataque
         self.anima_magia = 0
@@ -326,8 +326,9 @@ player = Player()
 player.desenha()
 
 # # #   Leitura dos comandos gerados pelo compilador    # # #
-cmd = open('codigoGerado.txt', 'r')
+cmd = open('src/t3/codigoGerado.txt', 'r')
 line = cmd.readline()
+frente ='fogo'
 print(line)
 while line:
     exec(line)

@@ -48,14 +48,14 @@ public class T3 {
             }
             else {      
             try{
-                PrintWriter writer = new PrintWriter("codigoGerado.txt", "UTF-8");
+                PrintWriter writer = new PrintWriter("src/t3/codigoGerado.txt", "UTF-8");
                 writer.print(gerador.getTexto());
                 writer.close();
             } catch (IOException e) {
                System.out.println("erro");
             }
             try{
-                PrintWriter writer = new PrintWriter("funcoes.py", "UTF-8");
+                PrintWriter writer = new PrintWriter("src/t3/funcoes.py", "UTF-8");
                 writer.print(gerador.getFuncao());
                 writer.close();
             } catch (IOException e) {
@@ -63,7 +63,7 @@ public class T3 {
             }
             }
             try {
-                String cmd = "python meuCodigo.py";
+                String cmd = "python code.py";
                 Process p = Runtime.getRuntime().exec(cmd);
                 //p.waitFor();
             } catch (IOException ex) {

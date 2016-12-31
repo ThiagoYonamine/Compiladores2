@@ -34,16 +34,12 @@ public class Semantico {
 
     void Programa(LaParser.ProgramaContext ctx) {
         clear();
-       
         pilhaDeTabelas.empilhar(new TabelaDeSimbolos("Global"));
         Corpo(ctx.corpo());
         pilhaDeTabelas.desempilhar();
-        
-
     }
     void Corpo(LaParser.CorpoContext ctx){
-        if(!ctx.declaracoes().getText().equals(""))
-            Declaracoes(ctx.declaracoes());
+        
         Comandos(ctx.comandos());
     }
     void Comandos(LaParser.ComandosContext ctx){
@@ -70,18 +66,13 @@ public class Semantico {
             }
         }
         if (ctx.getStart().getText().equals("perguntar")){
-            
+            return;
+        }
+        if (ctx.getStart().getText().equals("repetir")){
+            return;
         }
     }
     
-    void Expressao(LaParser.ExpressaoContext ctx){
-        String id = ctx.IDENT().getText();
-        int id_line = ctx.IDENT().getSymbol().getLine();
-        if(!pilhaDeTabelas.existeSimbolo(id)){
-                println("Linha " + id_line +" : Bloco " + id +" nao declarada");
-        }
-        
-    }
     void Declaracoes(LaParser.DeclaracoesContext ctx){
        //System.out.println(ctx.getText());
         if (ctx.getStart().getText().equals("magia")){
@@ -129,7 +120,7 @@ public class Semantico {
             else{
                 
                 if(pilhaDeTabelas.tipo(id) == "magia"){
-                    if( !at.equals("agua") && !at.equals("fogo") && !at.equals("fisico")){
+                    if( !at.equals("agua") && !at.equals("fogo") && !at.equals("ataque")){
                      println("Linha " + id_line +" : Variavel " + id +" nao compativel");
                     }
                 }

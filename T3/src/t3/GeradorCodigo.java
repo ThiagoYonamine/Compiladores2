@@ -24,6 +24,7 @@ public class GeradorCodigo {
     public void print(String txt) {
         this.codigo.append(txt);
     }
+    
     public void printF(String txt) {
         this.funcoes.append(txt);
     }
@@ -51,9 +52,7 @@ public class GeradorCodigo {
     }
 
     void Corpo(LaParser.CorpoContext ctx) {
-        if (!ctx.declaracoes().getText().equals("")) {
-            Declaracoes(ctx.declaracoes());
-        }
+        
         Comandos(ctx.comandos());
     }
 
@@ -76,22 +75,43 @@ public class GeradorCodigo {
             String id = ctx.IDENT().getText();
 
             if (ctx.getStart().getText().equals("usar")) {   
-                if(identacao == 2)
-                    printF("player.usar(" + "'"+ variaveis_tipo.get(id) +"'"+ ")");
-                else
+                if(identacao == 3)
+                    print("player.usar(" + "'"+ variaveis_tipo.get(id) +"'"+ ");");
+                else if(identacao == 2)
+                    printF("player.usar(" + "'"+ variaveis_tipo.get(id) +"'"+ ")");             
+                else 
                     print("player.usar(" + "'"+ variaveis_tipo.get(id) +"'"+ ")");
             } else {
-                if(identacao == 2)
-                    printF(id+"(player)");
+                if(identacao == 3)
+                    print(id +"(player);");
+                else if(identacao == 2)
+                    printF(id +"(player)");
                 else
-                    print(id+"(player)");
+                    print(id +"(player)");
             }
         }
         else if (ctx.getStart().getText().equals("perguntar")) {
             
+            String t = ctx.expressao().tipo().getText();
+            identacao = 3;
+            
+            print("if frente == '"+ t + "': " );
+            Comandos(ctx.resultado().comandos().comandos());
+            identacao = 1;
         }
-        else  {
-                if(identacao == 2)
+        else if (ctx.getStart().getText().equals("repetir")){
+            
+            String n = ctx.repetir().NUM_INT().getText();
+            
+            print("for i in range(" + n + "): ");
+            identacao = 3;
+            Comandos(ctx.repetir().comandos());
+            identacao = 1;
+        }
+        else  { //player.andar() e player.virar()
+                if(identacao == 3)
+                    print("player."+ctx.getText()+";");
+                else if (identacao == 2)
                     printF("player."+ctx.getText());
                 else
                     print("player."+ctx.getText());
@@ -101,21 +121,13 @@ public class GeradorCodigo {
             printF("\n");
     }
 
-    void Expressao(LaParser.ExpressaoContext ctx) {
-        String id = ctx.IDENT().getText();
-        int id_line = ctx.IDENT().getSymbol().getLine();
-       
-            println("Linha " + id_line + " : Bloco " + id + " nao declarada");
-
-    }
-
     void Declaracoes(LaParser.DeclaracoesContext ctx) {
         if (ctx.getStart().getText().equals("funcao")) {
 
             String id = ctx.declaracoes_funcao().IDENT().getText();
             int id_line = ctx.declaracoes_funcao().IDENT().getSymbol().getLine();
             println("from funcoes import " + id);
-            printF("def "+id +"(player):\n");
+            printF("def "+ id +"(player):\n");
             identacao = 2;
             Comandos(ctx.declaracoes_funcao().comandos());
             identacao = 1;
@@ -135,10 +147,10 @@ public class GeradorCodigo {
             if(variaveis_tipo.containsKey(id)){
                 variaveis_tipo.remove(id);
             }
-            
                 variaveis_tipo.put(id, at);
-        }
 
+        }
     }
 
 }
+

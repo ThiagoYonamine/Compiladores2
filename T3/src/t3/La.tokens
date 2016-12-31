@@ -58,8 +58,8 @@ SIMBOLO_NAO_INDENTIFICADO=36
 'proximo_bloco'=22
 'agua'=23
 'fogo'=24
-'fisico'=25
-'é'=26
-'?'=27
-'SIM'=28
-'NAO'=29
+'ataque'=25
+'frente'=26
+'=='=27
+'?'=28
+'sim'=29
