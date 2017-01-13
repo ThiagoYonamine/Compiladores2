@@ -1,0 +1,4 @@
+java -jar antlr-4.5.3-complete\ .jar -package t3 La.g4
+
+java -jar /home/thyonamine/NetBeansProjects/comp2/Compiladores2/T3/distT3.jar
+

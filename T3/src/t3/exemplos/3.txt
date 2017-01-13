@@ -1,17 +1,18 @@
 fase: 1
 inicio
 funcao esquerda(){
-andar()
-andar()
+	virar()
+	virar()
+	virar()
 }
-item = grama
-usar(item)
+magia alakasam
+alakasaum = fogo
+esquerda()
+usar(alakasam)
 andar()
+alakasam = agua
+usar(alakasam)
 andar()
-repetir(4){
-	andar()
-}
-item = machado
-virar_direita()
+virar()
 andar()
 fim

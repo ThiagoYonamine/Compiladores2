@@ -1,3 +1,0 @@
-player.usar('agua')
-player.andar()
-player.usar('agua')

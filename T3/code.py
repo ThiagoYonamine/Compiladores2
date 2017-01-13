@@ -111,7 +111,7 @@ class Player():
 
     def __init__(self):
         # Posicao do mapa na tela x: 110 y: 98
-        self.bx = 0
+        self.bx = 4
         self.by = 2
         self.x = 110 + (self.bx*64)
         self.y = 98 + (self.by*67)
@@ -326,7 +326,7 @@ player = Player()
 player.desenha()
 
 # # #   Leitura dos comandos gerados pelo compilador    # # #
-cmd = open('src/t3/codigoGerado.txt', 'r')
+cmd = open('codigoGerado.txt', 'r')
 line = cmd.readline()
 frente ='fogo'
 print(line)

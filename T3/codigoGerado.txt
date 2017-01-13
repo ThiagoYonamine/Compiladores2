@@ -1,0 +1,5 @@
+from funcoes import esquerda
+
+esquerda(player)
+esquerda(player)
+for i in range(5): player.andar();

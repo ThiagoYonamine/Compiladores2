@@ -127,6 +127,7 @@ public class GeradorCodigo {
             String id = ctx.declaracoes_funcao().IDENT().getText();
             int id_line = ctx.declaracoes_funcao().IDENT().getSymbol().getLine();
             println("from funcoes import " + id);
+            printF("\n");
             printF("def "+ id +"(player):\n");
             identacao = 2;
             Comandos(ctx.declaracoes_funcao().comandos());

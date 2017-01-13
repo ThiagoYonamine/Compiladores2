@@ -5,9 +5,7 @@ funcao esquerda(){
 	virar()
 	virar()
 }
-esquerda()
-esquerda()
-repetir(5){
+repetir(4){
 andar()
 }
 
