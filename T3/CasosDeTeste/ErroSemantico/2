@@ -5,6 +5,10 @@ funcao meiaVolta(){
         virar()
     }
 }
+funcao meiaVolta(){
+    virar()
+    virar()
+}
 repetir (2) {
     andar()
 }
@@ -30,3 +34,5 @@ repetir(2){
     andar()
 }
 fim
+
+# [ERROR] Line 8 : Function meiaVolta already defined #

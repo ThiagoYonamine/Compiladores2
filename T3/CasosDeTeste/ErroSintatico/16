@@ -8,7 +8,7 @@ funcao meiaVolta(){
 repetir (2) {
     andar()
 }
-magia destruccio
+magia: destruccio
 destruccio = ataque
 usar(destruccio)
 repetir(2){
@@ -30,3 +30,5 @@ repetir(2){
     andar()
 }
 fim
+
+# [SYNTACTIC ERROR] Line 11: extraneous input ':' expecting IDENT #

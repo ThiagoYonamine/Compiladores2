@@ -32,7 +32,7 @@ cmd     : 'andar' '()'
 repetir: 'repetir' '(' NUM_INT ')' '{\n' comandos '}';
 tipo: tipo_bloco | tipo_magia;
 tipo_bloco : 'grama' | 'lava' | 'parede' | 'inimigo' | 'proximo_bloco' ;
-tipo_magia : 'agua' | 'fogo' | 'ataque';
+tipo_magia : IDENT | NUM_INT | NUM_REAL ;
 expressao: 'frente' '==' tipo '?';
 resultado: 'sim' '{\n' comandos '}' ;
 

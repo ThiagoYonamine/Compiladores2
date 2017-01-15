@@ -1,0 +1,19 @@
+fase: 1
+inicio
+funcao esquerda(){
+    repetir(3) {
+        andar()
+    }
+}
+    andar();
+    repetir(4) {
+        andar()
+    }
+    esquerda()
+    andar()
+    repetir(3) {
+        andar()
+    }
+fim
+
+# [SYNTACTIC ERROR] Line 8: mismatched input ';' expecting 'fim' #

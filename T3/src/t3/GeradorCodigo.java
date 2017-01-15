@@ -82,8 +82,8 @@ public class GeradorCodigo {
             Declaracoes(ctx.declaracoes());
         } else if (ctx.IDENT() != null) {
             String id = ctx.IDENT().getText();
-
-            if (ctx.getStart().getText().equals("usar")) {   
+            int id_line = ctx.IDENT().getSymbol().getLine();
+            if (ctx.getStart().getText().equals("usar")) {  
                 if(identacao == 4)
                     printF("player.usar(" + "'"+ variaveis_tipo.get(id) +"'"+ ");");
                 else if(identacao == 3)

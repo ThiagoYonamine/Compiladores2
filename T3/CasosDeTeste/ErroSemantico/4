@@ -15,12 +15,12 @@ repetir(2){
     andar()
 }
 meiaVolta()
-magia aguamenti
 aguamenti = agua
 usar(aguamenti)
 meiaVolta()
 usar(aguamenti)
 andar()
+magia destruccio
 usar(destruccio)
 repetir(4){
     andar()
@@ -30,3 +30,8 @@ repetir(2){
     andar()
 }
 fim
+
+# [ERROR] Line 18 : Variable aguamenti not defined
+[ERROR] Line 19 : Magic aguamenti not defined
+[ERROR] Line 21 : Magic aguamenti not defined
+[ERROR] Line 23 : Magic destruccio already defined #

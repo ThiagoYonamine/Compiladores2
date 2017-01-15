@@ -9,7 +9,6 @@ repetir (2) {
     andar()
 }
 magia destruccio
-destruccio = ataque
 usar(destruccio)
 repetir(2){
     andar()
@@ -30,3 +29,6 @@ repetir(2){
     andar()
 }
 fim
+
+# [ERROR] Line 12 : Magic destruccio has no type
+[ERROR] Line 23 : Magic destruccio has no type #

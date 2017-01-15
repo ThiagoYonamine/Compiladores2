@@ -1,6 +1,6 @@
 fase: 2
 inicio
-funcao meiaVolta(){
+func meiaVolta(){
     repetir(2) {
         virar()
     }
@@ -30,3 +30,5 @@ repetir(2){
     andar()
 }
 fim
+
+# [SYNTACTIC ERROR] Line 3: no viable alternative at input 'funcmeiaVolta' #

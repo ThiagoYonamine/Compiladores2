@@ -132,8 +132,8 @@ class Player():
 
     def __init__(self):
         # Posicao do mapa na tela x: 110 y: 98
-        self.bx = 4
-        self.by = 6
+        self.bx = 9
+        self.by = 4
         self.x = 110 + (self.bx*64)
         self.y = 98 + (self.by*67)
         self.bloco = ((11*(2*(self.by))) + self.bx*2) # Equacao para identificar o bloco em que o jogador esta
@@ -183,7 +183,7 @@ class Player():
                     pygame.image.load('src/t3/Imagem/atk8.png')]
 
         self.animacao = 0
-        self.direcao = 'cima' # dir, esq, cima, baixo
+        self.direcao = 'esq' # dir, esq, cima, baixo
         self.estado = 'andando' # andando, parado, usando_magia
         self.magia = 'fogo' # agua, fogo, ataque
         self.anima_magia = 0

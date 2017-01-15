@@ -1,10 +1,14 @@
-from funcoes import esquerda
+from funcoes import meiaVolta
 
+for i in range(2): player.andar();
+player.usar('ataque')
+for i in range(2): player.andar();
+meiaVolta(player)
+player.usar('agua')
+meiaVolta(player)
+player.usar('agua')
 player.andar()
+player.usar('ataque')
 for i in range(4): player.andar();
-esquerda(player)
-
-esquerda(player)
-for i in range(3): player.andar();
-esquerda(player)
-
+player.virar()
+for i in range(2): player.andar();

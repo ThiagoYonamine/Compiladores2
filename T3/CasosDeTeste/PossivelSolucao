@@ -1,3 +1,25 @@
+Solução Fase 1
+
+fase: 1
+inicio
+funcao esquerda(){
+    repetir(3){
+        virar()
+    }
+}
+    andar()
+    repetir(4){
+        andar()
+    }
+    esquerda()
+    andar()
+    repetir(3){
+        andar()
+    }
+fim
+
+Solução Fase 2
+
 fase: 2
 inicio
 funcao meiaVolta(){

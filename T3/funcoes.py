@@ -1,7 +1,4 @@
      
-def esquerda(player):
-     for i in range(3):      player.virar();
-     player.virar()
-     player.virar()
-     player.virar()
-          
+def meiaVolta(player):
+     for i in range(2):      player.virar();
+                                        

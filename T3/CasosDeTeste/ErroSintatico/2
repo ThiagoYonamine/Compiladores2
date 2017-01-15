@@ -1,0 +1,19 @@
+fase: 1
+inicio
+funcao esquerda(){
+    repetir(3){
+        virar()
+    }
+}
+    andar()
+    repetir(4){
+        andar()
+    }
+    esquerda()
+    andar()
+    repetir(3){
+        andar()
+    }
+
+
+# [SYNTACTIC ERROR] Line 17: missing 'fim' at '<EOF>' #

@@ -9,11 +9,12 @@ repetir (2) {
     andar()
 }
 magia destruccio
-destruccio = ataque
+destrucio = ataque
 usar(destruccio)
 repetir(2){
     andar()
 }
+usar(alohomora)
 meiaVolta()
 magia aguamenti
 aguamenti = agua
@@ -30,3 +31,6 @@ repetir(2){
     andar()
 }
 fim
+
+# [ERROR] Line 12 : Variable destrucio not defined
+[ERROR] Line 17 : Magic alohomora not defined #
