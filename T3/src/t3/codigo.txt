@@ -1,4 +1,4 @@
-fase: 1
+fase: 10
 inicio
 funcao esquerda(){
 repetir(3){

@@ -20,7 +20,7 @@ public class T3ErrorListener implements ANTLRErrorListener {
     public void syntaxError(Recognizer<?, ?> rcgnzr, Object o, int i, int i1, String string, RecognitionException re) {
         if (!sp.isModificado()) {
             if(ErrosSintaticos.comentario){
-                sp.println("Linha " + i + ": comentario errado");
+                sp.println("[SYNTACTIC ERROR] Line " + i + ": wrong comment");
                 
             }
             else{
@@ -28,7 +28,7 @@ public class T3ErrorListener implements ANTLRErrorListener {
                 String[] tokens = string.split(delims);
                 int tam;
                 tam = tokens.length;
-                sp.println("Linha " + i + " : erro sintatico proximo a " + tokens[tam-1]);
+                sp.println("[SYNTACTIC ERROR] Line " + i + ": " + string);
             }
         }
     }

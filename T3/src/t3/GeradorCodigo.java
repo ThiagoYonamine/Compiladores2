@@ -17,6 +17,7 @@ public class GeradorCodigo {
     private StringBuffer codigo = new StringBuffer(); //Concatena todos as linhas de código
     private StringBuffer funcoes = new StringBuffer();
     Map<String, String> variaveis_tipo;
+
     public void println(String txt) {
         this.codigo.append(txt).append("\n");
     }
@@ -24,14 +25,16 @@ public class GeradorCodigo {
     public void print(String txt) {
         this.codigo.append(txt);
     }
-    
+
     public void printF(String txt) {
         this.funcoes.append(txt);
     }
+
       public void printlnF(String txt) {
         this.funcoes.append(txt).append("\n");
     }
     
+
     //Limpa a string para o próximo arquivo
     public void clear() {
         this.codigo = new StringBuffer();
@@ -40,6 +43,7 @@ public class GeradorCodigo {
     public String getTexto() {
         return this.codigo.toString();
     }
+
     public String getFuncao() {
         return this.funcoes.toString();
     }
@@ -47,15 +51,16 @@ public class GeradorCodigo {
     void Programa(LaParser.ProgramaContext ctx) {
         variaveis_tipo = new HashMap<String, String>();
         clear();
-
         pilhaDeTabelas.empilhar(new TabelaDeSimbolos("Global"));
-        Corpo(ctx.corpo());
+        if (!ctx.corpo().getText().equals("")) {
+            Corpo(ctx.corpo());
+        }
         pilhaDeTabelas.desempilhar();
 
     }
 
     void Corpo(LaParser.CorpoContext ctx) {
-        
+
         Comandos(ctx.comandos());
     }
 
@@ -67,14 +72,15 @@ public class GeradorCodigo {
     }
 
     void Cmd(LaParser.CmdContext ctx) {
-        if(identacao == 1 && ctx.declaracoes() == null)
+        if (identacao == 1 && ctx.declaracoes() == null) {
             println("");
-        else
+        } else {
             printF("     ");
+        }
+
         if (ctx.declaracoes() != null) {
             Declaracoes(ctx.declaracoes());
-        }
-        else if (ctx.IDENT() != null) {
+        } else if (ctx.IDENT() != null) {
             String id = ctx.IDENT().getText();
 
             if (ctx.getStart().getText().equals("usar")) {   
@@ -96,12 +102,12 @@ public class GeradorCodigo {
                 else
                     print(id +"(player)");
             }
-        }
-        else if (ctx.getStart().getText().equals("perguntar")) {
-            
+        } else if (ctx.getStart().getText().equals("perguntar")) {
+
             String t = ctx.expressao().tipo().getText();
             if(identacao ==1){
             identacao = 3;
+              
             print("if frente == '"+ t + "': " );
             Comandos(ctx.resultado().comandos().comandos());
             identacao = 1;
@@ -142,8 +148,6 @@ public class GeradorCodigo {
                 else
                     print("player."+ctx.getText());
         }
-        
-    
     }
 
     void Declaracoes(LaParser.DeclaracoesContext ctx) {
@@ -153,30 +157,25 @@ public class GeradorCodigo {
             int id_line = ctx.declaracoes_funcao().IDENT().getSymbol().getLine();
             println("from funcoes import " + id);
             printF("\n");
-            printF("def "+ id +"(player):\n");
+            printF("def " + id + "(player):\n");
             identacao = 2;
             Comandos(ctx.declaracoes_funcao().comandos());
             identacao = 1;
-        }
-        else if (ctx.getStart().getText().equals("magia")){
-            
-        }
-        else if (ctx.getStart().getText().equals("bloco")){
-            
-        }
-         else {
+        } else if (ctx.getStart().getText().equals("magia")) {
+
+        } else if (ctx.getStart().getText().equals("bloco")) {
+
+        } else {
 
             String id = ctx.declaracoes_objetos().atribuicao().IDENT().getText();
             String at = ctx.declaracoes_objetos().atribuicao().tipo().getText();
-            
+
             pilhaDeTabelas.topo().adicionarSimbolo(id, at);
-            if(variaveis_tipo.containsKey(id)){
+            if (variaveis_tipo.containsKey(id)) {
                 variaveis_tipo.remove(id);
             }
-                variaveis_tipo.put(id, at);
-
+            variaveis_tipo.put(id, at);
         }
     }
 
 }
-
