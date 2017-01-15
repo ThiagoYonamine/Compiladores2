@@ -9,11 +9,17 @@ funcao meiaVolta(){
 magia destruccio
 destruccio = ataque
 usar(destruccio)
-repetir(2){
+repetir(1){
     andar()
 }
-meiaVolta()
+
+virar()
+
 magia aguamenti
+aguamenti = fogo
+
+usar(aguamenti)
+andar()
 aguamenti = agua
 usar(aguamenti)
 meiaVolta()

@@ -2,8 +2,10 @@
 from funcoes import meiaVolta
 
 player.usar('ataque')
-for i in range(2): player.andar();
-meiaVolta(player)
+for i in range(1): player.andar();
+player.virar()
+player.usar('fogo')
+player.andar()
 player.usar('agua')
 meiaVolta(player)
 player.usar('agua')
