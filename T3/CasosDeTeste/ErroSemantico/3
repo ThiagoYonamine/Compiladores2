@@ -5,9 +5,6 @@ funcao meiaVolta(){
         virar()
     }
 }
-repetir (2) {
-    andar()
-}
 magia destruccio
 destrucio = ataque
 usar(destruccio)
@@ -23,7 +20,7 @@ meiaVolta()
 usar(aguamenti)
 andar()
 usar(destruccio)
-repetir(4){
+repetir(3){
     andar()
 }
 virar()
@@ -32,5 +29,5 @@ repetir(2){
 }
 fim
 
-# [ERROR] Line 12 : Variable destrucio not defined
-[ERROR] Line 17 : Magic alohomora not defined #
+# [ERROR] Line 9 : Variable destrucio not defined
+[ERROR] Line 14 : Magic alohomora not defined #

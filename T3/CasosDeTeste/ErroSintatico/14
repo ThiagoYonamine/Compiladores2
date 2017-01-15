@@ -5,9 +5,6 @@ func meiaVolta(){
         virar()
     }
 }
-repetir (2) {
-    andar()
-}
 magia destruccio
 destruccio = ataque
 usar(destruccio)
@@ -22,7 +19,7 @@ meiaVolta()
 usar(aguamenti)
 andar()
 usar(destruccio)
-repetir(4){
+repetir(3){
     andar()
 }
 virar()

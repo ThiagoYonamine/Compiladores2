@@ -5,24 +5,21 @@ funcao meiaVolta(){
         virar()
     }
 }
-repetir (2) {
-    andar()
-}
-magia: destruccio
+magia destruccio
 destruccio = ataque
 usar(destruccio)
 repetir(2){
     andar()
 }
 meiaVolta()
-magia aguamenti
+magia: aguamenti
 aguamenti = agua
 usar(aguamenti)
 meiaVolta()
 usar(aguamenti)
 andar()
 usar(destruccio)
-repetir(4){
+repetir(3){
     andar()
 }
 virar()
@@ -31,4 +28,4 @@ repetir(2){
 }
 fim
 
-# [SYNTACTIC ERROR] Line 11: extraneous input ':' expecting IDENT #
+# [SYNTACTIC ERROR] Line 15: extraneous input ':' expecting IDENT #

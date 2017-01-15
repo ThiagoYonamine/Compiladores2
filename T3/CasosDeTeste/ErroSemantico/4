@@ -5,9 +5,6 @@ funcao meiaVolta(){
         virar()
     }
 }
-repetir (2) {
-    andar()
-}
 magia destruccio
 destruccio = ataque
 usar(destruccio)
@@ -22,7 +19,7 @@ usar(aguamenti)
 andar()
 magia destruccio
 usar(destruccio)
-repetir(4){
+repetir(3){
     andar()
 }
 virar()
@@ -31,7 +28,7 @@ repetir(2){
 }
 fim
 
-# [ERROR] Line 18 : Variable aguamenti not defined
-[ERROR] Line 19 : Magic aguamenti not defined
-[ERROR] Line 21 : Magic aguamenti not defined
-[ERROR] Line 23 : Magic destruccio already defined #
+# [ERROR] Line 15 : Variable aguamenti not defined
+[ERROR] Line 16 : Magic aguamenti not defined
+[ERROR] Line 18 : Magic aguamenti not defined
+[ERROR] Line 20 : Magic destruccio already defined #

@@ -5,9 +5,6 @@ funcao meiaVolta(){
         virar()
     }
 }
-repetir (2) {
-    andar()
-}
 magia destruccio
 usar(destruccio)
 repetir(2){
@@ -21,7 +18,7 @@ meiaVolta()
 usar(aguamenti)
 andar()
 usar(destruccio)
-repetir(4){
+repetir(3){
     andar()
 }
 virar()
@@ -30,5 +27,5 @@ repetir(2){
 }
 fim
 
-# [ERROR] Line 12 : Magic destruccio has no type
-[ERROR] Line 23 : Magic destruccio has no type #
+# [ERROR] Line 9 : Magic destruccio has no type
+[ERROR] Line 20 : Magic destruccio has no type #

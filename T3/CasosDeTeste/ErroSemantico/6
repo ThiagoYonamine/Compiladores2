@@ -5,9 +5,6 @@ funcao meiaVolta(){
         virar()
     }
 }
-repetir (2) {
-    andar()
-}
 magia meiaVolta
 meiaVolta = ataque
 usar(meiaVolta)
@@ -22,7 +19,7 @@ meiaVolta()
 usar(aguamenti)
 andar()
 usar(destruccio)
-repetir(4){
+repetir(3) {
     andar()
 }
 virar()
@@ -31,5 +28,5 @@ repetir(2){
 }
 fim
 
-# [ERROR] Line 11 : Magic meiaVolta already defined
-[ERROR] Line 24 : Magic destruccio not defined #
+# [ERROR] Line 8 : Magic meiaVolta already defined
+[ERROR] Line 21 : Magic destruccio not defined #
