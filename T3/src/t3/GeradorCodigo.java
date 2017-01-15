@@ -49,8 +49,10 @@ public class GeradorCodigo {
     }
 
     void Programa(LaParser.ProgramaContext ctx) {
+        
         variaveis_tipo = new HashMap<String, String>();
         clear();
+        println(ctx.NUM_INT().getText());
         pilhaDeTabelas.empilhar(new TabelaDeSimbolos("Global"));
         if (!ctx.corpo().getText().equals("")) {
             Corpo(ctx.corpo());

@@ -50,6 +50,7 @@ elif(fase == '3'):
     inX = 4
     inY = 7
     inDir = 'cima'
+    
 path = 'src/t3/Fase/mapa' + fase + '.txt'
 arquivo = open(path, 'r')
 matriz = arquivo.read()
