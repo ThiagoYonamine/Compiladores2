@@ -1,14 +1,17 @@
-fase: 1
+fase: 10
 inicio
 funcao esquerda(){
-	virar()
-	virar()
-	virar()
+    virar()
+    virar()
+    virar()
 }
-esquerda()
-esquerda()
-repetir(5){
-andar()
-}
-
+    andar()
+    repetir(4) {
+        andar()
+    }
+    esquerda()
+    andar()
+    repetir(3) {
+        andar()
+    }
 fim

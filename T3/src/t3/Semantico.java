@@ -35,8 +35,14 @@ public class Semantico {
     void Programa(LaParser.ProgramaContext ctx) {
         clear();
         pilhaDeTabelas.empilhar(new TabelaDeSimbolos("Global"));
-        Corpo(ctx.corpo());
-        pilhaDeTabelas.desempilhar();
+        if(Integer.parseInt(ctx.NUM_INT().getText()) < 1 || Integer.parseInt(ctx.NUM_INT().getText()) > 3)
+                println("[ERROR] Level " + ctx.NUM_INT() + " doesn't exist\nSet a value between 1 to 3");
+            else
+                if(!ctx.corpo().getText().equals(""))
+                    Corpo(ctx.corpo());
+                else
+                    println("[ERROR] Body is empty");
+                pilhaDeTabelas.desempilhar();
     }
     void Corpo(LaParser.CorpoContext ctx){
         
@@ -56,13 +62,13 @@ public class Semantico {
             int id_line = ctx.IDENT().getSymbol().getLine();
             if (ctx.getStart().getText().equals("usar")){
                 if(!pilhaDeTabelas.existeSimbolo(id)){
-                println("Linha " + id_line +" : Magia " + id +" nao declarada");
+                println("[ERROR] Line " + id_line +" : Magic " + id +" not declared");
                 }
             
              }
             
             else if(!pilhaDeTabelas.existeSimbolo(id)){
-                println("Linha " + id_line +" : Funcao " + id +" nao declarada");
+                println("[ERROR] Line " + id_line +" : Function " + id +" not declared");
             }
         }
         if (ctx.getStart().getText().equals("perguntar")){
@@ -74,7 +80,6 @@ public class Semantico {
     }
     
     void Declaracoes(LaParser.DeclaracoesContext ctx){
-       //System.out.println(ctx.getText());
         if (ctx.getStart().getText().equals("magia")){
             
             String id = ctx.declaracoes_objetos().obj_magia().IDENT().getText();
@@ -83,7 +88,7 @@ public class Semantico {
                 pilhaDeTabelas.topo().adicionarSimbolo(id, "magia");
             }
             else{
-                println("Linha " + id_line +" : Magia" + id +" ja declarado");
+                println("[ERROR] Line " + id_line +" : Magic" + id +" already declared");
             }
             
         }
@@ -95,7 +100,7 @@ public class Semantico {
                 pilhaDeTabelas.topo().adicionarSimbolo(id, "bloco");
             }
             else{
-                println("Linha " + id_line +" : Bloco" + id +" ja declarado");
+                println("[ERROR] Line " + id_line +" : Block" + id +" already declared");
             }
         }
         else if(ctx.getStart().getText().equals("funcao")){
@@ -106,30 +111,26 @@ public class Semantico {
                 pilhaDeTabelas.topo().adicionarSimbolo(id, "funcao");
             }
             else{
-                println("Linha " + id_line +" : Funcao" + id +" ja declarada");
+                println("[ERROR] Line " + id_line +" : Function " + id +" already declared");
             }
         }
         else{
-           
             String id = ctx.declaracoes_objetos().atribuicao().IDENT().getText();
             String at = ctx.declaracoes_objetos().atribuicao().tipo().getText();
             int id_line = ctx.declaracoes_objetos().atribuicao().IDENT().getSymbol().getLine();
             if(!pilhaDeTabelas.existeSimbolo(id)){
-                println("Linha " + id_line +" : Variavel " + id +" nao declarada");
+                println("[ERROR] Line " + id_line +" : Variable " + id +" not declared");
             }
             else{
-                
                 if(pilhaDeTabelas.tipo(id) == "magia"){
                     if( !at.equals("agua") && !at.equals("fogo") && !at.equals("ataque")){
-                     println("Linha " + id_line +" : Variavel " + id +" nao compativel");
+                     println("[ERROR] Line " + id_line +" : Variable " + id +" not compatible");
                     }
                 }
-                
                 else if(pilhaDeTabelas.tipo(id) == "bloco"){
                      if( !at.equals("grama") && !at.equals("fogo") && !at.equals("parede") && !at.equals("inimigo") && !at.equals("proximo_bloco")){
-                     println("Linha " + id_line +" : Variavel " + id +" nao compativel");
+                     println("[ERROR] Line " + id_line +" : Variable " + id +" not compatible");
                     }
-                    
                 }
             }
             

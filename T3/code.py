@@ -11,8 +11,15 @@ clock = pygame.time.Clock()
 # # #   Carregar imagens    # # #
 bg = pygame.image.load('src/t3/Imagem/forst.png')
 fim = pygame.image.load('src/t3/Imagem/fim.png')
-grama = pygame.image.load('src/t3/Imagem/grama.png')
+grama = pygame.image.load('src/t3/Imagem/grama.png') 
+gfogo = pygame.image.load('src/t3/Imagem/fire.png') # 2
+gpedra = pygame.image.load('src/t3/Imagem/ground2.png') # 3
+glanca = pygame.image.load('src/t3/Imagem/ground.png') # 4
+gterra = pygame.image.load('src/t3/Imagem/ground3.png') # 5
+gwater = pygame.image.load('src/t3/Imagem/water.png') # 8
+tenda = pygame.image.load('src/t3/Imagem/tenda2.png') # 6
 pedra = pygame.image.load('src/t3/Imagem/pedra.png') # 1
+pedraterra = pygame.image.load('src/t3/Imagem/pedra_terra.png') # 7
 caixa = pygame.image.load('src/t3/Imagem/caixa.png') # c - Mapeamento na matriz da fase
 caixa_quebrada = pygame.image.load('src/t3/Imagem/caixa_quebrada.png') # q
 fogueira = [pygame.image.load('src/t3/Imagem/fogueira2.png'),pygame.image.load('src/t3/Imagem/fogueira3.png'),pygame.image.load('src/t3/Imagem/fogueira4.png')] # f
@@ -28,7 +35,7 @@ anima_fogo = 0
 anima_portal = 0
 
 # # #   Ler o arquivo/fase  # # #
-arquivo = open('src/t3/Fase/mapa1.txt', 'r')
+arquivo = open('src/t3/Fase/mapa3.txt', 'r')
 matriz = arquivo.read()
 lmatriz = list(matriz)
 
@@ -96,6 +103,20 @@ def mapa():
             aux.append(y+30)
         elif(i == 't'):
             screen.blit(tronco, (x+100,y+100))
+        elif(i == '2'):
+            screen.blit(gfogo, (x+100,y+100))
+        elif(i == '3'):
+            screen.blit(gpedra, (x+100,y+100))
+        elif(i == '4'):
+            screen.blit(glanca, (x+100,y+100))
+        elif(i == '5'):
+            screen.blit(gterra, (x+100,y+100))
+        elif(i == '6'):
+            screen.blit(tenda, (x+100,y+100))
+        elif(i == '7'):
+            screen.blit(pedraterra, (x+100,y+100))
+        elif(i == '8'):
+            screen.blit(gwater, (x+101,y+101))
 
         # Imprimir os desenhos da matriz por linha
         x += 64
@@ -112,7 +133,7 @@ class Player():
     def __init__(self):
         # Posicao do mapa na tela x: 110 y: 98
         self.bx = 4
-        self.by = 2
+        self.by = 6
         self.x = 110 + (self.bx*64)
         self.y = 98 + (self.by*67)
         self.bloco = ((11*(2*(self.by))) + self.bx*2) # Equacao para identificar o bloco em que o jogador esta
@@ -162,7 +183,7 @@ class Player():
                     pygame.image.load('src/t3/Imagem/atk8.png')]
 
         self.animacao = 0
-        self.direcao = 'dir' # dir, esq, cima, baixo
+        self.direcao = 'cima' # dir, esq, cima, baixo
         self.estado = 'andando' # andando, parado, usando_magia
         self.magia = 'fogo' # agua, fogo, ataque
         self.anima_magia = 0
