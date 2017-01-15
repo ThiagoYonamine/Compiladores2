@@ -35,10 +35,26 @@ anima_fogo = 0
 anima_portal = 0
 
 # # #   Ler o arquivo/fase  # # #
-arquivo = open('src/t3/Fase/mapa3.txt', 'r')
+cmd = open('codigoGerado.txt', 'r')
+line = cmd.readline()
+fase = line[0];
+
+inX = 4
+inY = 2
+inDir = 'dir'
+if(fase == '2'):
+    inX = 6
+    inY = 4
+    inDir = 'esq'
+elif(fase == '3'):
+    inX = 4
+    inY = 7
+    inDir = 'cima'
+path = 'src/t3/Fase/mapa' + fase + '.txt'
+arquivo = open(path, 'r')
 matriz = arquivo.read()
 lmatriz = list(matriz)
-
+arquivo.close()
 
 # # #   Usar magias em objetos do mapa    # # #
 def att_matriz(magia, prox_bloco):
@@ -124,16 +140,86 @@ def mapa():
             y += 67
             x = 0
         cont += 1
-    return aux
 
+        
+    return aux
+def gameOver():
+    close = False
+    while not close:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                close = True
+    
+        screen.blit(fim, (100, 100))
+                
+        pygame.display.flip()
+            
+    pygame.display.quit()
+    pygame.quit()
+    sys.exit()
+# # #   Inimigo # # #
+class Inimigo():
+     def __init__(self,initX,initY):       
+        self.bx = initX
+        self.by = initY
+        self.x = 110 + (self.bx*64)
+        self.y = 98 + (self.by*67)
+        self.contX = 0
+        self.contY = 0
+        self.bloco = ((11*(2*(self.by))) + self.bx*2)
+        self.img = [pygame.image.load('src/t3/Imagem/p_dir1.png'),
+                    pygame.image.load('src/t3/Imagem/p_dir2.png'),
+                    pygame.image.load('src/t3/Imagem/p_dir3.png'),
+                    pygame.image.load('src/t3/Imagem/p_dir2.png'),
+                    pygame.image.load('src/t3/Imagem/p_dir1.png')]
+        self.animacao = 0
+        self.col = pygame.Rect(self.x, self.y, 60, 60)  ##arrumar o tamanho certo
+     def desenha(self):
+        screen.blit(self.img[int(self.animacao)], (self.x, self.y))
+        self.animacao += 0.5
+        if self.animacao >= 5:
+            self.animacao = 0
+        
+        
+     def anda(self,valx,valy):
+         if(valx != 0  and  valy != 0):
+             valx *= 0.5
+             valy *= 0.5
+                
+         #print(self.bloco)
+         
+         self.bloco = ((11*(2*(self.by))) + self.bx*2)
+         #print(self.bloco)
+         if (lmatriz[self.bloco] == "1" or lmatriz[self.bloco] == "c"  or lmatriz[self.bloco] == "r" or lmatriz[self.bloco] == "v"):
+             valx = 0
+             valy = 0
+            
+         self.x += valx
+         self.y += valy
+         self.contX += valx
+         self.contY += valy
+         if(self.contX >= 64):
+             self.contX -=64
+             self.bx += 1
+         elif(self.contX <= -64):
+             self.contX +=64
+             self.bx -= 1
+         if(self.contY >= 67):
+             self.contY -=67
+             self.by += 1
+         elif(self.contY <= -67):
+             self.contY +=67
+             self.by -= 1 
+        
 
 # # #   Jogador # # #
 class Player():
 
-    def __init__(self):
+    def __init__(self,initX,initY,initDir,inimigo):
         # Posicao do mapa na tela x: 110 y: 98
-        self.bx = 9
-        self.by = 4
+        self.inimigo = inimigo
+        self.bx = initX
+        self.by = initY
         self.x = 110 + (self.bx*64)
         self.y = 98 + (self.by*67)
         self.bloco = ((11*(2*(self.by))) + self.bx*2) # Equacao para identificar o bloco em que o jogador esta
@@ -183,17 +269,18 @@ class Player():
                     pygame.image.load('src/t3/Imagem/atk8.png')]
 
         self.animacao = 0
-        self.direcao = 'esq' # dir, esq, cima, baixo
+        self.direcao = initDir #'cima' # dir, esq, cima, baixo
         self.estado = 'andando' # andando, parado, usando_magia
         self.magia = 'fogo' # agua, fogo, ataque
         self.anima_magia = 0
+        self.col = pygame.Rect(self.x, self.y, 60, 60)  ##arrumar o tamanho certo
 
     # # # Desenhar o jogador/animacoes do jogador e das magias na tela    # # #
     def desenha(self):
         aux = mapa()
         magicx = self.x
         magicy = self.y
-
+        
         # Jogador virando
         if self.direcao == 'dir':
             screen.blit(self.imga_dir[int(self.animacao)], (self.x, self.y))
@@ -234,11 +321,31 @@ class Player():
             if self.anima_magia >= 8:
                 self.anima_magia = 0
 
-        clock.tick(40)
+        inimigoX=0
+        inimigoY=0
+        if(self.x < self.inimigo.x):
+            inimigoX = -4
+        elif(self.x > self.inimigo.x):
+            inimigoX = 4
+        if(self.y < self.inimigo.y):
+            inimigoY=-4
+        elif(self.y > self.inimigo.y):
+            inimigoY= 4
+            
+        self.inimigo.anda(inimigoX,inimigoY)
+        self.inimigo.desenha()
+
+        self.col = pygame.Rect(self.x, self.y, 60, 60)
+        self.inimigo.col = pygame.Rect(self.inimigo.x, self.inimigo.y, 60, 60)
+       
+        if(self.col.colliderect(self.inimigo.col)):
+           gameOver()
+        clock.tick(60)
         pygame.display.flip()
 
     # # #   Animacao do jogador em movimento usando a equacao para identificar posicao  # # #
     def andar(self):
+        
         self.estado = 'andando'
         if self.direcao == 'dir':
             self.bloco = ((11*(2*(player.by))) + (player.bx+1)*2)
@@ -255,19 +362,14 @@ class Player():
         #   Jogador anda em cima do fogo
         #   Jogador ultrapassa limite do mapa
         finaliza = False
-        print(self.y)
+        
         if (self.x > 750 or self.y < 60 or self.y > 510):
             player.bloco = 0
             finaliza = True
-            print(finaliza)
-        if (lmatriz[player.bloco] == "f" or finaliza == True):
-            screen.blit(bg, (0, 0))
-            screen.blit(fim, (100, 100))
-            pygame.time.wait(500)
-            pygame.display.flip()
-            pygame.display.quit()
-            pygame.quit()
-            sys.exit()
+       
+       
+        if (lmatriz[player.bloco] == "f" or lmatriz[player.bloco] == "8" or finaliza == True):
+            gameOver()
         # Quando o bloco esta livre, anda
         elif (lmatriz[player.bloco] == "0"):
             andarei = 2
@@ -296,15 +398,21 @@ class Player():
             for i in range(32):
                 if self.direcao == 'dir':
                     player.x += andarei
+                    
                 if self.direcao == 'esq':
                     player.x -= andarei
+                    
                 if self.direcao == 'cima':
                     player.y -= andarei
+                    
                 if self.direcao == 'baixo':
+                    
                     player.y += andarei
                 self.desenha()
+                
             self.estado = 'parado'
-
+            
+        
 
     # # #   Usa magia no proximo bloco  # # #
     def usar(self,magic):
@@ -343,27 +451,22 @@ class Player():
 
 
 close = False
-player = Player()
+inimigo = Inimigo(10,2)
+player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 
 # # #   Leitura dos comandos gerados pelo compilador    # # #
-cmd = open('codigoGerado.txt', 'r')
+
 line = cmd.readline()
 frente ='fogo'
-print(line)
+#print(line)
 while line:
     exec(line)
     line = cmd.readline()
-    print(line)
+    
+    #print(line)
 player.estado = 'parado'
 player.desenha()
-
+cmd.close()
 # # #   Fechar a tela apos fim da execucao  # # #
-while not close:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            close = True
-
-pygame.display.quit()
-pygame.quit()
-sys.exit()
+gameOver()
