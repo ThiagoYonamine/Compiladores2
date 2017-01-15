@@ -1,0 +1,5 @@
+2
+from funcoes import esquerda
+
+
+for i in range(10): player.andar();

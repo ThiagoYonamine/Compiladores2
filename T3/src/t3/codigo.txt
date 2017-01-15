@@ -1,18 +1,30 @@
-fase: 10
+fase: 2
 inicio
-funcao esquerda(){
-repetir(3){
-virar()
+funcao meiaVolta(){
+    repetir(2) {
+        virar()
+    }
 }
-	virar()
-	virar()
-	virar()
-}
-esquerda()
-esquerda()
-repetir(3){
-andar()
-}
-esquerda()
 
+magia destruccio
+destruccio = ataque
+usar(destruccio)
+repetir(2){
+    andar()
+}
+meiaVolta()
+magia aguamenti
+aguamenti = agua
+usar(aguamenti)
+meiaVolta()
+usar(aguamenti)
+andar()
+usar(destruccio)
+repetir(3){
+    andar()
+}
+virar()
+repetir(2){
+    andar()
+}
 fim
