@@ -39,13 +39,19 @@ cmd = open('codigoGerado.txt', 'r')
 line = cmd.readline()
 fase = line[0];
 
+iniX = 20
+iniY = 20
 inX = 4
 inY = 2
+ex = False
 inDir = 'dir'
 if(fase == '2'):
     inX = 6
     inY = 4
     inDir = 'esq'
+    iniX = 10
+    iniY = 2
+    ex = True
 elif(fase == '3'):
     inX = 4
     inY = 7
@@ -160,7 +166,8 @@ def gameOver():
     sys.exit()
 # # #   Inimigo # # #
 class Inimigo():
-     def __init__(self,initX,initY):       
+     def __init__(self,initX,initY,ex):
+        self.existe = ex
         self.bx = initX
         self.by = initY
         self.x = 110 + (self.bx*64)
@@ -322,25 +329,26 @@ class Player():
             if self.anima_magia >= 8:
                 self.anima_magia = 0
 
-        inimigoX=0
-        inimigoY=0
-        if(self.x < self.inimigo.x):
-            inimigoX = -4
-        elif(self.x > self.inimigo.x):
-            inimigoX = 4
-        if(self.y < self.inimigo.y):
-            inimigoY=-4
-        elif(self.y > self.inimigo.y):
-            inimigoY= 4
-            
-        self.inimigo.anda(inimigoX,inimigoY)
-        self.inimigo.desenha()
+        if(self.inimigo.existe):
+            inimigoX=0
+            inimigoY=0
+            if(self.x < self.inimigo.x):
+                inimigoX = -4
+            elif(self.x > self.inimigo.x):
+                inimigoX = 4
+            if(self.y < self.inimigo.y):
+                inimigoY=-4
+            elif(self.y > self.inimigo.y):
+                inimigoY= 4
+                
+            self.inimigo.anda(inimigoX,inimigoY)
+            self.inimigo.desenha()
 
-        self.col = pygame.Rect(self.x, self.y, 60, 60)
-        self.inimigo.col = pygame.Rect(self.inimigo.x, self.inimigo.y, 60, 60)
-       
-        if(self.col.colliderect(self.inimigo.col)):
-           gameOver()
+            self.col = pygame.Rect(self.x, self.y, 60, 60)
+            self.inimigo.col = pygame.Rect(self.inimigo.x, self.inimigo.y, 60, 60)
+           
+            if(self.col.colliderect(self.inimigo.col)):
+               gameOver()
         clock.tick(60)
         pygame.display.flip()
 
@@ -452,7 +460,7 @@ class Player():
 
 
 close = False
-inimigo = Inimigo(10,2)
+inimigo = Inimigo(iniX,iniY,ex)
 player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 
