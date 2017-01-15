@@ -3,5 +3,8 @@ from funcoes import esquerda
 player.andar()
 for i in range(4): player.andar();
 esquerda(player)
-player.andar()
+
+esquerda(player)
 for i in range(3): player.andar();
+esquerda(player)
+

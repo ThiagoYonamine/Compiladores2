@@ -30,6 +30,11 @@ public class GeradorCodigo {
         this.funcoes.append(txt);
     }
 
+      public void printlnF(String txt) {
+        this.funcoes.append(txt).append("\n");
+    }
+    
+
     //Limpa a string para o próximo arquivo
     public void clear() {
         this.codigo = new StringBuffer();
@@ -78,51 +83,70 @@ public class GeradorCodigo {
         } else if (ctx.IDENT() != null) {
             String id = ctx.IDENT().getText();
 
-            if (ctx.getStart().getText().equals("usar")) {
-                if (identacao == 3) {
-                    print("player.usar(" + "'" + variaveis_tipo.get(id) + "'" + ");");
-                } else if (identacao == 2) {
-                    printF("player.usar(" + "'" + variaveis_tipo.get(id) + "'" + ")");
-                } else {
-                    print("player.usar(" + "'" + variaveis_tipo.get(id) + "'" + ")");
-                }
+            if (ctx.getStart().getText().equals("usar")) {   
+                if(identacao == 4)
+                    printF("player.usar(" + "'"+ variaveis_tipo.get(id) +"'"+ ");");
+                else if(identacao == 3)
+                    print("player.usar(" + "'"+ variaveis_tipo.get(id) +"'"+ ");");
+                else if(identacao == 2)
+                    printlnF("player.usar(" + "'"+ variaveis_tipo.get(id) +"'"+ ")");             
+                else 
+                    print("player.usar(" + "'"+ variaveis_tipo.get(id) +"'"+ ")");
             } else {
-                if (identacao == 3) {
-                    print(id + "(player);");
-                } else if (identacao == 2) {
-                    printF(id + "(player)");
-                } else {
-                    print(id + "(player)");
-                }
+                if(identacao == 4)
+                    printF(id +"(player);");
+                else if(identacao == 3)
+                    print(id +"(player);");
+                else if(identacao == 2)
+                    printlnF(id +"(player)");
+                else
+                    print(id +"(player)");
             }
         } else if (ctx.getStart().getText().equals("perguntar")) {
 
             String t = ctx.expressao().tipo().getText();
+            if(identacao ==1){
             identacao = 3;
-
-            print("if frente == '" + t + "': ");
+              
+            print("if frente == '"+ t + "': " );
             Comandos(ctx.resultado().comandos().comandos());
             identacao = 1;
-        } else if (ctx.getStart().getText().equals("repetir")) {
-
+            }
+            else if(identacao == 2){
+            identacao = 4;
+            print("if frente == '"+ t + "': " );
+            Comandos(ctx.resultado().comandos().comandos());
+            identacao = 2;
+            }
+        }
+        else if (ctx.getStart().getText().equals("repetir")){
+            
             String n = ctx.repetir().NUM_INT().getText();
-
-            print("for i in range(" + n + "): ");
+            
+            
+            if(identacao == 1){
+                print("for i in range(" + n + "): ");
             identacao = 3;
             Comandos(ctx.repetir().comandos());
             identacao = 1;
-        } else { //player.andar() e player.virar()
-            if (identacao == 3) {
-                print("player." + ctx.getText() + ";");
-            } else if (identacao == 2) {
-                printF("player." + ctx.getText());
-            } else {
-                print("player." + ctx.getText());
+            }
+            else if(identacao == 2){
+                printF("for i in range(" + n + "): ");
+            identacao = 4;
+            Comandos(ctx.repetir().comandos());
+            printF("\n");
+            identacao = 2;
             }
         }
-
-        if (identacao == 2) {
-            printF("\n");
+        else  { //player.andar() e player.virar()
+                if(identacao == 4)
+                    printF("player."+ctx.getText()+";");
+                else if(identacao == 3)
+                    print("player."+ctx.getText()+";");
+                else if (identacao == 2)
+                    printlnF("player."+ctx.getText());
+                else
+                    print("player."+ctx.getText());
         }
     }
 

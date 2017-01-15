@@ -1,17 +1,18 @@
 fase: 10
 inicio
 funcao esquerda(){
-    virar()
-    virar()
-    virar()
+repetir(3){
+virar()
 }
-    andar()
-    repetir(4) {
-        andar()
-    }
-    esquerda()
-    andar()
-    repetir(3) {
-        andar()
-    }
+	virar()
+	virar()
+	virar()
+}
+esquerda()
+esquerda()
+repetir(3){
+andar()
+}
+esquerda()
+
 fim
