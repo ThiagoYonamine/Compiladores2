@@ -3,9 +3,11 @@ inicio
 
 perguntar (frente == grama?)
 sim{
-virar()
+magia kk
+kk = fogo
+usar(kkx)
 }
-repetir(4){
+repetir(40){
 virar()
 }
 fim

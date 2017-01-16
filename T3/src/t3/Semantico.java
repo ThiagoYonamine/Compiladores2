@@ -79,10 +79,13 @@ public class Semantico {
             }
         }
         if (ctx.getStart().getText().equals("perguntar")) {
-            return;
+            if(!ctx.resultado().comandos().getText().equals(""))
+                Comandos(ctx.resultado().comandos());
+           
         }
         if (ctx.getStart().getText().equals("repetir")) {
-            return;
+           if(!ctx.repetir().getText().equals(""))
+            Comandos(ctx.repetir().comandos());
         }
     }
 

@@ -6,6 +6,7 @@ pygame.init()
 screen = pygame.display.set_mode ((900,650))
 pygame.display.set_caption('Jogo')
 clock = pygame.time.Clock()
+frente = 'nada'
 
 
 # # #   Carregar imagens    # # #
@@ -382,7 +383,7 @@ class Player():
         #   Jogador ultrapassa limite do mapa
         
        
-       
+        
         if (lmatriz[player.bloco] == "f" or lmatriz[player.bloco] == "8" or finaliza == True):
             gameOver()
         # Quando o bloco esta livre, anda
@@ -463,19 +464,24 @@ class Player():
             self.direcao = 'dir'
         player.desenha()
 
-
+def atualiza_frente(value):
+    if(value == '0'):
+        return 'grama'
 
 close = False
 inimigo = Inimigo(iniX,iniY,ex)
 player = Player(inX,inY,inDir,inimigo)
 player.desenha()
+frente = atualiza_frente(lmatriz[player.bloco]) 
+print(frente)
+print(lmatriz[player.bloco])
 
 # # #   Leitura dos comandos gerados pelo compilador    # # #
 
 line = cmd.readline()
-frente ='fogo'
 #print(line)
 while line:
+    frente = atualiza_frente(lmatriz[player.bloco])
     exec(line)
     line = cmd.readline()
     

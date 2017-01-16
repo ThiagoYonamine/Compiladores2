@@ -1,4 +1,4 @@
 1
 
-if frente == 'grama': player.virar();
-for i in range(4): player.virar();
+if frente == 'grama': player.usar('null');
+for i in range(40): player.virar();
