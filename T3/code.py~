@@ -1,5 +1,5 @@
 import pygame, sys
-
+from code import att_frente
 pygame.init()
 
 
@@ -39,7 +39,7 @@ anima_portal = 0
 # # #   Ler o arquivo/fase  # # #
 cmd = open('codigoGerado.txt', 'r')
 line = cmd.readline()
-fase = line[7];
+fase = line[0];
 
 iniX = 20
 iniY = 20
@@ -64,7 +64,6 @@ arquivo = open(path, 'r')
 matriz = arquivo.read()
 lmatriz = list(matriz)
 arquivo.close()
-cmd.close()
 
 # # #   Usar magias em objetos do mapa    # # #
 def att_matriz(magia, prox_bloco):
@@ -466,13 +465,26 @@ class Player():
             self.direcao = 'dir'
         player.desenha()
 
-def atualiza_frente(value):
-    if(value == '0'):
-        return 'grama'
-
 close = False
 inimigo = Inimigo(iniX,iniY,ex)
 player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(lmatriz[player.bloco]) 
-###############codigo jogador#############################
+print(frente)
+print(lmatriz[player.bloco])
+
+# # #   Leitura dos comandos gerados pelo compilador    # # #
+
+line = cmd.readline()
+#print(line)
+while line:
+    frente = atualiza_frente(lmatriz[player.bloco])
+    exec(line)
+    line = cmd.readline()
+    
+    #print(line)
+player.estado = 'parado'
+player.desenha()
+cmd.close()
+# # #   Fechar a tela apos fim da execucao  # # #
+gameOver()

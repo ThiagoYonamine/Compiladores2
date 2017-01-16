@@ -476,3 +476,27 @@ player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(lmatriz[player.bloco]) 
 ###############codigo jogador#############################
+#fase: 3
+
+def r(player):
+     kadabra= ''
+     kadabra='agua'
+     if frente == 'grama':
+          player.virar()
+          player.usar(kadabra)
+kadabra= ''
+
+if frente == 'grama':
+     kadabra='agua'
+
+if frente == 'arvore':
+     kadabra='ataque'
+
+if frente == 'caixa':
+     kadabra='fogo'
+
+player.usar(kadabra)
+
+for i in range(4): 
+     r(player)
+gameOver()

@@ -1,11 +1,23 @@
 fase: 3
 inicio
+funcao r(){
 magia kadabra
-perguntar (frente == grama?): kadabra = agua
-perguntar (frente == arvore?): kadabra = ataque
-perguntar (frente == caixa?): kadabra = fogo
+kadabra = agua
+perguntar (frente == grama?){
+    virar()
+    usar(kadabra)
+}
+
+}
+magia kadabra
+perguntar (frente == grama?){ 
+kadabra = agua 
+}
+perguntar (frente == arvore?){ kadabra = ataque }
+perguntar (frente == caixa?){ kadabra = fogo }
 usar(kadabra)
 repetir(4){
-    virar()
+r()
+
 }
 fim

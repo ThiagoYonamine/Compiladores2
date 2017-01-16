@@ -52,7 +52,7 @@ public class GeradorCodigo {
         
         variaveis_tipo = new HashMap<String, String>();
         clear();
-        println(ctx.NUM_INT().getText());
+        println("#fase: " + ctx.NUM_INT().getText());
         pilhaDeTabelas.empilhar(new TabelaDeSimbolos("Global"));
         if (!ctx.corpo().getText().equals("")) {
             Corpo(ctx.corpo());
@@ -77,7 +77,8 @@ public class GeradorCodigo {
         if (identacao == 1 && ctx.declaracoes() == null) {
             println("");
         } else {
-            printF("     ");
+            for(int i=1;i <identacao ; i++)
+                print("     ");
         }
 
         if (ctx.declaracoes() != null) {
@@ -85,76 +86,44 @@ public class GeradorCodigo {
         } else if (ctx.IDENT() != null) {
             String id = ctx.IDENT().getText();
             int id_line = ctx.IDENT().getSymbol().getLine();
-            if (ctx.getStart().getText().equals("usar")) {  
-                if(identacao == 4)
-                    printF("player.usar(" + id + ");");
-                else if(identacao == 3)
-                    print("player.usar(" + id + ");");
-                else if(identacao == 2)
-                    printlnF("player.usar(" + id + ")");             
-                else 
-                    print("player.usar(" +  id + ")");
+            if (ctx.getStart().getText().equals("usar")) {                  
+                    println("player.usar(" +  id + ")");
             } else {
-                if(identacao == 4)
-                    printF(id +"(player);");
-                else if(identacao == 3)
-                    print(id +"(player);");
-                else if(identacao == 2)
-                    printlnF(id +"(player)");
-                else
-                    print(id +"(player)");
+               
+                    println(id +"(player)");
             }
         } else if (ctx.getStart().getText().equals("perguntar")) {
 
-            String t = ctx.expressao().tipo().getText();
-            if(identacao == 1){
-            identacao = 3;
+            String t = ctx.expressao().tipo_bloco().getText();
+            
               
-            print("if frente == '"+ t + "': " );
-            if(!ctx.resultado().cmd().getText().equals(""))
-            Cmd(ctx.resultado().cmd());
+            println("if frente == '"+ t + "':");
+            if(!ctx.resultado().comandos().getText().equals("")){
+                identacao += 1;
+            Comandos(ctx.resultado().comandos());
+                identacao -= 1;
+            }
             else
                 println("nada = 0");
-            identacao = 1;
-            }
-            else if(identacao == 2){
-            identacao = 4;
-            print("if frente == '"+ t + "': " );
-            if(!ctx.resultado().cmd().getText().equals(""))
-            Cmd(ctx.resultado().cmd());
-            else
-                println("nada = 0");
-            identacao = 2;
-            }
+  
         }
         else if (ctx.getStart().getText().equals("repetir")){
             
             String n = ctx.repetir().NUM_INT().getText();
             
-            
-            if(identacao == 1 || identacao == 3){
-                print("for i in range(" + n + "): ");
-            identacao = 3;
+ 
+            println("for i in range(" + n + "): ");
+            if(!ctx.repetir().comandos().getText().equals("")){
+            identacao += 1;
             Comandos(ctx.repetir().comandos());
-            identacao = 1;
+             identacao -= 1;
             }
-            else if(identacao == 2){
-                printF("for i in range(" + n + "): ");
-            identacao = 4;
-            Comandos(ctx.repetir().comandos());
-            printF("\n");
-            identacao = 2;
-            }
+            else
+                println("nada = 0");
+           
         }
-        else  { //player.andar() e player.virar()
-                if(identacao == 4)
-                    printF("player."+ctx.getText()+";");
-                else if(identacao == 3)
-                    print("player."+ctx.getText()+";");
-                else if (identacao == 2)
-                    printlnF("player."+ctx.getText());
-                else
-                    print("player."+ctx.getText());
+        else  { //player.andar() e player.virar()    
+                println("player."+ctx.getText());
         }
     }
 
@@ -162,26 +131,29 @@ public class GeradorCodigo {
         if (ctx.getStart().getText().equals("funcao")) {
 
             String id = ctx.declaracoes_funcao().IDENT().getText();
-            int id_line = ctx.declaracoes_funcao().IDENT().getSymbol().getLine();
-            println("from funcoes import " + id);
-            printF("\n");
-            printF("def " + id + "(player):\n");
-            identacao = 2;
+            int id_line = ctx.declaracoes_funcao().IDENT().getSymbol().getLine();  
+            println("");
+            println("def " + id + "(player):");
+            identacao += 1;
             Comandos(ctx.declaracoes_funcao().comandos());
-            identacao = 1;
+            identacao -= 1;
         } else if (ctx.getStart().getText().equals("magia")) {
             String id = ctx.declaracoes_objetos().obj_magia().IDENT().getText();
-            print(id + "= ''");
+            println(id + "= ''");
+           
 
         } else if (ctx.getStart().getText().equals("bloco")) {
             String id = ctx.declaracoes_objetos().obj_bloco().IDENT().getText();
-            print(id + "= ''");
+            
+            println(id + "= ''");
 
         } else {
 
             String id = ctx.declaracoes_objetos().atribuicao().IDENT().getText();
             String at = ctx.declaracoes_objetos().atribuicao().tipo().getText();
-            print(id + "='" + at + "'");
+            
+            println(id + "='" + at + "'");
+            
             pilhaDeTabelas.topo().adicionarSimbolo(id, at);
             if (variaveis_tipo.containsKey(id)) {
                 variaveis_tipo.remove(id);
