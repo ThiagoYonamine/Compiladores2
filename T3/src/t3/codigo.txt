@@ -1,5 +1,6 @@
-fase: 4
+fase: 3
 inicio
+
 virar()
 andar()
 
@@ -23,4 +24,5 @@ andar()
 virar()
 andar()
 andar()
+
 fim

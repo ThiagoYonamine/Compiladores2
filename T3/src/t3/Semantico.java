@@ -38,7 +38,7 @@ public class Semantico {
         variaveis_tipo = new HashMap<String, String>();
         pilhaDeTabelas.empilhar(new TabelaDeSimbolos("Global"));
         if (Integer.parseInt(ctx.NUM_INT().getText()) < 1 || Integer.parseInt(ctx.NUM_INT().getText()) > 4) {
-            println("[ERROR] Level " + ctx.NUM_INT() + " doesn't exist\nSet a value between 1 to 4");
+            println("[ERROR] Level " + ctx.NUM_INT() + " doesn't exist\nSet a value between 1 to 5");
         } else if (!ctx.corpo().getText().equals("")) {
             Corpo(ctx.corpo());
         } else {

@@ -1,3 +1,4 @@
+
 #fase: 4
 
 player.virar()
@@ -38,6 +39,8 @@ player.andar()
 
 player.virar()
 
+
 player.andar()
 
 player.andar()
+
