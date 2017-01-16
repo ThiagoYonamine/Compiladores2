@@ -1,4 +1,4 @@
-#fase: 3
+#fase: 4
 
 def r(player):
      kadabra= ''
@@ -18,6 +18,8 @@ if frente == 'caixa':
      kadabra='fogo'
 
 player.usar(kadabra)
+
+player.andar()
 
 for i in range(4): 
      r(player)

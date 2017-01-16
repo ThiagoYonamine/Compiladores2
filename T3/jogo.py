@@ -476,7 +476,7 @@ player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(lmatriz[player.bloco]) 
 ###############codigo jogador#############################
-#fase: 3
+#fase: 4
 
 def r(player):
      kadabra= ''
@@ -496,6 +496,8 @@ if frente == 'caixa':
      kadabra='fogo'
 
 player.usar(kadabra)
+
+player.andar()
 
 for i in range(4): 
      r(player)

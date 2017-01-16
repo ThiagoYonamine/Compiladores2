@@ -37,8 +37,8 @@ public class Semantico {
         clear();
         variaveis_tipo = new HashMap<String, String>();
         pilhaDeTabelas.empilhar(new TabelaDeSimbolos("Global"));
-        if (Integer.parseInt(ctx.NUM_INT().getText()) < 1 || Integer.parseInt(ctx.NUM_INT().getText()) > 3) {
-            println("[ERROR] Level " + ctx.NUM_INT() + " doesn't exist\nSet a value between 1 to 3");
+        if (Integer.parseInt(ctx.NUM_INT().getText()) < 1 || Integer.parseInt(ctx.NUM_INT().getText()) > 4) {
+            println("[ERROR] Level " + ctx.NUM_INT() + " doesn't exist\nSet a value between 1 to 4");
         } else if (!ctx.corpo().getText().equals("")) {
             Corpo(ctx.corpo());
         } else {
@@ -115,6 +115,9 @@ public class Semantico {
             int id_line = ctx.declaracoes_funcao().IDENT().getSymbol().getLine();
             if (!pilhaDeTabelas.existeSimbolo(id)) {
                 pilhaDeTabelas.topo().adicionarSimbolo(id, "funcao");
+                pilhaDeTabelas.empilhar(new TabelaDeSimbolos(id));
+                Comandos(ctx.declaracoes_funcao().comandos());
+                pilhaDeTabelas.desempilhar();
             } else {
                 println("[ERROR] Line " + id_line + " : Function " + id + " already defined");
             }

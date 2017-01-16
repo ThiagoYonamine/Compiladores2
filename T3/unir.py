@@ -11,3 +11,4 @@ jogo.write(codigo)
 
 base.close()
 cmd.close()
+jogo.close()
