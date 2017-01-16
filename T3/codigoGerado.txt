@@ -1,16 +1,46 @@
-#fase: 3
-kadabra= ''
 
-if frente == 'fogueira':
-     kadabra='agua'
+#fase: 4
 
-if frente == 'arvore':
-     kadabra='ataque'
+player.virar()
 
-if frente == 'caixa':
-     kadabra='fogo'
+player.andar()
 
-player.usar(kadabra)
+player.virar()
 
-for i in range(4): 
-     player.virar()
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.virar()
+a= ''
+a='agua'
+
+player.usar(a)
+
+player.andar()
+
+player.virar()
+
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.andar()
+
+player.andar()
+
+player.virar()
+
+
+player.andar()
+
+player.andar()
+

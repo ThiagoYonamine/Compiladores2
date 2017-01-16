@@ -41,10 +41,10 @@ cmd = open('codigoGerado.txt', 'r')
 line = cmd.readline()
 fase = line[7];
 
-iniX = 20
-iniY = 20
 inX = 4
 inY = 2
+iniX = 20
+iniY = 20
 ex = False
 inDir = 'dir'
 if(fase == '2'):
@@ -58,6 +58,14 @@ elif(fase == '3'):
     inX = 5
     inY = 6
     inDir = 'cima'
+elif(fase == '4'):
+    inX = 0
+    inY = 2
+    inDir = 'cima'
+    iniX = 4
+    iniY = 6
+    ex = True
+
     
 path = 'src/t3/Fase/mapa' + fase + '.txt'
 arquivo = open(path, 'r')
@@ -80,7 +88,9 @@ def att_matriz(magia, prox_bloco):
         lmatriz[prox_bloco] = 'r'
     elif(magia == "ataque" and lmatriz[prox_bloco] == 'r'): # ataque na arvore
         lmatriz[prox_bloco] = 't'
+
     elif(magia == "fogo" and lmatriz[prox_bloco] == 'c'): # ataque na caixa
+
         lmatriz[prox_bloco] = 'q'
 
 
@@ -134,7 +144,7 @@ def mapa():
         elif(i == '3'):
             screen.blit(gpedra, (x+100,y+100))
         elif(i == '4'):
-            screen.blit(glanca, (x+100,y+100))
+            screen.blit(gespinho, (x+100,y+100))
         elif(i == '5'):
             screen.blit(gterra, (x+100,y+100))
         elif(i == '6'):
@@ -202,6 +212,10 @@ class Inimigo():
          if (lmatriz[self.bloco] == "1" or lmatriz[self.bloco] == "c"  or lmatriz[self.bloco] == "r" or lmatriz[self.bloco] == "v"):
              valx = 0
              valy = 0
+             self.bx = 10
+             self.by = 2
+             self.x = 110 + (self.bx*64)
+             self.y = 98 + (self.by*67)
             
          self.x += valx
          self.y += valy
@@ -494,6 +508,7 @@ player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(lmatriz[player.bloco]) 
 
+
 ###############codigo jogador#############################
 #fase: 3
 kadabra= ''
@@ -501,14 +516,11 @@ kadabra= ''
 if frente == 'fogueira':
      kadabra='agua'
 
-if frente == 'arvore':
-     kadabra='ataque'
 
-if frente == 'caixa':
-     kadabra='fogo'
+player.virar()
 
-player.usar(kadabra)
+player.virar()
 
-for i in range(4): 
-     player.virar()
+player.virar()
+
 gameOver()
