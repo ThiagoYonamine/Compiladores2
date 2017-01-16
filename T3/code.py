@@ -16,7 +16,7 @@ fim = pygame.image.load('src/t3/Imagem/fim.png')
 grama = pygame.image.load('src/t3/Imagem/grama.png') 
 gfogo = pygame.image.load('src/t3/Imagem/fire.png') # 2
 gpedra = pygame.image.load('src/t3/Imagem/ground2.png') # 3
-glanca = pygame.image.load('src/t3/Imagem/ground.png') # 4
+gespinho = pygame.image.load('src/t3/Imagem/ground.png') # 4
 gterra = pygame.image.load('src/t3/Imagem/ground3.png') # 5
 gwater = pygame.image.load('src/t3/Imagem/water.png') # 8
 tenda = pygame.image.load('src/t3/Imagem/tenda2.png') # 6
@@ -80,7 +80,7 @@ def att_matriz(magia, prox_bloco):
         lmatriz[prox_bloco] = 'r'
     elif(magia == "ataque" and lmatriz[prox_bloco] == 'r'): # ataque na arvore
         lmatriz[prox_bloco] = 't'
-    elif(magia == "ataque" and lmatriz[prox_bloco] == 'c'): # ataque na caixa
+    elif(magia == "fogo" and lmatriz[prox_bloco] == 'c'): # ataque na caixaelif(magia == "ataque" and lmatriz[prox_bloco] == 'c'): # ataque na caixa
         lmatriz[prox_bloco] = 'q'
 
 
@@ -467,8 +467,36 @@ class Player():
         player.desenha()
 
 def atualiza_frente(value):
-    if(value == '0'):
+    if (value == '0'):
         return 'grama'
+    elif (value == '1' or value == '7'):
+        return 'pedra'
+    elif (value == '2'):
+        return 'lava'
+    elif (value == '3'):
+        return 'chao_pedra'
+    elif (value == '4'):
+        return 'espinho'
+    elif (value == '5'):
+        return 'terra'
+    elif (value == '6'):
+        return 'cabana'
+    elif (value == '8'):
+        return 'agua'
+    elif (value == 'r'):
+        return 'arvore'
+    elif (value == 'c'):
+        return 'caixa'
+    elif (value == 'f'):
+        return 'fogueira'
+    elif (value == 't'):
+        return 'tronco'
+    elif (value == 'a'):
+        return 'fogueira_apagada'
+    elif (value == 'v'):
+        return 'arvore_queimada'
+    elif (value == 'p'):
+        return 'portal'
 
 close = False
 inimigo = Inimigo(iniX,iniY,ex)
