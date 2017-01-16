@@ -10,7 +10,7 @@ funcao r(){
 
 }
 magia kadabra
-perguntar (frente == grama?){ 
+perguntar (frente == fogo?){ 
 kadabra = agua 
 }
 perguntar (frente == arvore?){ kadabra = ataque }

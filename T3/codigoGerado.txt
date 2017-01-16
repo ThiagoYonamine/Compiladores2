@@ -8,7 +8,7 @@ def r(player):
           player.usar(kadabra)
 kadabra= ''
 
-if frente == 'grama':
+if frente == 'fogueira_apagada':
      kadabra='agua'
 
 if frente == 'arvore':

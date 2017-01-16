@@ -21,8 +21,9 @@ public class LaParser extends Parser {
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
-		T__31=32, COMENTARIO=33, IDENT=34, NUM_INT=35, NUM_REAL=36, ENTER=37, 
-		COMENTARIO_ERRADO=38, SIMBOLO_NAO_INDENTIFICADO=39;
+		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
+		COMENTARIO=39, IDENT=40, NUM_INT=41, NUM_REAL=42, ENTER=43, COMENTARIO_ERRADO=44, 
+		SIMBOLO_NAO_INDENTIFICADO=45;
 	public static final int
 		RULE_programa = 0, RULE_corpo = 1, RULE_declaracoes_objetos = 2, RULE_atribuicao = 3, 
 		RULE_obj_magia = 4, RULE_obj_bloco = 5, RULE_declaracoes_funcao = 6, RULE_declaracoes = 7, 
@@ -39,13 +40,15 @@ public class LaParser extends Parser {
 		"'()'", "'{\n'", "'}'", "'andar'", "'virar'", "'perguntar'", "'('", "')'", 
 		"'usar'", "'repetir'", "'grama'", "'lava'", "'pedra'", "'gelo'", "'espinho'", 
 		"'arvore'", "'caixa'", "'inimigo'", "'fogueira'", "'tronco'", "'fogueira_apagada'", 
-		"'frente'", "'=='", "'?'", "'{'"
+		"'chao_pedra'", "'terra'", "'cabana'", "'arvore_queimada'", "'portal'", 
+		"'agua'", "'frente'", "'=='", "'?'", "'{'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, null, null, null, null, null, "COMENTARIO", "IDENT", 
-		"NUM_INT", "NUM_REAL", "ENTER", "COMENTARIO_ERRADO", "SIMBOLO_NAO_INDENTIFICADO"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		null, null, null, "COMENTARIO", "IDENT", "NUM_INT", "NUM_REAL", "ENTER", 
+		"COMENTARIO_ERRADO", "SIMBOLO_NAO_INDENTIFICADO"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -747,12 +750,19 @@ public class LaParser extends Parser {
 			case T__18:
 			case T__19:
 			case T__20:
+			case T__21:
 			case T__22:
 			case T__23:
 			case T__24:
 			case T__25:
 			case T__26:
 			case T__27:
+			case T__28:
+			case T__29:
+			case T__30:
+			case T__31:
+			case T__32:
+			case T__33:
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(101);
@@ -801,83 +811,17 @@ public class LaParser extends Parser {
 	public final Tipo_blocoContext tipo_bloco() throws RecognitionException {
 		Tipo_blocoContext _localctx = new Tipo_blocoContext(_ctx, getState());
 		enterRule(_localctx, 24, RULE_tipo_bloco);
+		int _la;
 		try {
-			setState(116);
-			switch (_input.LA(1)) {
-			case T__17:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(105);
-				match(T__17);
-				}
-				break;
-			case T__18:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(106);
-				match(T__18);
-				}
-				break;
-			case T__19:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(107);
-				match(T__19);
-				}
-				break;
-			case T__20:
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(108);
-				match(T__20);
-				setState(109);
-				match(T__21);
-				}
-				break;
-			case T__22:
-				enterOuterAlt(_localctx, 5);
-				{
-				setState(110);
-				match(T__22);
-				}
-				break;
-			case T__23:
-				enterOuterAlt(_localctx, 6);
-				{
-				setState(111);
-				match(T__23);
-				}
-				break;
-			case T__24:
-				enterOuterAlt(_localctx, 7);
-				{
-				setState(112);
-				match(T__24);
-				}
-				break;
-			case T__25:
-				enterOuterAlt(_localctx, 8);
-				{
-				setState(113);
-				match(T__25);
-				}
-				break;
-			case T__26:
-				enterOuterAlt(_localctx, 9);
-				{
-				setState(114);
-				match(T__26);
-				}
-				break;
-			case T__27:
-				enterOuterAlt(_localctx, 10);
-				{
-				setState(115);
-				match(T__27);
-				}
-				break;
-			default:
-				throw new NoViableAltException(this);
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(105);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__27) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			} else {
+				consume();
+			}
 			}
 		}
 		catch (RecognitionException re) {
@@ -916,7 +860,7 @@ public class LaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(118);
+			setState(107);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << IDENT) | (1L << NUM_INT) | (1L << NUM_REAL))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -960,14 +904,14 @@ public class LaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(120);
-			match(T__28);
-			setState(121);
-			match(T__29);
-			setState(122);
+			setState(109);
+			match(T__34);
+			setState(110);
+			match(T__35);
+			setState(111);
 			tipo_bloco();
-			setState(123);
-			match(T__30);
+			setState(112);
+			match(T__36);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1006,16 +950,16 @@ public class LaParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(125);
+			setState(114);
 			_la = _input.LA(1);
-			if ( !(_la==T__8 || _la==T__31) ) {
+			if ( !(_la==T__8 || _la==T__37) ) {
 			_errHandler.recoverInline(this);
 			} else {
 				consume();
 			}
-			setState(126);
+			setState(115);
 			comandos();
-			setState(127);
+			setState(116);
 			match(T__9);
 			}
 		}
@@ -1031,39 +975,34 @@ public class LaParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3)\u0084\4\2\t\2\4"+
-		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
-		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\3\2\3\2\3"+
-		"\2\3\2\3\2\3\2\3\3\3\3\5\3+\n\3\3\4\3\4\3\4\5\4\60\n\4\3\5\3\5\3\5\3\5"+
-		"\3\6\3\6\3\6\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\5\tE\n\t"+
-		"\3\n\3\n\3\n\5\nJ\n\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13"+
-		"\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13^\n\13\3\f\3\f\3\f\3\f\3"+
-		"\f\3\f\3\f\3\f\3\r\3\r\5\rj\n\r\3\16\3\16\3\16\3\16\3\16\3\16\3\16\3\16"+
-		"\3\16\3\16\3\16\5\16w\n\16\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3\21\3\21"+
-		"\3\21\3\21\3\21\2\2\22\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \2\4\3\2"+
-		"$&\4\2\13\13\"\"\u0088\2\"\3\2\2\2\4*\3\2\2\2\6/\3\2\2\2\b\61\3\2\2\2"+
-		"\n\65\3\2\2\2\f8\3\2\2\2\16;\3\2\2\2\20D\3\2\2\2\22I\3\2\2\2\24]\3\2\2"+
-		"\2\26_\3\2\2\2\30i\3\2\2\2\32v\3\2\2\2\34x\3\2\2\2\36z\3\2\2\2 \177\3"+
-		"\2\2\2\"#\7\3\2\2#$\7%\2\2$%\7\4\2\2%&\5\4\3\2&\'\7\5\2\2\'\3\3\2\2\2"+
-		"(+\5\22\n\2)+\3\2\2\2*(\3\2\2\2*)\3\2\2\2+\5\3\2\2\2,\60\5\n\6\2-\60\5"+
-		"\f\7\2.\60\5\b\5\2/,\3\2\2\2/-\3\2\2\2/.\3\2\2\2\60\7\3\2\2\2\61\62\7"+
-		"$\2\2\62\63\7\6\2\2\63\64\5\30\r\2\64\t\3\2\2\2\65\66\7\7\2\2\66\67\7"+
-		"$\2\2\67\13\3\2\2\289\7\b\2\29:\7$\2\2:\r\3\2\2\2;<\7\t\2\2<=\7$\2\2="+
-		">\7\n\2\2>?\7\13\2\2?@\5\22\n\2@A\7\f\2\2A\17\3\2\2\2BE\5\6\4\2CE\5\16"+
-		"\b\2DB\3\2\2\2DC\3\2\2\2E\21\3\2\2\2FG\5\24\13\2GH\5\22\n\2HJ\3\2\2\2"+
-		"IF\3\2\2\2IJ\3\2\2\2J\23\3\2\2\2KL\7\r\2\2L^\7\n\2\2MN\7\16\2\2N^\7\n"+
-		"\2\2OP\7\17\2\2PQ\7\20\2\2QR\5\36\20\2RS\7\21\2\2ST\5 \21\2T^\3\2\2\2"+
-		"U^\5\26\f\2VW\7$\2\2W^\7\n\2\2XY\7\22\2\2YZ\7\20\2\2Z[\7$\2\2[^\7\21\2"+
-		"\2\\^\5\20\t\2]K\3\2\2\2]M\3\2\2\2]O\3\2\2\2]U\3\2\2\2]V\3\2\2\2]X\3\2"+
-		"\2\2]\\\3\2\2\2^\25\3\2\2\2_`\7\23\2\2`a\7\20\2\2ab\7%\2\2bc\7\21\2\2"+
-		"cd\7\13\2\2de\5\22\n\2ef\7\f\2\2f\27\3\2\2\2gj\5\32\16\2hj\5\34\17\2i"+
-		"g\3\2\2\2ih\3\2\2\2j\31\3\2\2\2kw\7\24\2\2lw\7\25\2\2mw\7\26\2\2no\7\27"+
-		"\2\2ow\7\30\2\2pw\7\31\2\2qw\7\32\2\2rw\7\33\2\2sw\7\34\2\2tw\7\35\2\2"+
-		"uw\7\36\2\2vk\3\2\2\2vl\3\2\2\2vm\3\2\2\2vn\3\2\2\2vp\3\2\2\2vq\3\2\2"+
-		"\2vr\3\2\2\2vs\3\2\2\2vt\3\2\2\2vu\3\2\2\2w\33\3\2\2\2xy\t\2\2\2y\35\3"+
-		"\2\2\2z{\7\37\2\2{|\7 \2\2|}\5\32\16\2}~\7!\2\2~\37\3\2\2\2\177\u0080"+
-		"\t\3\2\2\u0080\u0081\5\22\n\2\u0081\u0082\7\f\2\2\u0082!\3\2\2\2\t*/D"+
-		"I]iv";
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3/y\4\2\t\2\4\3\t\3"+
+		"\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f"+
+		"\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\3\2\3\2\3\2\3\2\3"+
+		"\2\3\2\3\3\3\3\5\3+\n\3\3\4\3\4\3\4\5\4\60\n\4\3\5\3\5\3\5\3\5\3\6\3\6"+
+		"\3\6\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\5\tE\n\t\3\n\3\n"+
+		"\3\n\5\nJ\n\n\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3"+
+		"\13\3\13\3\13\3\13\3\13\3\13\3\13\5\13^\n\13\3\f\3\f\3\f\3\f\3\f\3\f\3"+
+		"\f\3\f\3\r\3\r\5\rj\n\r\3\16\3\16\3\17\3\17\3\20\3\20\3\20\3\20\3\20\3"+
+		"\21\3\21\3\21\3\21\3\21\2\2\22\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36"+
+		" \2\5\3\2\24$\3\2*,\4\2\13\13((t\2\"\3\2\2\2\4*\3\2\2\2\6/\3\2\2\2\b\61"+
+		"\3\2\2\2\n\65\3\2\2\2\f8\3\2\2\2\16;\3\2\2\2\20D\3\2\2\2\22I\3\2\2\2\24"+
+		"]\3\2\2\2\26_\3\2\2\2\30i\3\2\2\2\32k\3\2\2\2\34m\3\2\2\2\36o\3\2\2\2"+
+		" t\3\2\2\2\"#\7\3\2\2#$\7+\2\2$%\7\4\2\2%&\5\4\3\2&\'\7\5\2\2\'\3\3\2"+
+		"\2\2(+\5\22\n\2)+\3\2\2\2*(\3\2\2\2*)\3\2\2\2+\5\3\2\2\2,\60\5\n\6\2-"+
+		"\60\5\f\7\2.\60\5\b\5\2/,\3\2\2\2/-\3\2\2\2/.\3\2\2\2\60\7\3\2\2\2\61"+
+		"\62\7*\2\2\62\63\7\6\2\2\63\64\5\30\r\2\64\t\3\2\2\2\65\66\7\7\2\2\66"+
+		"\67\7*\2\2\67\13\3\2\2\289\7\b\2\29:\7*\2\2:\r\3\2\2\2;<\7\t\2\2<=\7*"+
+		"\2\2=>\7\n\2\2>?\7\13\2\2?@\5\22\n\2@A\7\f\2\2A\17\3\2\2\2BE\5\6\4\2C"+
+		"E\5\16\b\2DB\3\2\2\2DC\3\2\2\2E\21\3\2\2\2FG\5\24\13\2GH\5\22\n\2HJ\3"+
+		"\2\2\2IF\3\2\2\2IJ\3\2\2\2J\23\3\2\2\2KL\7\r\2\2L^\7\n\2\2MN\7\16\2\2"+
+		"N^\7\n\2\2OP\7\17\2\2PQ\7\20\2\2QR\5\36\20\2RS\7\21\2\2ST\5 \21\2T^\3"+
+		"\2\2\2U^\5\26\f\2VW\7*\2\2W^\7\n\2\2XY\7\22\2\2YZ\7\20\2\2Z[\7*\2\2[^"+
+		"\7\21\2\2\\^\5\20\t\2]K\3\2\2\2]M\3\2\2\2]O\3\2\2\2]U\3\2\2\2]V\3\2\2"+
+		"\2]X\3\2\2\2]\\\3\2\2\2^\25\3\2\2\2_`\7\23\2\2`a\7\20\2\2ab\7+\2\2bc\7"+
+		"\21\2\2cd\7\13\2\2de\5\22\n\2ef\7\f\2\2f\27\3\2\2\2gj\5\32\16\2hj\5\34"+
+		"\17\2ig\3\2\2\2ih\3\2\2\2j\31\3\2\2\2kl\t\2\2\2l\33\3\2\2\2mn\t\3\2\2"+
+		"n\35\3\2\2\2op\7%\2\2pq\7&\2\2qr\5\32\16\2rs\7\'\2\2s\37\3\2\2\2tu\t\4"+
+		"\2\2uv\5\22\n\2vw\7\f\2\2w!\3\2\2\2\b*/DI]i";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
