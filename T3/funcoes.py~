@@ -1,5 +1,6 @@
-     def esquerda(player):
-     player.virar()
-     player.virar()
-     player.virar()
-          
+     
+def r(player):
+     kadabra= ''
+     kadabra='agua'
+     frente = atualiza_frente(lmatriz[player.bloco])
+     if frente == 'grama':      player.usar(kadabra);                              

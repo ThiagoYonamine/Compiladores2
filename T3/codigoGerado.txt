@@ -1,7 +1,25 @@
-3
+#fase: 4
+
+def r(player):
+     kadabra= ''
+     kadabra='agua'
+     if frente == 'grama':
+          player.virar()
+          player.usar(kadabra)
 kadabra= ''
-if frente == 'grama': kadabra='agua'
-if frente == 'arvore': kadabra='ataque'
-if frente == 'caixa': kadabra='fogo'
+
+if frente == 'grama':
+     kadabra='agua'
+
+if frente == 'arvore':
+     kadabra='ataque'
+
+if frente == 'caixa':
+     kadabra='fogo'
+
 player.usar(kadabra)
-for i in range(4): player.virar();
+
+player.andar()
+
+for i in range(4): 
+     r(player)

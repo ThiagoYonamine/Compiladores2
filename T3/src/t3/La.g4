@@ -32,10 +32,11 @@ cmd     : 'andar' '()'
 repetir: 'repetir' '(' NUM_INT ')' '{\n' comandos '}';
 tipo: tipo_bloco | tipo_magia;
 tipo_bloco : 'grama' | 'lava' | 'pedra' | 'gelo'
-             'espinho' | 'arvore' | 'caixa' | 'inimigo';
+             'espinho' | 'arvore' | 'caixa' | 'inimigo' | 'fogueira' | 'tronco' 
+            | 'fogueira_apagada';
 tipo_magia : IDENT | NUM_INT | NUM_REAL ;
-expressao: 'frente' '==' tipo '?';
-resultado: ':'  cmd;
+expressao: 'frente' '==' tipo_bloco '?';
+resultado: ('{\n'| '{' ) comandos '}';
 
 COMENTARIO
     : '#' .*? '#' ->skip;

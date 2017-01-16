@@ -60,11 +60,14 @@ public class T3 {
                     // do something
                 }
                 try {
-                    String cmd = "python code.py";
-                    Process p = Runtime.getRuntime().exec(cmd);
-
-                    //p.waitFor();
-                    // System.out.println(p.getErrorStream());
+                    String cmd = "python unir.py";
+                    Process p = Runtime.getRuntime().exec(cmd);          
+                } catch (IOException ex) {
+                    System.out.println("erro");
+                }
+                try {
+                    String cmd = "python jogo.py";
+                    Process p = Runtime.getRuntime().exec(cmd);          
                 } catch (IOException ex) {
                     System.out.println("erro");
                 }
