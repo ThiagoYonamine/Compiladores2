@@ -16,7 +16,7 @@ fim = pygame.image.load('src/t3/Imagem/fim.png')
 grama = pygame.image.load('src/t3/Imagem/grama.png') 
 gfogo = pygame.image.load('src/t3/Imagem/fire.png') # 2
 gpedra = pygame.image.load('src/t3/Imagem/ground2.png') # 3
-glanca = pygame.image.load('src/t3/Imagem/ground.png') # 4
+gespinho = pygame.image.load('src/t3/Imagem/ground.png') # 4
 gterra = pygame.image.load('src/t3/Imagem/ground3.png') # 5
 gwater = pygame.image.load('src/t3/Imagem/water.png') # 8
 tenda = pygame.image.load('src/t3/Imagem/tenda2.png') # 6
@@ -41,10 +41,10 @@ cmd = open('codigoGerado.txt', 'r')
 line = cmd.readline()
 fase = line[7];
 
-iniX = 20
-iniY = 20
 inX = 4
 inY = 2
+iniX = 20
+iniY = 20
 ex = False
 inDir = 'dir'
 if(fase == '2'):
@@ -58,6 +58,14 @@ elif(fase == '3'):
     inX = 5
     inY = 6
     inDir = 'cima'
+elif(fase == '4'):
+    inX = 0
+    inY = 2
+    inDir = 'cima'
+    iniX = 4
+    iniY = 6
+    ex = True
+
     
 path = 'src/t3/Fase/mapa' + fase + '.txt'
 arquivo = open(path, 'r')
@@ -80,7 +88,7 @@ def att_matriz(magia, prox_bloco):
         lmatriz[prox_bloco] = 'r'
     elif(magia == "ataque" and lmatriz[prox_bloco] == 'r'): # ataque na arvore
         lmatriz[prox_bloco] = 't'
-    elif(magia == "ataque" and lmatriz[prox_bloco] == 'c'): # ataque na caixa
+    elif(magia == "fogo" and lmatriz[prox_bloco] == 'c'): # ataque na caixaelif(magia == "ataque" and lmatriz[prox_bloco] == 'c'): # ataque na caixa
         lmatriz[prox_bloco] = 'q'
 
 
@@ -134,7 +142,7 @@ def mapa():
         elif(i == '3'):
             screen.blit(gpedra, (x+100,y+100))
         elif(i == '4'):
-            screen.blit(glanca, (x+100,y+100))
+            screen.blit(gespinho, (x+100,y+100))
         elif(i == '5'):
             screen.blit(gterra, (x+100,y+100))
         elif(i == '6'):
@@ -205,6 +213,10 @@ class Inimigo():
          if (lmatriz[self.bloco] == "1" or lmatriz[self.bloco] == "c"  or lmatriz[self.bloco] == "r" or lmatriz[self.bloco] == "v"):
              valx = 0
              valy = 0
+             self.bx = 10
+             self.by = 2
+             self.x = 110 + (self.bx*64)
+             self.y = 98 + (self.by*67)
             
          self.x += valx
          self.y += valy
@@ -467,8 +479,36 @@ class Player():
         player.desenha()
 
 def atualiza_frente(value):
-    if(value == '0'):
+    if (value == '0'):
         return 'grama'
+    elif (value == '1' or value == '7'):
+        return 'pedra'
+    elif (value == '2'):
+        return 'lava'
+    elif (value == '3'):
+        return 'chao_pedra'
+    elif (value == '4'):
+        return 'espinho'
+    elif (value == '5'):
+        return 'terra'
+    elif (value == '6'):
+        return 'cabana'
+    elif (value == '8'):
+        return 'agua'
+    elif (value == 'r'):
+        return 'arvore'
+    elif (value == 'c'):
+        return 'caixa'
+    elif (value == 'f'):
+        return 'fogueira'
+    elif (value == 't'):
+        return 'tronco'
+    elif (value == 'a'):
+        return 'fogueira_apagada'
+    elif (value == 'v'):
+        return 'arvore_queimada'
+    elif (value == 'p'):
+        return 'portal'
 
 close = False
 inimigo = Inimigo(iniX,iniY,ex)
@@ -478,27 +518,45 @@ frente = atualiza_frente(lmatriz[player.bloco])
 ###############codigo jogador#############################
 #fase: 4
 
-def r(player):
-     kadabra= ''
-     kadabra='agua'
-     if frente == 'grama':
-          player.virar()
-          player.usar(kadabra)
-kadabra= ''
-
-if frente == 'grama':
-     kadabra='agua'
-
-if frente == 'arvore':
-     kadabra='ataque'
-
-if frente == 'caixa':
-     kadabra='fogo'
-
-player.usar(kadabra)
+player.virar()
 
 player.andar()
 
-for i in range(4): 
-     r(player)
+player.virar()
+
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.virar()
+a= ''
+a='agua'
+
+player.usar(a)
+
+player.andar()
+
+player.virar()
+
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.andar()
+
+player.andar()
+
+player.virar()
+
+player.andar()
+
+player.andar()
 gameOver()
