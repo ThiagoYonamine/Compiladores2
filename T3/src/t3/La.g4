@@ -20,7 +20,7 @@ declaracoes_funcao: 'funcao' IDENT '()' '{\n' comandos '}';
 declaracoes:  declaracoes_objetos
             | declaracoes_funcao;
 
-comandos : (cmd comandos )?;
+comandos : (cmd comandos)?;
 cmd     : 'andar' '()'
         | 'virar' '()'
         | 'perguntar' '(' expressao ')' resultado

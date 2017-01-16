@@ -1,36 +1,11 @@
-fase: 2
+fase: 1
 inicio
-funcao meiaVolta(){
-    repetir(2) {
-        virar()
-    }
-}
 
-magia destruccio
-destruccio = ataque
-usar(destruccio)
-repetir(1){
-    andar()
-}
-
+perguntar (frente == grama?)
+sim{
 virar()
-
-magia aguamenti
-aguamenti = fogo
-
-usar(aguamenti)
-andar()
-aguamenti = agua
-usar(aguamenti)
-meiaVolta()
-usar(aguamenti)
-andar()
-usar(destruccio)
-repetir(3){
-    andar()
 }
+repetir(4){
 virar()
-repetir(2){
-    andar()
 }
 fim

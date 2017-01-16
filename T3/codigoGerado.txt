@@ -1,16 +1,4 @@
-2
-from funcoes import meiaVolta
+1
 
-player.usar('ataque')
-for i in range(1): player.andar();
-player.virar()
-player.usar('fogo')
-player.andar()
-player.usar('agua')
-meiaVolta(player)
-player.usar('agua')
-player.andar()
-player.usar('ataque')
-for i in range(3): player.andar();
-player.virar()
-for i in range(2): player.andar();
+if frente == 'grama': player.virar();
+for i in range(4): player.virar();

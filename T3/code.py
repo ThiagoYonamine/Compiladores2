@@ -151,6 +151,7 @@ def mapa():
         
     return aux
 def gameOver():
+    pygame.time.wait(2000)
     close = False
     while not close:
         for event in pygame.event.get():
@@ -354,27 +355,32 @@ class Player():
 
     # # #   Animacao do jogador em movimento usando a equacao para identificar posicao  # # #
     def andar(self):
-        
+        finaliza = False
         self.estado = 'andando'
         if self.direcao == 'dir':
             self.bloco = ((11*(2*(player.by))) + (player.bx+1)*2)
+            if(self.x > 750 ):
+                finaliza = True
         if self.direcao == 'esq':
             self.bloco = ((11*(2*(player.by))) + (player.bx-1)*2)
+            if(self.x < 150 ):
+                finaliza = True
         if self.direcao == 'cima':
             self.bloco = ((11*(2*(player.by-1))) + (player.bx)*2)
+            if(self.y < 110 ):
+                finaliza = True
         if self.direcao == 'baixo':
             self.bloco = ((11*(2*(player.by+1))) + (player.bx)*2)
+            if(self.y > 480 ):
+                finaliza = True
+                self.bloco = 0
 
         # Detecta colisao ao andar
         andarei = 2
         # Fim do jogo quando:
         #   Jogador anda em cima do fogo
         #   Jogador ultrapassa limite do mapa
-        finaliza = False
         
-        if (self.x > 750 or self.y < 60 or self.y > 510):
-            player.bloco = 0
-            finaliza = True
        
        
         if (lmatriz[player.bloco] == "f" or lmatriz[player.bloco] == "8" or finaliza == True):

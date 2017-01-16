@@ -111,13 +111,13 @@ public class GeradorCodigo {
             identacao = 3;
               
             print("if frente == '"+ t + "': " );
-            Comandos(ctx.resultado().comandos().comandos());
+            Comandos(ctx.resultado().comandos());
             identacao = 1;
             }
             else if(identacao == 2){
             identacao = 4;
             print("if frente == '"+ t + "': " );
-            Comandos(ctx.resultado().comandos().comandos());
+            Comandos(ctx.resultado().comandos());
             identacao = 2;
             }
         }
