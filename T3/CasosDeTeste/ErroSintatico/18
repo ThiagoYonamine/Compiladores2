@@ -9,3 +9,5 @@ repetir(4){
     virar()
 }
 fim
+
+# [SYNTACTIC ERROR] Line 5: mismatched input '=' expecting '==' #

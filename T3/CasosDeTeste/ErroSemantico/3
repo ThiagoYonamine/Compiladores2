@@ -30,4 +30,6 @@ repetir(2){
 fim
 
 # [ERROR] Line 9 : Variable destrucio not defined
-[ERROR] Line 14 : Magic alohomora not defined #
+[ERROR] Line 10 : Magic destruccio has no type
+[ERROR] Line 14 : Magic alohomora not defined
+[ERROR] Line 22 : Magic destruccio has no type #

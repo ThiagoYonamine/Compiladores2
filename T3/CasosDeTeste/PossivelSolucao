@@ -49,3 +49,17 @@ repetir(2){
     andar()
 }
 fim
+
+Solução Fase 3
+
+fase: 3
+inicio
+magia kadabra
+perguntar (frente == fogueira?){ kadabra = agua }
+perguntar (frente == arvore?){ kadabra = ataque }
+perguntar (frente == caixa?){ kadabra = fogo }
+usar(kadabra)
+repetir(4){
+    virar()
+}
+fim
