@@ -31,10 +31,11 @@ cmd     : 'andar' '()'
 
 repetir: 'repetir' '(' NUM_INT ')' '{\n' comandos '}';
 tipo: tipo_bloco | tipo_magia;
-tipo_bloco : 'grama' | 'lava' | 'parede' | 'inimigo' | 'proximo_bloco' ;
+tipo_bloco : 'grama' | 'lava' | 'pedra' | 'gelo'
+             'espinho' | 'arvore' | 'caixa' | 'inimigo';
 tipo_magia : IDENT | NUM_INT | NUM_REAL ;
 expressao: 'frente' '==' tipo '?';
-resultado: 'sim' '{\n' comandos '}' ;
+resultado: ':'  cmd;
 
 COMENTARIO
     : '#' .*? '#' ->skip;

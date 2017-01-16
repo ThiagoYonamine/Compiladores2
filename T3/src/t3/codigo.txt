@@ -1,13 +1,11 @@
-fase: 1
+fase: 3
 inicio
-
-perguntar (frente == grama?)
-sim{
-magia kk
-kk = fogo
-usar(kkx)
-}
-repetir(40){
-virar()
+magia kadabra
+perguntar (frente == grama?): kadabra = agua
+perguntar (frente == arvore?): kadabra = ataque
+perguntar (frente == caixa?): kadabra = fogo
+usar(kadabra)
+repetir(4){
+    virar()
 }
 fim

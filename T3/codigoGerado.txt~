@@ -1,6 +1,6 @@
 3
 kadabra= ''
-if frente == 'grama': kadabra='agua'
+if frente == 'fogo': kadabra='agua'
 if frente == 'arvore': kadabra='ataque'
 if frente == 'caixa': kadabra='fogo'
 player.usar(kadabra)

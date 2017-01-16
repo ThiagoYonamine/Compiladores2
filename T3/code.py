@@ -54,8 +54,8 @@ if(fase == '2'):
     iniY = 2
     ex = True
 elif(fase == '3'):
-    inX = 4
-    inY = 7
+    inX = 5
+    inY = 6
     inDir = 'cima'
     
 path = 'src/t3/Fase/mapa' + fase + '.txt'

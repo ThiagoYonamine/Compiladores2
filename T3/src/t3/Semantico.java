@@ -79,8 +79,8 @@ public class Semantico {
             }
         }
         if (ctx.getStart().getText().equals("perguntar")) {
-            if(!ctx.resultado().comandos().getText().equals(""))
-                Comandos(ctx.resultado().comandos());
+            if(!ctx.resultado().cmd().getText().equals(""))
+                Cmd(ctx.resultado().cmd());
            
         }
         if (ctx.getStart().getText().equals("repetir")) {
@@ -135,7 +135,8 @@ public class Semantico {
                         println("[ERROR] Line " + id_line + " : Variable " + id + " not compatible");
                     }
                 } else if (pilhaDeTabelas.tipo(id) == "bloco") {
-                    if (!at.equals("grama") && !at.equals("fogo") && !at.equals("parede") && !at.equals("inimigo") && !at.equals("proximo_bloco")) {
+                    
+                    if (!at.equals("grama") && !at.equals("lava") && !at.equals("pedra") && !at.equals("inimigo") && !at.equals("gelo") && !at.equals("espinho")&& !at.equals("arvore")&& !at.equals("caixa")) {
                         println("[ERROR] Line " + id_line + " : Variable " + id + " not compatible");
                     }
                 }
