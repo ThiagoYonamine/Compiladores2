@@ -12,9 +12,9 @@ player.virar()
 player.virar()
 
 
+
 a='agua'
 player.usar(a)
 
 player.andar()
 player.andar()
-

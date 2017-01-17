@@ -18,7 +18,9 @@ usar(aguamenti)
 meiaVolta()
 usar(aguamenti)
 andar()
-usar(destruccio)
+magia flagrati
+flagrati = fogo
+usar(flagrati)
 repetir(3){
     andar()
 }
@@ -28,4 +30,5 @@ repetir(2){
 }
 fim
 
-# [SYNTACTIC ERROR] Line 8: no viable alternative at input 'magiasdestruccio' #
+# [ERROR] Line 8: syntax error near magiasdestruccio
+Declaração errada #

@@ -1,22 +1,17 @@
-
-grammar La;
+grammar codeFun;
 
 @members {
-    public static String grupo="<<587001, 489336>>";
-    //PilhaDeTabelas pilhaDeTabelas = new PilhaDeTabelas();
-   
+    public static String grupo="<<587001, 489336>>";  
 }
 
 programa: 'fase:' NUM_INT 'inicio' corpo 'fim';
-corpo : comandos
-        | ;
+corpo : comandos | ;
 
-declaracoes_objetos: obj_magia | obj_bloco | atribuicao;
-atribuicao: IDENT '=' tipo;
+declaracoes_objetos: obj_magia | atribuicao ;
+atribuicao: IDENT '=' tipo_magia;
 obj_magia: 'magia' IDENT;
-obj_bloco: 'bloco' IDENT;
 
-declaracoes_funcao: 'funcao' IDENT '()' '{\n' comandos '}';
+declaracoes_funcao: 'funcao' IDENT '()' ('{\n'| '{' ) comandos '}';
 
 declaracoes:  declaracoes_objetos
             | declaracoes_funcao;
@@ -30,13 +25,13 @@ cmd     : 'andar' '()'
         | 'usar' '('IDENT')'
         | declaracoes;
 
-repetir: 'repetir' '(' NUM_INT ')' '{\n' comandos '}';
+repetir: 'repetir' '(' NUM_INT ')' ('{\n'| '{' ) comandos '}';
 tipo: tipo_bloco | tipo_magia;
 tipo_bloco : 'grama' | 'lava' | 'pedra' | 'gelo' |
              'espinho' | 'arvore' | 'caixa' | 'inimigo' |
              'fogueira' | 'tronco' | 'fogueira_apagada' | 'chao_pedra' |
              'terra' | 'cabana' | 'arvore_queimada' | 'portal' | 'agua' ;
-tipo_magia : IDENT | NUM_INT | NUM_REAL ;
+tipo_magia : 'fogo' | 'agua' | 'ataque' ;
 expressao: 'frente' '==' tipo_bloco '?';
 resultado: ('{\n'| '{' ) comandos '}';
 

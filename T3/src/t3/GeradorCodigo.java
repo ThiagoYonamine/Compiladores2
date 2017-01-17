@@ -1,14 +1,9 @@
-
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Gera um código em Python e salva no arquivo codigoGerado.
  */
 package t3;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class GeradorCodigo {
@@ -35,7 +30,6 @@ public class GeradorCodigo {
         this.funcoes.append(txt).append("\n");
     }
     
-
     //Limpa a string para o próximo arquivo
     public void clear() {
         this.codigo = new StringBuffer();
@@ -49,7 +43,7 @@ public class GeradorCodigo {
         return this.funcoes.toString();
     }
 
-    void Programa(LaParser.ProgramaContext ctx) {
+    void Programa(codeFunParser.ProgramaContext ctx) {
         
         variaveis_tipo = new HashMap<String, String>();
         clear();
@@ -59,108 +53,99 @@ public class GeradorCodigo {
             Corpo(ctx.corpo());
         }
         pilhaDeTabelas.desempilhar();
-
     }
 
-    void Corpo(LaParser.CorpoContext ctx) {
+    void Corpo(codeFunParser.CorpoContext ctx) {
 
         Comandos(ctx.comandos());
     }
 
-    void Comandos(LaParser.ComandosContext ctx) {
+    void Comandos(codeFunParser.ComandosContext ctx) {
+        
         Cmd(ctx.cmd());
+        
         if (!ctx.comandos().getText().equals("")) {
             Comandos(ctx.comandos());
         }
     }
 
-    void Cmd(LaParser.CmdContext ctx) {
+    void Cmd(codeFunParser.CmdContext ctx) {
+        //Variável identação auxilia na identação do código em Python
         if (identacao == 1 && ctx.declaracoes() == null) {
             println("");
         } else {
-            for(int i=1;i <identacao ; i++)
+            for(int i = 1; i < identacao; i++)
                 print("     ");
         }
 
         if (ctx.declaracoes() != null) {
             Declaracoes(ctx.declaracoes());
-        } else if (ctx.IDENT() != null) {
+        
+        } else if (ctx.IDENT() != null) { //Comando usar(magia)
+            
             String id = ctx.IDENT().getText();
             int id_line = ctx.IDENT().getSymbol().getLine();
+            
             if (ctx.getStart().getText().equals("usar")) {                  
-                    println("player.usar(" +  id + ")");
+                println("player.usar(" +  id + ")");
             } else {
-               
-                    println(id +"(player)");
+                println(id +"(player)");
             }
-        } else if (ctx.getStart().getText().equals("perguntar")) {
+            
+        } else if (ctx.getStart().getText().equals("perguntar")) { //Comando perguntar (frente == agua?) { comandos }
 
             String t = ctx.expressao().tipo_bloco().getText();
             
-              
             println("if frente == '"+ t + "':");
             if(!ctx.resultado().comandos().getText().equals("")){
                 identacao += 1;
-            Comandos(ctx.resultado().comandos());
+                Comandos(ctx.resultado().comandos());
                 identacao -= 1;
             }
             else
-                println("nada = 0");
-  
+                println("nada = 0"); //Quando não houver nenhum comando
+        
         }
-        else if (ctx.getStart().getText().equals("repetir")){
+        else if (ctx.getStart().getText().equals("repetir")){ //Comando repetir(n){ }
             
             String n = ctx.repetir().NUM_INT().getText();
             
- 
             println("for i in range(" + n + "): ");
             if(!ctx.repetir().comandos().getText().equals("")){
-            identacao += 1;
-            Comandos(ctx.repetir().comandos());
-             identacao -= 1;
+                identacao += 1;
+                Comandos(ctx.repetir().comandos());
+                identacao -= 1;
             }
             else
-                println("nada = 0");
-           
+                println("nada = 0"); //Quando não houver nenhum comando         
         }
         else  { //player.andar() e player.virar()    
                 println("player."+ctx.getText());
         }
     }
 
-    void Declaracoes(LaParser.DeclaracoesContext ctx) {
-        if (ctx.getStart().getText().equals("funcao")) {
-
+    void Declaracoes(codeFunParser.DeclaracoesContext ctx) {
+        
+        if (ctx.getStart().getText().equals("funcao")) { //Declaração de função
             String id = ctx.declaracoes_funcao().IDENT().getText();
             int id_line = ctx.declaracoes_funcao().IDENT().getSymbol().getLine();  
+            
             println("");
-            println("def " + id + "(player):");
+            println("def " + id + "(player):"); //Parâmentro Player do código em Python
             identacao += 1;
             Comandos(ctx.declaracoes_funcao().comandos());
             identacao -= 1;
-        } else if (ctx.getStart().getText().equals("magia")) {
-            String id = ctx.declaracoes_objetos().obj_magia().IDENT().getText();
-            println(id + "= ''");
-           
-
-        } else if (ctx.getStart().getText().equals("bloco")) {
-            String id = ctx.declaracoes_objetos().obj_bloco().IDENT().getText();
             
+        } else if (ctx.getStart().getText().equals("magia")) { //Declaração de magia
+            String id = ctx.declaracoes_objetos().obj_magia().IDENT().getText();
             println(id + "= ''");
 
         } else {
-
+            //Atribuição do tipo da magia (agua, fogo ou ataque)
             String id = ctx.declaracoes_objetos().atribuicao().IDENT().getText();
-            String at = ctx.declaracoes_objetos().atribuicao().tipo().getText();
+            String at = ctx.declaracoes_objetos().atribuicao().tipo_magia().getText();
             
             println(id + "='" + at + "'");
-            
-            pilhaDeTabelas.topo().adicionarSimbolo(id, at);
-            if (variaveis_tipo.containsKey(id)) {
-                variaveis_tipo.remove(id);
-            }
-            variaveis_tipo.put(id, at);
         }
     }
-
 }

@@ -13,7 +13,7 @@ frente = 'nada'
 # # #   Carregar imagens    # # #
 bg = pygame.image.load('src/t3/Imagem/forst.png')
 fim = pygame.image.load('src/t3/Imagem/fim.png')
-grama = pygame.image.load('src/t3/Imagem/grama.png')
+grama = pygame.image.load('src/t3/Imagem/grama.png') 
 gfogo = pygame.image.load('src/t3/Imagem/fire.png') # 2
 gpedra = pygame.image.load('src/t3/Imagem/ground2.png') # 3
 gespinho = pygame.image.load('src/t3/Imagem/ground.png') # 4
@@ -40,7 +40,7 @@ anima_portal = 0
 cmd = open('codigoGerado.txt', 'r')
 line = cmd.readline()
 fase = line[7];
-
+# Fase 1
 inX = 4
 inY = 2
 iniX = 20
@@ -66,7 +66,7 @@ elif(fase == '4'):
     iniY = 6
     ex = True
 
-
+    
 path = 'src/t3/Fase/mapa' + fase + '.txt'
 arquivo = open(path, 'r')
 matriz = arquivo.read()
@@ -159,6 +159,7 @@ def mapa():
             x = 0
         cont += 1
 
+        
     return aux
 def gameOver():
     pygame.time.wait(2000)
@@ -167,13 +168,11 @@ def gameOver():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 close = True
-
     
         screen.blit(fim, (100, 100))
                 
         pygame.display.flip()
             
-
     pygame.display.quit()
     pygame.quit()
     sys.exit()
@@ -202,7 +201,7 @@ class Inimigo():
         self.animacao += 0.5
         if self.animacao >= 5:
             self.animacao = 0
-
+        
      def controle(self):
          print(self.control)
          if(fase == '2'):
@@ -218,7 +217,7 @@ class Inimigo():
                  self.by = 2
                  self.x = 110 + (self.bx*64)
                  self.y = 98 + (self.by*67)
-
+                 
                  self.control +=1
 
              elif(self.control==1):
@@ -227,26 +226,24 @@ class Inimigo():
                  self.x = 110 + (self.bx*64)
                  self.y = 98 + (self.by*67)
                  self.control +=1
-
+                 
              elif(self.control==2):
                  self.control=0
                  self.bx = 20
                  self.by = 20
                  self.x = 110 + (self.bx*64)
                  self.y = 98 + (self.by*67)
-
                  
                  self.existe = False
              
+         
      def anda(self,valx,valy):
          if(valx != 0  and  valy != 0):
              valx *= 0.5
              valy *= 0.5
-
                 
          #print(self.bloco)
          
-
          self.bloco = ((11*(2*(self.by))) + self.bx*2)
          #print(self.bloco)
          if (lmatriz[self.bloco] == "1" or lmatriz[self.bloco] == "c"  or lmatriz[self.bloco] == "r" or lmatriz[self.bloco] == "v"):
@@ -255,7 +252,7 @@ class Inimigo():
              self.controle()
              att_matriz('fogo', self.bloco)
              self.bloco = ((11*(2*(self.by))) + self.bx*2)
-
+            
          self.x += valx
          self.y += valy
          self.contX += valx
@@ -271,8 +268,8 @@ class Inimigo():
              self.by += 1
          elif(self.contY <= -67):
              self.contY +=67
-             self.by -= 1
-
+             self.by -= 1 
+        
 
 # # #   Jogador # # #
 class Player():
@@ -342,7 +339,7 @@ class Player():
         aux = mapa()
         magicx = self.x
         magicy = self.y
-
+        
         # Jogador virando
         if self.direcao == 'dir':
             screen.blit(self.imga_dir[int(self.animacao)], (self.x, self.y))
@@ -394,13 +391,13 @@ class Player():
                 inimigoY=-4
             elif(self.y > self.inimigo.y):
                 inimigoY= 4
-
+                
             self.inimigo.anda(inimigoX,inimigoY)
             self.inimigo.desenha()
 
             self.col = pygame.Rect(self.x, self.y, 60, 60)
             self.inimigo.col = pygame.Rect(self.inimigo.x, self.inimigo.y, 60, 60)
-
+           
             if(self.col.colliderect(self.inimigo.col)):
                print("inimigo")
                gameOver()
@@ -434,7 +431,9 @@ class Player():
         # Fim do jogo quando:
         #   Jogador anda em cima do fogo
         #   Jogador ultrapassa limite do mapa
-
+        
+       
+        
         if (lmatriz[player.bloco] == "f" or lmatriz[player.bloco] == "8" or finaliza == True):
             gameOver()
         # Quando o bloco esta livre, anda
@@ -465,7 +464,6 @@ class Player():
             for i in range(32):
                 if self.direcao == 'dir':
                     player.x += andarei
-
                     
                 if self.direcao == 'esq':
                     player.x -= andarei
@@ -478,10 +476,9 @@ class Player():
                     player.y += andarei
                 self.desenha()
                 
-
             self.estado = 'parado'
-
-
+            
+        
 
     # # #   Usa magia no proximo bloco  # # #
     def usar(self,magic):
@@ -553,28 +550,22 @@ close = False
 inimigo = Inimigo(iniX,iniY,ex,fase)
 player = Player(inX,inY,inDir,inimigo)
 player.desenha()
-
 frente = atualiza_frente(lmatriz[player.bloco]) 
-
 ###############codigo jogador#############################
-#fase: 2
+#fase: 3
+kadabra= ''
 
-a= ''
-a='ataque'
+if frente == 'fogueira':
+     kadabra='agua'
 
-player.usar(a)
+if frente == 'arvore':
+     kadabra='ataque'
 
-player.andar()
-player.andar()
-player.virar()
+if frente == 'caixa':
+     kadabra='fogo'
 
-player.virar()
+player.usar(kadabra)
 
-
-a='agua'
-player.usar(a)
-
-player.andar()
-player.andar()
-
+for i in range(4): 
+     player.andar()
 gameOver()

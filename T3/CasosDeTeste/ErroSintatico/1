@@ -5,16 +5,16 @@ funcao esquerda(){
         virar()
     }
 }
-    andar()
     repetir(4){
         andar()
     }
-    esquerda()
+    virar()
     andar()
-    repetir(3){
+    esquerda()
+    repetir(2){
         andar()
     }
 fim
 
 
-# [SYNTACTIC ERROR] Line 3: missing 'inicio' at 'funcao' #
+# [ERROR] Line 3: syntax error near funcao #

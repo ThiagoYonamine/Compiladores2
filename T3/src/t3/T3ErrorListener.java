@@ -1,3 +1,6 @@
+/*
+* Erros sintáticos
+*/
 package t3;
 
 import java.util.BitSet;
@@ -20,15 +23,23 @@ public class T3ErrorListener implements ANTLRErrorListener {
     public void syntaxError(Recognizer<?, ?> rcgnzr, Object o, int i, int i1, String string, RecognitionException re) {
         if (!sp.isModificado()) {
             if(ErrosSintaticos.comentario){
-                sp.println("[SYNTACTIC ERROR] Line " + i + ": wrong comment");
-                
+                sp.println("[ERROR] Line " + i + ": wrong comment"); 
             }
             else{
                 String delims = "[']";
+                String delims2 = "[ ]";
                 String[] tokens = string.split(delims);
+                String[] tokens2 = string.split(delims2);
                 int tam;
                 tam = tokens.length;
-                sp.println("[SYNTACTIC ERROR] Line " + i + ": " + string);
+                tam--;
+                if(tokens2[0].equals("missing")){
+                        if(tokens[tam].equals("<EOF>")) tokens[tam] = "EOF";
+                        if(tokens[tam].equals("{\\n")) tokens[tam] = "{";
+                        sp.println("[ERROR] Line " + i + ": syntax error near "  + tokens[tam]);
+                        }
+                    else
+                        sp.println("[ERROR] Line " + i + ": syntax error near " + tokens[1]);
             }
         }
     }

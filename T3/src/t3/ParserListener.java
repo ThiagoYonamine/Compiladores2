@@ -6,20 +6,9 @@ package t3;
  * and open the template in the editor.
  */
 
-/**
- *
- * @author thyonamine
- */
-public class ParserListener extends LaBaseListener{
+public class ParserListener extends codeFunBaseListener{
 
     ParserListener(Saida sp) {
         
     }
-    PilhaDeTabelas pilhaDeTabelas = new PilhaDeTabelas();
-    @Override
-    public void enterPrograma(LaParser.ProgramaContext ctx) {
-       // System.out.println("OIIIIIIIIIi");
-    }
-    
-    
 }
