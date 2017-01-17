@@ -18,7 +18,9 @@ usar(aguamenti)
 meiaVolta()
 usar(aguamenti)
 andar()
-usar(destruccio)
+magia flagrati
+flagrati = fogo
+usar(flagrati)
 repetir(3){
     andar()
 }
@@ -28,4 +30,5 @@ repetir(2){
 }
 fim
 
-# [SYNTACTIC ERROR] Line 3: no viable alternative at input 'funcmeiaVolta' #
+# [ERROR] Line 3: syntax error near funcmeiaVolta
+Criar função errado #

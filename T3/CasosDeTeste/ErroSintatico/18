@@ -6,8 +6,8 @@ perguntar (frente = arvore?){ kadabra = ataque }
 perguntar (frente == caixa?){ kadabra = fogo }
 usar(kadabra)
 repetir(4){
-    virar()
+    andar()
 }
 fim
 
-# [SYNTACTIC ERROR] Line 5: mismatched input '=' expecting '==' #
+# [ERROR] Line 5: syntax error near = #

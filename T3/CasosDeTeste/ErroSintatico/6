@@ -5,15 +5,15 @@ funcao esquerda(){
         virar()
     }
 }
-    andar()
-    repetir (4) {
+    repetir(4){
         andar()
     }
-    esquerda()
+    virar()
     andar()
-    repetir(3) {
+    esquerda()
+    repetir(2){
         andar()
     }
 fim
 
-# [SYNTACTIC ERROR] Line 4: missing ')' at '{\n' #
+# [ERROR] Line 4: syntax error near { #

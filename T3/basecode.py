@@ -2,13 +2,11 @@ import pygame, sys
 
 pygame.init()
 
-
 # # #   Inicializar # # #
 screen = pygame.display.set_mode ((900,650))
 pygame.display.set_caption('Jogo')
 clock = pygame.time.Clock()
 frente = 'nada'
-
 
 # # #   Carregar imagens    # # #
 bg = pygame.image.load('src/t3/Imagem/forst.png')
@@ -40,7 +38,7 @@ anima_portal = 0
 cmd = open('codigoGerado.txt', 'r')
 line = cmd.readline()
 fase = line[7];
-
+# Fase 1
 iniX = 20
 iniY = 20
 inX = 4
@@ -495,20 +493,3 @@ player.desenha()
 frente = atualiza_frente(lmatriz[player.bloco]) 
 
 ###############codigo jogador#############################
-#fase: 3
-kadabra= ''
-
-if frente == 'fogueira':
-     kadabra='agua'
-
-if frente == 'arvore':
-     kadabra='ataque'
-
-if frente == 'caixa':
-     kadabra='fogo'
-
-player.usar(kadabra)
-
-for i in range(4): 
-     player.virar()
-gameOver()

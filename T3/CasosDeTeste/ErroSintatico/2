@@ -5,15 +5,16 @@ funcao esquerda(){
         virar()
     }
 }
-    andar()
     repetir(4){
         andar()
     }
-    esquerda()
+    virar()
     andar()
-    repetir(3){
+    esquerda()
+    repetir(2){
         andar()
     }
 
 
-# [SYNTACTIC ERROR] Line 17: missing 'fim' at '<EOF>' #
+
+# [ERROR] Line 16: syntax error near EOF #

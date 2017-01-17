@@ -5,16 +5,17 @@ funcao esquerda(){
         virar()
     }
 }
-    andar()
-    repetir(4) {
+    repetir(4){
         andar()
     }
-    esquerda()
+    virar()
     andar()
-    repetir(3) {
+    esquerda()
+    repetir(2){
         andar()
     }
 fim
 
 # [ERROR] Level 13 doesn't exist
-Set a value between 1 to 5 #
+Set a value between 1 to 5
+Erro nível inválido #

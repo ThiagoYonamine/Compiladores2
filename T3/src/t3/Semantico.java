@@ -1,13 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * "Constrói" a parte semântica da linguagem.
+ * Identifica os erros semanticos.
  */
 package t3;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Semantico {
@@ -33,33 +30,35 @@ public class Semantico {
         return this.erros.toString();
     }
 
-    void Programa(LaParser.ProgramaContext ctx) {
+    void Programa(codeFunParser.ProgramaContext ctx) {
         clear();
         variaveis_tipo = new HashMap<String, String>();
         pilhaDeTabelas.empilhar(new TabelaDeSimbolos("Global"));
-        if (Integer.parseInt(ctx.NUM_INT().getText()) < 1 || Integer.parseInt(ctx.NUM_INT().getText()) > 4) {
+        //Verifica número da fase (1 a 5)
+        if (Integer.parseInt(ctx.NUM_INT().getText()) < 1 || Integer.parseInt(ctx.NUM_INT().getText()) > 6) {
             println("[ERROR] Level " + ctx.NUM_INT() + " doesn't exist\nSet a value between 1 to 5");
-        } else if (!ctx.corpo().getText().equals("")) {
+        }
+        else if (!ctx.corpo().getText().equals("")) {
             Corpo(ctx.corpo());
-        } else {
+        } else { //Corpo do código não deve estar vazio (sem comandos)
             println("[ERROR] Body is empty");
         }
         pilhaDeTabelas.desempilhar();
     }
 
-    void Corpo(LaParser.CorpoContext ctx) {
+    void Corpo(codeFunParser.CorpoContext ctx) {
 
         Comandos(ctx.comandos());
     }
 
-    void Comandos(LaParser.ComandosContext ctx) {
+    void Comandos(codeFunParser.ComandosContext ctx) {
         Cmd(ctx.cmd());
         if (!ctx.comandos().getText().equals("")) {
             Comandos(ctx.comandos());
         }
     }
 
-    void Cmd(LaParser.CmdContext ctx) {
+    void Cmd(codeFunParser.CmdContext ctx) {
         if (ctx.declaracoes() != null) {
             Declaracoes(ctx.declaracoes());
         }
@@ -67,21 +66,21 @@ public class Semantico {
             String id = ctx.IDENT().getText();
             int id_line = ctx.IDENT().getSymbol().getLine();
             if (ctx.getStart().getText().equals("usar")) {
-                if (!pilhaDeTabelas.existeSimbolo(id)) {
-                    println("[ERROR] Line " + id_line + " : Magic " + id + " not defined");
+                if (!pilhaDeTabelas.existeSimbolo(id)) { //Usar magia não definida
+                    println("[SEMANTIC ERROR] Line " + id_line + " : Magic " + id + " not defined");
                 } else {
-                    if (!variaveis_tipo.containsKey(id)) {
-                        println("[ERROR] Line " + id_line + " : Magic " + id + " has no type");
+                    if (!variaveis_tipo.containsKey(id)) { //Usar magia que não possui tipo (atribuição)
+                        println("[SEMANTIC ERROR] Line " + id_line + " : Magic " + id + " has no type");
                     }
                 }
-            } else if (!pilhaDeTabelas.existeSimbolo(id)) {
-                println("[ERROR] Line " + id_line + " : Function " + id + " not defined");
+            } else if (!pilhaDeTabelas.existeSimbolo(id)) { //Chamar função não definida
+                println("[SEMANTIC ERROR] Line " + id_line + " : Function " + id + " not defined");
             }
         }
+        
         if (ctx.getStart().getText().equals("perguntar")) {
             if(!ctx.resultado().comandos().getText().equals(""))
-                Comandos(ctx.resultado().comandos());
-           
+                Comandos(ctx.resultado().comandos());  
         }
         if (ctx.getStart().getText().equals("repetir")) {
            if(!ctx.repetir().getText().equals(""))
@@ -89,45 +88,42 @@ public class Semantico {
         }
     }
 
-    void Declaracoes(LaParser.DeclaracoesContext ctx) {
+    void Declaracoes(codeFunParser.DeclaracoesContext ctx) {
+        
         if (ctx.getStart().getText().equals("magia")) {
 
             String id = ctx.declaracoes_objetos().obj_magia().IDENT().getText();
             int id_line = ctx.declaracoes_objetos().obj_magia().IDENT().getSymbol().getLine();
-            if (!pilhaDeTabelas.existeSimbolo(id)) {
+            
+            if (!pilhaDeTabelas.existeSimbolo(id)) { //Coloca o identificador na pilha de tabelas
                 pilhaDeTabelas.topo().adicionarSimbolo(id, "magia");
-            } else {
-                println("[ERROR] Line " + id_line + " : Magic " + id + " already defined");
+            } else { //Usar identificador já definido no mesmo escopo
+                println("[SEMANTIC ERROR] Line " + id_line + " : Identifier " + id + " already defined");
             }
 
-        } else if (ctx.getStart().getText().equals("bloco")) {
-
-            String id = ctx.declaracoes_objetos().obj_bloco().IDENT().getText();
-            int id_line = ctx.declaracoes_objetos().obj_bloco().IDENT().getSymbol().getLine();
-            if (!pilhaDeTabelas.existeSimbolo(id)) {
-                pilhaDeTabelas.topo().adicionarSimbolo(id, "bloco");
-            } else {
-                println("[ERROR] Line " + id_line + " : Block " + id + " already defined");
-            }
         } else if (ctx.getStart().getText().equals("funcao")) {
 
             String id = ctx.declaracoes_funcao().IDENT().getText();
             int id_line = ctx.declaracoes_funcao().IDENT().getSymbol().getLine();
-            if (!pilhaDeTabelas.existeSimbolo(id)) {
+            
+            if (!pilhaDeTabelas.existeSimbolo(id)) { //Coloca a função na pilha de tabelas
                 pilhaDeTabelas.topo().adicionarSimbolo(id, "funcao");
                 pilhaDeTabelas.empilhar(new TabelaDeSimbolos(id));
                 Comandos(ctx.declaracoes_funcao().comandos());
                 pilhaDeTabelas.desempilhar();
-            } else {
-                println("[ERROR] Line " + id_line + " : Function " + id + " already defined");
+            } else { //Atribuir mesmo nome para funções
+                println("[SEMANTIC ERROR] Line " + id_line + " : Function " + id + " already defined");
             }
         } else {
+            
             String id = ctx.declaracoes_objetos().atribuicao().IDENT().getText();
-            String at = ctx.declaracoes_objetos().atribuicao().tipo().getText();
+            String at = ctx.declaracoes_objetos().atribuicao().tipo_magia().getText();
             int id_line = ctx.declaracoes_objetos().atribuicao().IDENT().getSymbol().getLine();
-            if (!pilhaDeTabelas.existeSimbolo(id)) {
-                println("[ERROR] Line " + id_line + " : Variable " + id + " not defined");
-            } else {
+            
+            if (!pilhaDeTabelas.existeSimbolo(id)) { //Atribuir um tipo a uma magia não definida
+                println("[SEMANTIC ERROR] Line " + id_line + " : Magic " + id + " not defined");
+            }
+            else {
                 if (variaveis_tipo.containsKey(id)) {
                     variaveis_tipo.remove(id);
                 }
@@ -144,8 +140,6 @@ public class Semantico {
                     }
                 }
             }
-
         }
     }
-
 }

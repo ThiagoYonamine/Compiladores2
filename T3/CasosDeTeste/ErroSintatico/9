@@ -1,19 +1,19 @@
 fase: 1
 inicio
 funcao esquerda(){
-    repetir (3) {
+    repetir(3){
         virar()
     }
 }
-    andar()
-    repetir(4,) {
+    repetir(4,){
         andar()
     }
-    esquerda()
+    virar()
     andar()
-    repetir(3) {
+    esquerda()
+    repetir(2){
         andar()
     }
 fim
 
-# [SYNTACTIC ERROR] Line 9: extraneous input ',' expecting ')' #
+# [ERROR] Line 8: syntax error near , #

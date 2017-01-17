@@ -17,8 +17,8 @@ usar(aguamenti)
 meiaVolta()
 usar(aguamenti)
 andar()
-magia destruccio
-usar(destruccio)
+magia flagrati
+usar(flagrati)
 repetir(3){
     andar()
 }

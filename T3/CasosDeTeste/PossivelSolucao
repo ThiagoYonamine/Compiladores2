@@ -7,13 +7,13 @@ funcao esquerda(){
         virar()
     }
 }
-    andar()
     repetir(4){
         andar()
     }
-    esquerda()
+    virar()
     andar()
-    repetir(3){
+    esquerda()
+    repetir(2){
         andar()
     }
 fim
@@ -40,7 +40,9 @@ usar(aguamenti)
 meiaVolta()
 usar(aguamenti)
 andar()
-usar(destruccio)
+magia flagrati
+flagrati = fogo
+usar(flagrati)
 repetir(3){
     andar()
 }
@@ -60,6 +62,6 @@ perguntar (frente == arvore?){ kadabra = ataque }
 perguntar (frente == caixa?){ kadabra = fogo }
 usar(kadabra)
 repetir(4){
-    virar()
+    andar()
 }
 fim

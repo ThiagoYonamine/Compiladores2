@@ -13,4 +13,4 @@ if frente == 'caixa':
 player.usar(kadabra)
 
 for i in range(4): 
-     player.virar()
+     player.andar()

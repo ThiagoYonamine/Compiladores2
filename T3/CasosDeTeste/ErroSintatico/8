@@ -1,19 +1,19 @@
 fase: 1
 inicio
 funcao esquerda(){
-    repetir(3) {
-        andar()
+    repetir(3){
+        virar()
     }
 }
-    andar();
-    repetir(4) {
-        andar()
+    repetir(4){
+        andar();
     }
-    esquerda()
+    virar()
     andar()
-    repetir(3) {
+    esquerda()
+    repetir(2){
         andar()
     }
 fim
 
-# [SYNTACTIC ERROR] Line 8: mismatched input ';' expecting 'fim' #
+# [ERROR] Line 9: syntax error near ; #
