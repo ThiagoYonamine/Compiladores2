@@ -1,20 +1,36 @@
 #fase: 2
 
-a= ''
-a='ataque'
+def meiaVolta(player):
+     for i in range(2): 
+          player.virar()
+destruccio= ''
+destruccio='ataque'
 
-player.usar(a)
+player.usar(destruccio)
+
+for i in range(2): 
+     player.andar()
+
+meiaVolta(player)
+aguamenti= ''
+aguamenti='agua'
+
+player.usar(aguamenti)
+
+meiaVolta(player)
+
+player.usar(aguamenti)
 
 player.andar()
-player.andar()
+flagrati= ''
+flagrati='fogo'
+
+player.usar(flagrati)
+
+for i in range(3): 
+     player.andar()
+
 player.virar()
 
-player.virar()
-
-
-
-a='agua'
-player.usar(a)
-
-player.andar()
-player.andar()
+for i in range(2): 
+     player.andar()

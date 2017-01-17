@@ -1,12 +1,11 @@
-fase: 1
+fase: 3
 inicio
-funcao esquerda(){
-	virar()
-	virar()
-	virar()
-}
+magia kadabra
+perguntar (frente == fogo?){ kadabra = agua }
+perguntar (frente == arvore?){ kadabra = ataque }
+perguntar (frente == caixa?){ kadabra = fogo }
+usar(kadabra)
 repetir(4){
-andar()
+    virar()
 }
-
 fim

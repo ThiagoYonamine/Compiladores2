@@ -12,7 +12,8 @@ frente = 'nada'
 
 # # #   Carregar imagens    # # #
 bg = pygame.image.load('src/t3/Imagem/forst.png')
-fim = pygame.image.load('src/t3/Imagem/fim.png')
+fim = pygame.image.load('src/t3/Imagem/perdeu.png')
+img_ganhou = pygame.image.load('src/t3/Imagem/ganhou.png')
 grama = pygame.image.load('src/t3/Imagem/grama.png') 
 gfogo = pygame.image.load('src/t3/Imagem/fire.png') # 2
 gpedra = pygame.image.load('src/t3/Imagem/ground2.png') # 3
@@ -162,16 +163,31 @@ def mapa():
         
     return aux
 def gameOver():
-    pygame.time.wait(2000)
+    pygame.time.wait(1000)
     close = False
+
+    screen.blit(fim, (0, 0))
+    pygame.display.flip()
     while not close:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 close = True
-    
-        screen.blit(fim, (100, 100))
-                
-        pygame.display.flip()
+        
+            
+    pygame.display.quit()
+    pygame.quit()
+    sys.exit()
+def ganhou():
+    pygame.time.wait(200)
+    close = False
+
+    screen.blit(img_ganhou, (0, 0))
+    pygame.display.flip()
+    while not close:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                close = True
+        
             
     pygame.display.quit()
     pygame.quit()
@@ -189,11 +205,11 @@ class Inimigo():
         self.fase = fase
         self.control = 0
         self.bloco = ((11*(2*(self.by))) + self.bx*2)
-        self.img = [pygame.image.load('src/t3/Imagem/p_dir1.png'),
-                    pygame.image.load('src/t3/Imagem/p_dir2.png'),
-                    pygame.image.load('src/t3/Imagem/p_dir3.png'),
-                    pygame.image.load('src/t3/Imagem/p_dir2.png'),
-                    pygame.image.load('src/t3/Imagem/p_dir1.png')]
+        self.img = [pygame.image.load('src/t3/Imagem/fogo5.png'),
+                    pygame.image.load('src/t3/Imagem/fogo5.png'),
+                    pygame.image.load('src/t3/Imagem/fogo5.png'),
+                    pygame.image.load('src/t3/Imagem/fogo5.png'),
+                    pygame.image.load('src/t3/Imagem/fogo5.png')]
         self.animacao = 0
         self.col = pygame.Rect(self.x, self.y, 60, 60)  ##arrumar o tamanho certo
      def desenha(self):
@@ -444,7 +460,7 @@ class Player():
             andarei = 0
         # Quando o jogador entra no portal
         elif lmatriz[player.bloco] == "p":
-           print('Ganhou')
+           ganhou()
         else:
             andarei = 2
 
@@ -552,20 +568,40 @@ player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(lmatriz[player.bloco]) 
 ###############codigo jogador#############################
-#fase: 3
-kadabra= ''
+#fase: 2
 
-if frente == 'fogueira':
-     kadabra='agua'
+def meiaVolta(player):
+     for i in range(2): 
+          player.virar()
+destruccio= ''
+destruccio='ataque'
 
-if frente == 'arvore':
-     kadabra='ataque'
+player.usar(destruccio)
 
-if frente == 'caixa':
-     kadabra='fogo'
+for i in range(2): 
+     player.andar()
 
-player.usar(kadabra)
+meiaVolta(player)
+aguamenti= ''
+aguamenti='agua'
 
-for i in range(4): 
+player.usar(aguamenti)
+
+meiaVolta(player)
+
+player.usar(aguamenti)
+
+player.andar()
+flagrati= ''
+flagrati='fogo'
+
+player.usar(flagrati)
+
+for i in range(3): 
+     player.andar()
+
+player.virar()
+
+for i in range(2): 
      player.andar()
 gameOver()
