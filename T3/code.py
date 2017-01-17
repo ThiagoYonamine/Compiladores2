@@ -65,7 +65,7 @@ elif(fase == '4'):
     iniX = 4
     iniY = 6
     ex = True
-
+    
 
 path = 'src/t3/Fase/mapa' + fase + '.txt'
 arquivo = open(path, 'r')
@@ -159,7 +159,6 @@ def mapa():
             x = 0
         cont += 1
 
-
     return aux
 def gameOver():
     pygame.time.wait(2000)
@@ -170,8 +169,9 @@ def gameOver():
                 close = True
 
         screen.blit(fim, (100, 100))
-
+                
         pygame.display.flip()
+            
 
     pygame.display.quit()
     pygame.quit()
@@ -233,16 +233,17 @@ class Inimigo():
                  self.by = 20
                  self.x = 110 + (self.bx*64)
                  self.y = 98 + (self.by*67)
-
+                 
                  self.existe = False
-
-
+             
      def anda(self,valx,valy):
          if(valx != 0  and  valy != 0):
              valx *= 0.5
              valy *= 0.5
 
+                
          #print(self.bloco)
+         
 
          self.bloco = ((11*(2*(self.by))) + self.bx*2)
          #print(self.bloco)
@@ -432,8 +433,6 @@ class Player():
         #   Jogador anda em cima do fogo
         #   Jogador ultrapassa limite do mapa
 
-
-
         if (lmatriz[player.bloco] == "f" or lmatriz[player.bloco] == "8" or finaliza == True):
             gameOver()
         # Quando o bloco esta livre, anda
@@ -465,17 +464,18 @@ class Player():
                 if self.direcao == 'dir':
                     player.x += andarei
 
+                    
                 if self.direcao == 'esq':
                     player.x -= andarei
-
+                    
                 if self.direcao == 'cima':
                     player.y -= andarei
-
+                    
                 if self.direcao == 'baixo':
-
+                    
                     player.y += andarei
                 self.desenha()
-
+                
             self.estado = 'parado'
 
 
@@ -550,5 +550,6 @@ close = False
 inimigo = Inimigo(iniX,iniY,ex,fase)
 player = Player(inX,inY,inDir,inimigo)
 player.desenha()
-frente = atualiza_frente(lmatriz[player.bloco])
+
+frente = atualiza_frente(lmatriz[player.bloco]) 
 ###############codigo jogador#############################

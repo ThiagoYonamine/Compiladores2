@@ -19,9 +19,7 @@ usar(aguamenti)
 meiaVolta()
 usar(aguamenti)
 andar()
-magia flagrati
-flagrati = fogo
-usar(flagrati)
+usar(destruccio)
 repetir(3){
     andar()
 }
