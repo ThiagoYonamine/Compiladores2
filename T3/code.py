@@ -178,7 +178,7 @@ def gameOver():
     sys.exit()
 # # #   Inimigo # # #
 class Inimigo():
-     def __init__(self,initX,initY,ex):
+     def __init__(self,initX,initY,ex,fase):
         self.existe = ex
         self.bx = initX
         self.by = initY
@@ -186,6 +186,8 @@ class Inimigo():
         self.y = 98 + (self.by*67)
         self.contX = 0
         self.contY = 0
+        self.fase = fase
+        self.control = 0
         self.bloco = ((11*(2*(self.by))) + self.bx*2)
         self.img = [pygame.image.load('src/t3/Imagem/p_dir1.png'),
                     pygame.image.load('src/t3/Imagem/p_dir2.png'),
@@ -200,7 +202,41 @@ class Inimigo():
         if self.animacao >= 5:
             self.animacao = 0
         
-        
+     def controle(self):
+         print(self.control)
+         if(fase == '2'):
+             self.control=0
+             self.bx = 20
+             self.by = 20
+             self.x = 110 + (self.bx*64)
+             self.y = 98 + (self.by*67)
+             self.existe = False
+         if(fase == '4'):
+             if(self.control==0):
+                 self.bx = 10
+                 self.by = 2
+                 self.x = 110 + (self.bx*64)
+                 self.y = 98 + (self.by*67)
+                 
+                 self.control +=1
+
+             elif(self.control==1):
+                 self.bx = 10
+                 self.by = 5
+                 self.x = 110 + (self.bx*64)
+                 self.y = 98 + (self.by*67)
+                 self.control +=1
+                 
+             elif(self.control==2):
+                 self.control=0
+                 self.bx = 20
+                 self.by = 20
+                 self.x = 110 + (self.bx*64)
+                 self.y = 98 + (self.by*67)
+                 
+                 self.existe = False
+             
+         
      def anda(self,valx,valy):
          if(valx != 0  and  valy != 0):
              valx *= 0.5
@@ -213,10 +249,9 @@ class Inimigo():
          if (lmatriz[self.bloco] == "1" or lmatriz[self.bloco] == "c"  or lmatriz[self.bloco] == "r" or lmatriz[self.bloco] == "v"):
              valx = 0
              valy = 0
-             self.bx = 10
-             self.by = 2
-             self.x = 110 + (self.bx*64)
-             self.y = 98 + (self.by*67)
+             self.controle()
+             att_matriz('fogo', self.bloco)
+             self.bloco = ((11*(2*(self.by))) + self.bx*2)
             
          self.x += valx
          self.y += valy
@@ -364,6 +399,7 @@ class Player():
             self.inimigo.col = pygame.Rect(self.inimigo.x, self.inimigo.y, 60, 60)
            
             if(self.col.colliderect(self.inimigo.col)):
+               print("inimigo")
                gameOver()
         clock.tick(60)
         pygame.display.flip()
@@ -511,7 +547,7 @@ def atualiza_frente(value):
         return 'portal'
 
 close = False
-inimigo = Inimigo(iniX,iniY,ex)
+inimigo = Inimigo(iniX,iniY,ex,fase)
 player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(lmatriz[player.bloco]) 

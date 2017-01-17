@@ -1,46 +1,20 @@
+#fase: 2
 
-#fase: 4
-
-player.virar()
-
-player.andar()
-
-player.virar()
-
-player.virar()
-
-player.virar()
-
-player.andar()
-
-player.virar()
-
-player.virar()
 a= ''
-a='agua'
+a='ataque'
 
 player.usar(a)
 
 player.andar()
-
+player.andar()
 player.virar()
 
 player.virar()
 
-player.virar()
+
+a='agua'
+player.usar(a)
 
 player.andar()
-
-player.virar()
-
-player.andar()
-
-player.andar()
-
-player.virar()
-
-
-player.andar()
-
 player.andar()
 
