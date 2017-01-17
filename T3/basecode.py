@@ -205,17 +205,20 @@ class Inimigo():
         self.fase = fase
         self.control = 0
         self.bloco = ((11*(2*(self.by))) + self.bx*2)
-        self.img = [pygame.image.load('src/t3/Imagem/fogo5.png'),
-                    pygame.image.load('src/t3/Imagem/fogo5.png'),
-                    pygame.image.load('src/t3/Imagem/fogo5.png'),
-                    pygame.image.load('src/t3/Imagem/fogo5.png'),
-                    pygame.image.load('src/t3/Imagem/fogo5.png')]
+        self.img = [pygame.image.load('src/t3/Imagem/i1.png'),
+                    pygame.image.load('src/t3/Imagem/i2.png'),
+                    pygame.image.load('src/t3/Imagem/i3.png'),
+                    pygame.image.load('src/t3/Imagem/i4.png'),
+                    pygame.image.load('src/t3/Imagem/i5.png'),
+                    pygame.image.load('src/t3/Imagem/i6.png'),
+                    pygame.image.load('src/t3/Imagem/i7.png'),
+                    pygame.image.load('src/t3/Imagem/i8.png')]
         self.animacao = 0
         self.col = pygame.Rect(self.x, self.y, 60, 60)  ##arrumar o tamanho certo
      def desenha(self):
         screen.blit(self.img[int(self.animacao)], (self.x, self.y))
         self.animacao += 0.5
-        if self.animacao >= 5:
+        if self.animacao >= 8:
             self.animacao = 0
         
      def controle(self):
