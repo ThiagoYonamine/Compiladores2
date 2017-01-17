@@ -88,9 +88,7 @@ def att_matriz(magia, prox_bloco):
         lmatriz[prox_bloco] = 'r'
     elif(magia == "ataque" and lmatriz[prox_bloco] == 'r'): # ataque na arvore
         lmatriz[prox_bloco] = 't'
-
-    elif(magia == "fogo" and lmatriz[prox_bloco] == 'c'): # ataque na caixa
-
+    elif(magia == "fogo" and lmatriz[prox_bloco] == 'c'): # ataque na caixaelif(magia == "ataque" and lmatriz[prox_bloco] == 'c'): # ataque na caixa
         lmatriz[prox_bloco] = 'q'
 
 
@@ -160,9 +158,9 @@ def mapa():
             y += 67
             x = 0
         cont += 1
+
+        
     return aux
-
-
 def gameOver():
     pygame.time.wait(2000)
     close = False
@@ -170,16 +168,17 @@ def gameOver():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 close = True
-        screen.blit(fim, (100, 100))             
+    
+        screen.blit(fim, (100, 100))
+                
         pygame.display.flip()
+            
     pygame.display.quit()
     pygame.quit()
     sys.exit()
-
-
 # # #   Inimigo # # #
 class Inimigo():
-     def __init__(self,initX,initY,ex):
+     def __init__(self,initX,initY,ex,fase):
         self.existe = ex
         self.bx = initX
         self.by = initY
@@ -187,6 +186,8 @@ class Inimigo():
         self.y = 98 + (self.by*67)
         self.contX = 0
         self.contY = 0
+        self.fase = fase
+        self.control = 0
         self.bloco = ((11*(2*(self.by))) + self.bx*2)
         self.img = [pygame.image.load('src/t3/Imagem/p_dir1.png'),
                     pygame.image.load('src/t3/Imagem/p_dir2.png'),
@@ -201,21 +202,56 @@ class Inimigo():
         if self.animacao >= 5:
             self.animacao = 0
         
-        
+     def controle(self):
+         print(self.control)
+         if(fase == '2'):
+             self.control=0
+             self.bx = 20
+             self.by = 20
+             self.x = 110 + (self.bx*64)
+             self.y = 98 + (self.by*67)
+             self.existe = False
+         if(fase == '4'):
+             if(self.control==0):
+                 self.bx = 10
+                 self.by = 2
+                 self.x = 110 + (self.bx*64)
+                 self.y = 98 + (self.by*67)
+                 
+                 self.control +=1
+
+             elif(self.control==1):
+                 self.bx = 10
+                 self.by = 5
+                 self.x = 110 + (self.bx*64)
+                 self.y = 98 + (self.by*67)
+                 self.control +=1
+                 
+             elif(self.control==2):
+                 self.control=0
+                 self.bx = 20
+                 self.by = 20
+                 self.x = 110 + (self.bx*64)
+                 self.y = 98 + (self.by*67)
+                 
+                 self.existe = False
+             
+         
      def anda(self,valx,valy):
          if(valx != 0  and  valy != 0):
              valx *= 0.5
              valy *= 0.5
+                
+         #print(self.bloco)
          
          self.bloco = ((11*(2*(self.by))) + self.bx*2)
-
+         #print(self.bloco)
          if (lmatriz[self.bloco] == "1" or lmatriz[self.bloco] == "c"  or lmatriz[self.bloco] == "r" or lmatriz[self.bloco] == "v"):
              valx = 0
              valy = 0
-             self.bx = 10
-             self.by = 2
-             self.x = 110 + (self.bx*64)
-             self.y = 98 + (self.by*67)
+             self.controle()
+             att_matriz('fogo', self.bloco)
+             self.bloco = ((11*(2*(self.by))) + self.bx*2)
             
          self.x += valx
          self.y += valy
@@ -363,6 +399,7 @@ class Player():
             self.inimigo.col = pygame.Rect(self.inimigo.x, self.inimigo.y, 60, 60)
            
             if(self.col.colliderect(self.inimigo.col)):
+               print("inimigo")
                gameOver()
         clock.tick(60)
         pygame.display.flip()
@@ -393,7 +430,10 @@ class Player():
         andarei = 2
         # Fim do jogo quando:
         #   Jogador anda em cima do fogo
-        #   Jogador ultrapassa limite do mapa 
+        #   Jogador ultrapassa limite do mapa
+        
+       
+        
         if (lmatriz[player.bloco] == "f" or lmatriz[player.bloco] == "8" or finaliza == True):
             gameOver()
         # Quando o bloco esta livre, anda
@@ -424,13 +464,18 @@ class Player():
             for i in range(32):
                 if self.direcao == 'dir':
                     player.x += andarei
+                    
                 if self.direcao == 'esq':
                     player.x -= andarei
+                    
                 if self.direcao == 'cima':
                     player.y -= andarei
+                    
                 if self.direcao == 'baixo':
+                    
                     player.y += andarei
                 self.desenha()
+                
             self.estado = 'parado'
             
         
@@ -469,7 +514,6 @@ class Player():
             self.direcao = 'dir'
         player.desenha()
 
-
 def atualiza_frente(value):
     if (value == '0'):
         return 'grama'
@@ -503,24 +547,29 @@ def atualiza_frente(value):
         return 'portal'
 
 close = False
-inimigo = Inimigo(iniX,iniY,ex)
+inimigo = Inimigo(iniX,iniY,ex,fase)
 player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(lmatriz[player.bloco]) 
-
-
 ###############codigo jogador#############################
-#fase: 3
-kadabra= ''
+#fase: 2
 
-if frente == 'fogueira':
-     kadabra='agua'
+a= ''
+a='ataque'
 
+player.usar(a)
 
+player.andar()
+player.andar()
 player.virar()
 
 player.virar()
 
-player.virar()
+
+a='agua'
+player.usar(a)
+
+player.andar()
+player.andar()
 
 gameOver()
