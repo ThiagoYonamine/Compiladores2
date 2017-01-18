@@ -1,6 +1,5 @@
 fase: 3
 inicio
-repetir(4){
-
+funcao x(){
 }
 fim

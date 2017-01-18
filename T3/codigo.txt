@@ -1,5 +1,79 @@
-fase: 3
+fase: 4
 inicio
-funcao x(){
+funcao esquerda(){
+	virar()
+	virar()
+	virar()
 }
+funcao bingbing(){
+	virar()
+	virar()
+	virar()
+	virar()
+}
+virar()
+
+andar()
+
+virar()
+
+virar()
+
+virar()
+
+andar()
+
+virar()
+
+virar()
+
+magia a
+a=agua
+usar(a)
+
+andar()
+
+virar()
+
+virar()
+
+virar()
+
+andar()
+
+virar()
+
+andar()
+
+andar()
+
+virar()
+andar()
+andar()
+virar()
+
+andar()
+virar()
+
+virar()
+andar()
+andar()
+andar()
+esquerda()
+andar()
+andar()
+usar(a)
+repetir(30){
+	bingbing()
+	perguntar(frente == fogueira?){
+		usar(a)
+	}
+}
+repetir(8){
+	andar()
+	perguntar(frente == fogueira?){
+		usar(a)
+	}
+}
+
 fim
