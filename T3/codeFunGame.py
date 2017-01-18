@@ -571,40 +571,85 @@ player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(lmatriz[player.bloco]) 
 ###############codigo jogador#############################
-#fase: 2
+#fase: 4
 
-def meiaVolta(player):
-     for i in range(2): 
-          player.virar()
-destruccio= ''
-destruccio='ataque'
+def esquerda(player):
+     player.virar()
+     player.virar()
+     player.virar()
 
-player.usar(destruccio)
-
-for i in range(2): 
-     player.andar()
-
-meiaVolta(player)
-aguamenti= ''
-aguamenti='agua'
-
-player.usar(aguamenti)
-
-meiaVolta(player)
-
-player.usar(aguamenti)
-
-player.andar()
-flagrati= ''
-flagrati='fogo'
-
-player.usar(flagrati)
-
-for i in range(3): 
-     player.andar()
+def bingbing(player):
+     player.virar()
+     player.virar()
+     player.virar()
+     player.virar()
 
 player.virar()
 
-for i in range(2): 
-     player.andar()
+player.andar()
+
+player.virar()
+
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.virar()
+a= ''
+a='agua'
+
+player.usar(a)
+
+player.andar()
+
+player.virar()
+
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.andar()
+
+player.andar()
+
+player.virar()
+
+player.andar()
+
+player.andar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.andar()
+
+player.andar()
+
+esquerda(player)
+
+player.andar()
+
+player.andar()
+
+player.usar(a)
+
+for i in range(15): 
+     bingbing(player)
+     if frente == 'fogueira_apagada':
+          player.usar(a)
 gameOver()

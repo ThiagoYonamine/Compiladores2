@@ -1,5 +1,6 @@
 package t3;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -12,8 +13,12 @@ public class T3 {
     public static void main(String args[]) throws IOException, RecognitionException, InterruptedException {
 
         Saida out = new Saida();
-
-        ANTLRInputStream input = new ANTLRInputStream(T3.class.getResourceAsStream("codigo.txt"));
+        String in = args[0];
+        
+        ANTLRInputStream input = new ANTLRInputStream(new FileInputStream(args[0]));
+        
+        
+        //ANTLRInputStream input = new ANTLRInputStream(T3.class.getResourceAsStream("codigo.txt"));
         
         codeFunLexer lexer = new codeFunLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
