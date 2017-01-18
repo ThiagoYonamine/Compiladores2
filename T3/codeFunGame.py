@@ -594,72 +594,18 @@ player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(player)
 ###############codigo jogador#############################
+pygame.time.wait(2000)
 #fase: 4
 
 def esquerda(player):
-     player.virar()
-     player.virar()
-     player.virar()
+     for i in range(3): 
+          player.virar()
 
 def bingbing(player):
-     player.virar()
-     player.virar()
-     player.virar()
-     player.virar()
+     for i in range(4): 
+          player.virar()
 
 player.virar()
-
-player.andar()
-
-player.virar()
-
-player.virar()
-
-player.virar()
-
-player.andar()
-
-player.virar()
-
-player.virar()
-a= ''
-a='agua'
-
-player.usar(a)
-
-player.andar()
-
-player.virar()
-
-player.virar()
-
-player.virar()
-
-player.andar()
-
-player.virar()
-
-player.andar()
-
-player.andar()
-
-player.virar()
-
-player.andar()
-
-player.andar()
-
-player.virar()
-
-player.andar()
-
-player.virar()
-
-player.virar()
-
-player.andar()
-
-player.andar()
 
 player.andar()
 
@@ -667,19 +613,55 @@ esquerda(player)
 
 player.andar()
 
+for i in range(2): 
+     player.virar()
+aguamenti= ''
+aguamenti='agua'
+
+player.usar(aguamenti)
+
 player.andar()
 
-player.usar(a)
+esquerda(player)
+
+player.andar()
+
+player.virar()
+
+for i in range(2): 
+     player.andar()
+
+player.virar()
+
+for i in range(2): 
+     player.andar()
+
+player.virar()
+
+player.andar()
+
+for i in range(2): 
+     player.virar()
+
+for i in range(3): 
+     player.andar()
+
+esquerda(player)
+
+for i in range(2): 
+     player.andar()
+
+player.usar(aguamenti)
 
 for i in range(30): 
      bingbing(player)
      frente = atualiza_frente(player)
      if frente == 'fogueira':
-          player.usar(a)
+          player.usar(aguamenti)
 
 for i in range(8): 
      player.andar()
      frente = atualiza_frente(player)
      if frente == 'fogueira':
-          player.usar(a)
+          player.usar(aguamenti)
 gameOver()

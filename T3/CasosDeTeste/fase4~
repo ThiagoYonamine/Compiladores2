@@ -1,88 +1,44 @@
-#fase: 4
+fase: 4
+inicio
+funcao esquerda(){
+	repetir(3){ virar() }
+}
+funcao bingbing(){
+	repetir(4){ virar() }
+}
+virar()
+andar()
+esquerda()
+andar()
+repetir(2){ virar() }
+magia aguamenti
+aguamenti = agua
+usar(aguamenti)
+andar()
+esquerda()
+andar()
+virar()
+repetir(2){ andar() }
+virar()
+repetir(2){ andar() }
+virar()
+andar()
+repetir(2){ virar() }
+repetir(3){ andar() }
+esquerda()
+repetir(2){ andar() }
+usar(aguamenti)
+repetir(30){
+	bingbing()
+	perguntar(frente == fogueira?){
+		usar(aguamenti)
+	}
+}
+repetir(8){
+	andar()
+	perguntar(frente == fogueira?){
+		usar(aguamenti)
+	}
+}
 
-def esquerda(player):
-     player.virar()
-     player.virar()
-     player.virar()
-
-def bingbing(player):
-     player.virar()
-     player.virar()
-     player.virar()
-     player.virar()
-
-player.virar()
-
-player.andar()
-
-player.virar()
-
-player.virar()
-
-player.virar()
-
-player.andar()
-
-player.virar()
-
-player.virar()
-a= ''
-a='agua'
-
-player.usar(a)
-
-player.andar()
-
-player.virar()
-
-player.virar()
-
-player.virar()
-
-player.andar()
-
-player.virar()
-
-player.andar()
-
-player.andar()
-
-player.virar()
-
-player.andar()
-
-player.andar()
-
-player.virar()
-
-player.andar()
-
-player.virar()
-
-player.virar()
-
-player.andar()
-
-player.andar()
-
-player.andar()
-
-esquerda(player)
-
-player.andar()
-
-player.andar()
-
-player.usar(a)
-
-for i in range(30): 
-     bingbing(player)
-     frente = atualiza_frente(player)
-     if frente == 'fogueira':
-          player.usar(a)
-
-for i in range(8): 
-     player.andar()
-     frente = atualiza_frente(player)
-     if frente == 'fogueira':
-          player.usar(a)
+fim

@@ -1,5 +1,15 @@
 fase: 3
 inicio
-funcao x(){
+funcao magic(){
+magia kadabra
+perguntar (frente == fogueira?){ kadabra = agua }
+perguntar (frente == arvore?){ kadabra = ataque }
+perguntar (frente == caixa?){ kadabra = fogo }
+usar(kadabra)
+}
+repetir(4){
+    magic()
+    andar()
 }
 fim
+

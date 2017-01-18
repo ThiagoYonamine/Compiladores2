@@ -1,79 +1,43 @@
 fase: 4
 inicio
 funcao esquerda(){
-	virar()
-	virar()
-	virar()
+	repetir(3){ virar() }
 }
 funcao bingbing(){
-	virar()
-	virar()
-	virar()
-	virar()
+	repetir(4){ virar() }
 }
 virar()
-
-andar()
-
-virar()
-
-virar()
-
-virar()
-
-andar()
-
-virar()
-
-virar()
-
-magia a
-a=agua
-usar(a)
-
-andar()
-
-virar()
-
-virar()
-
-virar()
-
-andar()
-
-virar()
-
-andar()
-
-andar()
-
-virar()
-andar()
-andar()
-virar()
-
-andar()
-virar()
-
-virar()
-andar()
-andar()
 andar()
 esquerda()
 andar()
+repetir(2){ virar() }
+magia aguamenti
+aguamenti = agua
+usar(aguamenti)
 andar()
-usar(a)
+esquerda()
+andar()
+virar()
+repetir(2){ andar() }
+virar()
+repetir(2){ andar() }
+virar()
+andar()
+repetir(2){ virar() }
+repetir(3){ andar() }
+esquerda()
+repetir(2){ andar() }
+usar(aguamenti)
 repetir(30){
 	bingbing()
 	perguntar(frente == fogueira?){
-		usar(a)
+		usar(aguamenti)
 	}
 }
 repetir(8){
 	andar()
 	perguntar(frente == fogueira?){
-		usar(a)
+		usar(aguamenti)
 	}
 }
-
 fim
