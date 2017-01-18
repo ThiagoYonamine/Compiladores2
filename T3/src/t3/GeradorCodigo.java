@@ -95,7 +95,9 @@ public class GeradorCodigo {
         } else if (ctx.getStart().getText().equals("perguntar")) { //Comando perguntar (frente == agua?) { comandos }
 
             String t = ctx.expressao().tipo_bloco().getText();
-            
+            println("frente = atualiza_frente(player)");
+            for(int i = 1; i < identacao; i++)
+                print("     ");
             println("if frente == '"+ t + "':");
             if(!ctx.resultado().comandos().getText().equals("")){
                 identacao += 1;

@@ -22,8 +22,8 @@ public class codeFunParser extends Parser {
 		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
 		T__24=25, T__25=26, T__26=27, T__27=28, T__28=29, T__29=30, T__30=31, 
 		T__31=32, T__32=33, T__33=34, T__34=35, T__35=36, T__36=37, T__37=38, 
-		T__38=39, COMENTARIO=40, IDENT=41, NUM_INT=42, NUM_REAL=43, ENTER=44, 
-		COMENTARIO_ERRADO=45, SIMBOLO_NAO_INDENTIFICADO=46;
+		T__38=39, T__39=40, COMENTARIO=41, IDENT=42, NUM_INT=43, NUM_REAL=44, 
+		ENTER=45, COMENTARIO_ERRADO=46, SIMBOLO_NAO_INDENTIFICADO=47;
 	public static final int
 		RULE_programa = 0, RULE_corpo = 1, RULE_declaracoes_objetos = 2, RULE_atribuicao = 3, 
 		RULE_obj_magia = 4, RULE_declaracoes_funcao = 5, RULE_declaracoes = 6, 
@@ -41,13 +41,14 @@ public class codeFunParser extends Parser {
 		"'usar'", "'repetir'", "'grama'", "'lava'", "'pedra'", "'gelo'", "'espinho'", 
 		"'arvore'", "'caixa'", "'inimigo'", "'fogueira'", "'tronco'", "'fogueira_apagada'", 
 		"'chao_pedra'", "'terra'", "'cabana'", "'arvore_queimada'", "'portal'", 
-		"'agua'", "'fogo'", "'ataque'", "'frente'", "'=='", "'?'"
+		"'agua'", "'caixa_misteriosa'", "'fogo'", "'ataque'", "'frente'", "'=='", 
+		"'?'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		null, null, null, null, "COMENTARIO", "IDENT", "NUM_INT", "NUM_REAL", 
+		null, null, null, null, null, "COMENTARIO", "IDENT", "NUM_INT", "NUM_REAL", 
 		"ENTER", "COMENTARIO_ERRADO", "SIMBOLO_NAO_INDENTIFICADO"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
@@ -758,7 +759,7 @@ public class codeFunParser extends Parser {
 			{
 			setState(99);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__27) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__22) | (1L << T__23) | (1L << T__24) | (1L << T__25) | (1L << T__26) | (1L << T__27) | (1L << T__28) | (1L << T__29) | (1L << T__30) | (1L << T__31) | (1L << T__32) | (1L << T__33) | (1L << T__34))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			} else {
 				consume();
@@ -800,7 +801,7 @@ public class codeFunParser extends Parser {
 			{
 			setState(101);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__33) | (1L << T__34) | (1L << T__35))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__33) | (1L << T__35) | (1L << T__36))) != 0)) ) {
 			_errHandler.recoverInline(this);
 			} else {
 				consume();
@@ -843,13 +844,13 @@ public class codeFunParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(103);
-			match(T__36);
-			setState(104);
 			match(T__37);
+			setState(104);
+			match(T__38);
 			setState(105);
 			tipo_bloco();
 			setState(106);
-			match(T__38);
+			match(T__39);
 			}
 		}
 		catch (RecognitionException re) {
@@ -913,7 +914,7 @@ public class codeFunParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\60s\4\2\t\2\4\3\t"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\61s\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4"+
 		"\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\3\2\3\2\3\2\3\2\3\2\3\2\3"+
 		"\3\3\3\5\3)\n\3\3\4\3\4\5\4-\n\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\7\3\7\3"+
@@ -921,24 +922,25 @@ public class codeFunParser extends Parser {
 		"\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\3\n\5\nX\n\n\3"+
 		"\13\3\13\3\13\3\13\3\13\3\13\3\13\3\13\3\f\3\f\5\fd\n\f\3\r\3\r\3\16\3"+
 		"\16\3\17\3\17\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\20\2\2\21\2\4\6\b\n"+
-		"\f\16\20\22\24\26\30\32\34\36\2\5\3\2\n\13\3\2\24$\3\2$&n\2 \3\2\2\2\4"+
-		"(\3\2\2\2\6,\3\2\2\2\b.\3\2\2\2\n\62\3\2\2\2\f\65\3\2\2\2\16>\3\2\2\2"+
-		"\20C\3\2\2\2\22W\3\2\2\2\24Y\3\2\2\2\26c\3\2\2\2\30e\3\2\2\2\32g\3\2\2"+
-		"\2\34i\3\2\2\2\36n\3\2\2\2 !\7\3\2\2!\"\7,\2\2\"#\7\4\2\2#$\5\4\3\2$%"+
-		"\7\5\2\2%\3\3\2\2\2&)\5\20\t\2\')\3\2\2\2(&\3\2\2\2(\'\3\2\2\2)\5\3\2"+
-		"\2\2*-\5\n\6\2+-\5\b\5\2,*\3\2\2\2,+\3\2\2\2-\7\3\2\2\2./\7+\2\2/\60\7"+
-		"\6\2\2\60\61\5\32\16\2\61\t\3\2\2\2\62\63\7\7\2\2\63\64\7+\2\2\64\13\3"+
-		"\2\2\2\65\66\7\b\2\2\66\67\7+\2\2\678\7\t\2\289\t\2\2\29:\5\20\t\2:;\7"+
-		"\f\2\2;\r\3\2\2\2<?\5\6\4\2=?\5\f\7\2><\3\2\2\2>=\3\2\2\2?\17\3\2\2\2"+
-		"@A\5\22\n\2AB\5\20\t\2BD\3\2\2\2C@\3\2\2\2CD\3\2\2\2D\21\3\2\2\2EF\7\r"+
-		"\2\2FX\7\t\2\2GH\7\16\2\2HX\7\t\2\2IJ\7\17\2\2JK\7\20\2\2KL\5\34\17\2"+
-		"LM\7\21\2\2MN\5\36\20\2NX\3\2\2\2OX\5\24\13\2PQ\7+\2\2QX\7\t\2\2RS\7\22"+
-		"\2\2ST\7\20\2\2TU\7+\2\2UX\7\21\2\2VX\5\16\b\2WE\3\2\2\2WG\3\2\2\2WI\3"+
-		"\2\2\2WO\3\2\2\2WP\3\2\2\2WR\3\2\2\2WV\3\2\2\2X\23\3\2\2\2YZ\7\23\2\2"+
-		"Z[\7\20\2\2[\\\7,\2\2\\]\7\21\2\2]^\t\2\2\2^_\5\20\t\2_`\7\f\2\2`\25\3"+
-		"\2\2\2ad\5\30\r\2bd\5\32\16\2ca\3\2\2\2cb\3\2\2\2d\27\3\2\2\2ef\t\3\2"+
-		"\2f\31\3\2\2\2gh\t\4\2\2h\33\3\2\2\2ij\7\'\2\2jk\7(\2\2kl\5\30\r\2lm\7"+
-		")\2\2m\35\3\2\2\2no\t\2\2\2op\5\20\t\2pq\7\f\2\2q\37\3\2\2\2\b(,>CWc";
+		"\f\16\20\22\24\26\30\32\34\36\2\5\3\2\n\13\3\2\24%\4\2$$&\'n\2 \3\2\2"+
+		"\2\4(\3\2\2\2\6,\3\2\2\2\b.\3\2\2\2\n\62\3\2\2\2\f\65\3\2\2\2\16>\3\2"+
+		"\2\2\20C\3\2\2\2\22W\3\2\2\2\24Y\3\2\2\2\26c\3\2\2\2\30e\3\2\2\2\32g\3"+
+		"\2\2\2\34i\3\2\2\2\36n\3\2\2\2 !\7\3\2\2!\"\7-\2\2\"#\7\4\2\2#$\5\4\3"+
+		"\2$%\7\5\2\2%\3\3\2\2\2&)\5\20\t\2\')\3\2\2\2(&\3\2\2\2(\'\3\2\2\2)\5"+
+		"\3\2\2\2*-\5\n\6\2+-\5\b\5\2,*\3\2\2\2,+\3\2\2\2-\7\3\2\2\2./\7,\2\2/"+
+		"\60\7\6\2\2\60\61\5\32\16\2\61\t\3\2\2\2\62\63\7\7\2\2\63\64\7,\2\2\64"+
+		"\13\3\2\2\2\65\66\7\b\2\2\66\67\7,\2\2\678\7\t\2\289\t\2\2\29:\5\20\t"+
+		"\2:;\7\f\2\2;\r\3\2\2\2<?\5\6\4\2=?\5\f\7\2><\3\2\2\2>=\3\2\2\2?\17\3"+
+		"\2\2\2@A\5\22\n\2AB\5\20\t\2BD\3\2\2\2C@\3\2\2\2CD\3\2\2\2D\21\3\2\2\2"+
+		"EF\7\r\2\2FX\7\t\2\2GH\7\16\2\2HX\7\t\2\2IJ\7\17\2\2JK\7\20\2\2KL\5\34"+
+		"\17\2LM\7\21\2\2MN\5\36\20\2NX\3\2\2\2OX\5\24\13\2PQ\7,\2\2QX\7\t\2\2"+
+		"RS\7\22\2\2ST\7\20\2\2TU\7,\2\2UX\7\21\2\2VX\5\16\b\2WE\3\2\2\2WG\3\2"+
+		"\2\2WI\3\2\2\2WO\3\2\2\2WP\3\2\2\2WR\3\2\2\2WV\3\2\2\2X\23\3\2\2\2YZ\7"+
+		"\23\2\2Z[\7\20\2\2[\\\7-\2\2\\]\7\21\2\2]^\t\2\2\2^_\5\20\t\2_`\7\f\2"+
+		"\2`\25\3\2\2\2ad\5\30\r\2bd\5\32\16\2ca\3\2\2\2cb\3\2\2\2d\27\3\2\2\2"+
+		"ef\t\3\2\2f\31\3\2\2\2gh\t\4\2\2h\33\3\2\2\2ij\7(\2\2jk\7)\2\2kl\5\30"+
+		"\r\2lm\7*\2\2m\35\3\2\2\2no\t\2\2\2op\5\20\t\2pq\7\f\2\2q\37\3\2\2\2\b"+
+		"(,>CWc";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

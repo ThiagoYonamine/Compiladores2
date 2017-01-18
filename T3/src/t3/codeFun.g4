@@ -30,7 +30,7 @@ tipo: tipo_bloco | tipo_magia;
 tipo_bloco : 'grama' | 'lava' | 'pedra' | 'gelo' |
              'espinho' | 'arvore' | 'caixa' | 'inimigo' |
              'fogueira' | 'tronco' | 'fogueira_apagada' | 'chao_pedra' |
-             'terra' | 'cabana' | 'arvore_queimada' | 'portal' | 'agua' ;
+             'terra' | 'cabana' | 'arvore_queimada' | 'portal' | 'agua'| 'caixa_misteriosa' ;
 tipo_magia : 'fogo' | 'agua' | 'ataque' ;
 expressao: 'frente' '==' tipo_bloco '?';
 resultado: ('{\n'| '{' ) comandos '}';

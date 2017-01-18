@@ -1,47 +1,79 @@
-#fase: 4
+fase: 4
+inicio
+funcao esquerda(){
+	virar()
+	virar()
+	virar()
+}
+funcao bingbing(){
+	virar()
+	virar()
+	virar()
+	virar()
+}
+virar()
 
-player.virar()
+andar()
 
-player.andar()
+virar()
 
-player.virar()
+virar()
 
-player.virar()
+virar()
 
-player.virar()
+andar()
 
-player.andar()
+virar()
 
-player.virar()
+virar()
 
-player.virar()
-a= ''
-a='agua'
+magia a
+a=agua
+usar(a)
 
-player.usar(a)
+andar()
 
-player.andar()
+virar()
 
-player.virar()
+virar()
 
-player.virar()
+virar()
 
-player.virar()
+andar()
 
-player.andar()
+virar()
 
-player.virar()
+andar()
 
-player.andar()
+andar()
 
-player.andar()
+virar()
+andar()
+andar()
+virar()
 
-player.virar()
+andar()
+virar()
 
-player.andar()
-player.andar()
+virar()
+andar()
+andar()
+andar()
+esquerda()
+andar()
+andar()
+usar(a)
+repetir(30){
+	bingbing()
+	perguntar(frente == fogueira?){
+		usar(a)
+	}
+}
+repetir(8){
+	andar()
+	perguntar(frente == fogueira?){
+		usar(a)
+	}
+}
 
-player.virar()
-player.andar()
-player.virar()
-player.andar()
+fim

@@ -1,72 +1,14 @@
-fase: 4
+fase: 3
 inicio
-funcao esquerda(){
-	virar()
-	virar()
-	virar()
+funcao magic(){
+magia kadabra
+perguntar (frente == fogueira?){ kadabra = agua }
+perguntar (frente == arvore?){ kadabra = ataque }
+perguntar (frente == caixa?){ kadabra = fogo }
+usar(kadabra)
 }
-funcao bingbing(){
-	virar()
-	virar()
-	virar()
-	virar()
-}
-virar()
-
-andar()
-
-virar()
-
-virar()
-
-virar()
-
-andar()
-
-virar()
-
-virar()
-
-magia a
-a=agua
-usar(a)
-
-andar()
-
-virar()
-
-virar()
-
-virar()
-
-andar()
-
-virar()
-
-andar()
-
-andar()
-
-virar()
-andar()
-andar()
-virar()
-
-andar()
-virar()
-
-virar()
-andar()
-andar()
-andar()
-esquerda()
-andar()
-andar()
-usar(a)
-repetir(10){
-	bingbing()
-	perguntar(frente == fogueira_apagada?){
-		usar(a)
-	}
+repetir(4){
+    magic
+    andar()
 }
 fim

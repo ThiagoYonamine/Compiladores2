@@ -1,4 +1,5 @@
 import pygame, sys
+import random
 
 pygame.init()
 
@@ -101,12 +102,16 @@ def mapa():
     aux = []
     auy = []
     cont = 1
-
+    pos = 0
     # Ignorar espacos em branco e "pular linha" do arquivo
     for i in lmatriz:
+        foo = ['r', 'c', 'f']
         if(i == ' ' or i == '\n'):
             continue
-
+        if(i == '?'):
+            rand =  random.choice(foo)        
+            lmatriz[pos] = rand
+        pos += 2
         # Desenha os elementos do cenario de acordo com o mapeamento da matriz
         screen.blit(grama, (x+100,y+100))
         if(i == '1'):
@@ -241,12 +246,18 @@ class Inimigo():
 
              elif(self.control==1):
                  self.bx = 10
+                 self.by = 1
+                 self.x = 110 + (self.bx*64)
+                 self.y = 98 + (self.by*67)
+                 self.control +=1
+             elif(self.control==2):
+                 self.bx = 5
                  self.by = 5
                  self.x = 110 + (self.bx*64)
                  self.y = 98 + (self.by*67)
                  self.control +=1
                  
-             elif(self.control==2):
+             elif(self.control==3):
                  self.control=0
                  self.bx = 20
                  self.by = 20
@@ -265,7 +276,7 @@ class Inimigo():
          
          self.bloco = ((11*(2*(self.by))) + self.bx*2)
          #print(self.bloco)
-         if (lmatriz[self.bloco] == "1" or lmatriz[self.bloco] == "c"  or lmatriz[self.bloco] == "r" or lmatriz[self.bloco] == "v"):
+         if (lmatriz[self.bloco] == "1" or lmatriz[self.bloco] == "c"  or lmatriz[self.bloco] == "r" or lmatriz[self.bloco] == "v" or lmatriz[self.bloco] == "a"):
              valx = 0
              valy = 0
              self.controle()
@@ -462,7 +473,7 @@ class Player():
         elif (lmatriz[player.bloco] == "1" or lmatriz[player.bloco] == "c"  or lmatriz[player.bloco] == "r" or lmatriz[player.bloco] == "v"):
             andarei = 0
         # Quando o jogador entra no portal
-        elif lmatriz[player.bloco] == "p":
+        elif (lmatriz[player.bloco] == "p" or lmatriz[player.bloco] == "6") :
            ganhou()
         else:
             andarei = 2
@@ -533,7 +544,19 @@ class Player():
             self.direcao = 'dir'
         player.desenha()
 
-def atualiza_frente(value):
+def atualiza_frente(player):
+    auX = player.bx
+    auY = player.by
+    if player.direcao == 'dir':
+        auX +=1
+    elif player.direcao == 'baixo':
+        auY +=1
+    elif player.direcao == 'esq':
+        auX -=1 
+    elif player.direcao == 'cima':
+        auY -=1
+    futuro =  ((11*(2*(auY))) + auX*2)
+    value = lmatriz[futuro]
     if (value == '0'):
         return 'grama'
     elif (value == '1' or value == '7'):
@@ -569,5 +592,5 @@ close = False
 inimigo = Inimigo(iniX,iniY,ex,fase)
 player = Player(inX,inY,inDir,inimigo)
 player.desenha()
-frente = atualiza_frente(lmatriz[player.bloco]) 
+frente = atualiza_frente(player)
 ###############codigo jogador#############################

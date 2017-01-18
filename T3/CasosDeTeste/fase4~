@@ -1,0 +1,88 @@
+#fase: 4
+
+def esquerda(player):
+     player.virar()
+     player.virar()
+     player.virar()
+
+def bingbing(player):
+     player.virar()
+     player.virar()
+     player.virar()
+     player.virar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.virar()
+a= ''
+a='agua'
+
+player.usar(a)
+
+player.andar()
+
+player.virar()
+
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.andar()
+
+player.andar()
+
+player.virar()
+
+player.andar()
+
+player.andar()
+
+player.virar()
+
+player.andar()
+
+player.virar()
+
+player.virar()
+
+player.andar()
+
+player.andar()
+
+player.andar()
+
+esquerda(player)
+
+player.andar()
+
+player.andar()
+
+player.usar(a)
+
+for i in range(30): 
+     bingbing(player)
+     frente = atualiza_frente(player)
+     if frente == 'fogueira':
+          player.usar(a)
+
+for i in range(8): 
+     player.andar()
+     frente = atualiza_frente(player)
+     if frente == 'fogueira':
+          player.usar(a)
