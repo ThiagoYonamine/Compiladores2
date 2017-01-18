@@ -1,4 +1,4 @@
-java -jar "dist/T3.jar" CAMINHO_SEU_CODIGO
+java -jar "dist/T3.jar" CAMINHO_SEU_CODIGO/NOME_AQRUIVO
 
 ex: 
 seu codigo

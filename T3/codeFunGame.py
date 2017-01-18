@@ -596,20 +596,6 @@ frente = atualiza_frente(player)
 ###############codigo jogador#############################
 #fase: 3
 
-def magic(player):
-     kadabra= ''
-     frente = atualiza_frente(player)
-     if frente == 'fogueira':
-          kadabra='agua'
-     frente = atualiza_frente(player)
-     if frente == 'arvore':
-          kadabra='ataque'
-     frente = atualiza_frente(player)
-     if frente == 'caixa':
-          kadabra='fogo'
-     player.usar(kadabra)
-
 for i in range(4): 
-     magic(player)
-     player.andar()
+nada = 0
 gameOver()

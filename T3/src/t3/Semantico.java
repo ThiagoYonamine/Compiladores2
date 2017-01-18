@@ -35,8 +35,8 @@ public class Semantico {
         variaveis_tipo = new HashMap<String, String>();
         pilhaDeTabelas.empilhar(new TabelaDeSimbolos("Global"));
         //Verifica número da fase (1 a 5)
-        if (Integer.parseInt(ctx.NUM_INT().getText()) < 1 || Integer.parseInt(ctx.NUM_INT().getText()) > 6) {
-            println("[ERROR] Level " + ctx.NUM_INT() + " doesn't exist\nSet a value between 1 to 5");
+        if (Integer.parseInt(ctx.NUM_INT().getText()) < 1 || Integer.parseInt(ctx.NUM_INT().getText()) > 4) {
+            println("[ERROR] Level " + ctx.NUM_INT() + " doesn't exist\nSet a value between 1 to 4");
         }
         else if (!ctx.corpo().getText().equals("")) {
             Corpo(ctx.corpo());
@@ -83,9 +83,13 @@ public class Semantico {
                 Comandos(ctx.resultado().comandos());  
         }
         if (ctx.getStart().getText().equals("repetir")) {
-           if(!ctx.repetir().getText().equals(""))
+           if(!ctx.repetir().comandos().getText().equals(""))
             Comandos(ctx.repetir().comandos());
+           else
+            println("[ERROR] Repetir is empty");
+        
         }
+        
     }
 
     void Declaracoes(codeFunParser.DeclaracoesContext ctx) {
@@ -109,7 +113,10 @@ public class Semantico {
             if (!pilhaDeTabelas.existeSimbolo(id)) { //Coloca a função na pilha de tabelas
                 pilhaDeTabelas.topo().adicionarSimbolo(id, "funcao");
                 pilhaDeTabelas.empilhar(new TabelaDeSimbolos(id));
+                if(!ctx.declaracoes_funcao().comandos().getText().equals(""))
                 Comandos(ctx.declaracoes_funcao().comandos());
+                else
+                println("[ERROR] Function body is empty");
                 pilhaDeTabelas.desempilhar();
             } else { //Atribuir mesmo nome para funções
                 println("[SEMANTIC ERROR] Line " + id_line + " : Function " + id + " already defined");
