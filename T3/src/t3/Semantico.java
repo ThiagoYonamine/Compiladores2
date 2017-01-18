@@ -135,17 +135,6 @@ public class Semantico {
                     variaveis_tipo.remove(id);
                 }
                 variaveis_tipo.put(id, at);
-/*
-                if (pilhaDeTabelas.tipo(id) == "magia") {
-                    if (!at.equals("agua") && !at.equals("fogo") && !at.equals("ataque")) {
-                        println("[ERROR] Line " + id_line + " : Variable " + id + " not compatible");
-                    }
-                } else if (pilhaDeTabelas.tipo(id) == "bloco") {
-                    
-                    if (!at.equals("grama") && !at.equals("lava") && !at.equals("pedra") && !at.equals("inimigo") && !at.equals("gelo") && !at.equals("espinho")&& !at.equals("arvore")&& !at.equals("caixa")) {
-                        println("[ERROR] Line " + id_line + " : Variable " + id + " not compatible");
-                    }
-                }*/
             }
         }
     }

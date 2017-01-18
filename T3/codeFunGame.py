@@ -15,7 +15,8 @@ frente = 'nada'
 bg = pygame.image.load('src/t3/Imagem/forst.png')
 fim = pygame.image.load('src/t3/Imagem/perdeu.png')
 img_ganhou = pygame.image.load('src/t3/Imagem/ganhou.png')
-grama = pygame.image.load('src/t3/Imagem/grama.png') 
+grama = pygame.image.load('src/t3/Imagem/grama.png')
+livro = pygame.image.load('src/t3/Imagem/livro.png') # l
 gfogo = pygame.image.load('src/t3/Imagem/fire.png') # 2
 gpedra = pygame.image.load('src/t3/Imagem/ground2.png') # 3
 gespinho = pygame.image.load('src/t3/Imagem/ground.png') # 4
@@ -122,6 +123,8 @@ def mapa():
             screen.blit(caixa_quebrada, (x+100,y+100))
         elif(i == 'v'):
             screen.blit(a_queimada, (x+100,y+90))
+        elif(i == 'l'):
+            screen.blit(livro, (x+100,y+100))
         elif(i == 'f'):
             global anima_fogo
             screen.blit(fogueira[int(anima_fogo)], (x+100,y+100))
@@ -178,10 +181,10 @@ def gameOver():
             if event.type == pygame.QUIT:
                 close = True
         
-            
     pygame.display.quit()
     pygame.quit()
     sys.exit()
+    
 def ganhou():
     pygame.time.wait(200)
     close = False
@@ -192,11 +195,12 @@ def ganhou():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 close = True
-        
-            
+              
     pygame.display.quit()
     pygame.quit()
     sys.exit()
+
+    
 # # #   Inimigo # # #
 class Inimigo():
      def __init__(self,initX,initY,ex,fase):
@@ -220,6 +224,7 @@ class Inimigo():
                     pygame.image.load('src/t3/Imagem/i8.png')]
         self.animacao = 0
         self.col = pygame.Rect(self.x, self.y, 60, 60)  ##arrumar o tamanho certo
+
      def desenha(self):
         screen.blit(self.img[int(self.animacao)], (self.x, self.y))
         self.animacao += 0.5
@@ -271,11 +276,9 @@ class Inimigo():
          if(valx != 0  and  valy != 0):
              valx *= 0.5
              valy *= 0.5
-                
-         #print(self.bloco)
          
          self.bloco = ((11*(2*(self.by))) + self.bx*2)
-         #print(self.bloco)
+         
          if (lmatriz[self.bloco] == "1" or lmatriz[self.bloco] == "c"  or lmatriz[self.bloco] == "r" or lmatriz[self.bloco] == "v" or lmatriz[self.bloco] == "a"):
              valx = 0
              valy = 0
@@ -473,7 +476,7 @@ class Player():
         elif (lmatriz[player.bloco] == "1" or lmatriz[player.bloco] == "c"  or lmatriz[player.bloco] == "r" or lmatriz[player.bloco] == "v"):
             andarei = 0
         # Quando o jogador entra no portal
-        elif (lmatriz[player.bloco] == "p" or lmatriz[player.bloco] == "6") :
+        elif (lmatriz[player.bloco] == "p" or lmatriz[player.bloco] == "6" or lmatriz[player.bloco] == "l") :
            ganhou()
         else:
             andarei = 2
@@ -594,7 +597,6 @@ player = Player(inX,inY,inDir,inimigo)
 player.desenha()
 frente = atualiza_frente(player)
 ###############codigo jogador#############################
-pygame.time.wait(2000)
 #fase: 4
 
 def esquerda(player):
